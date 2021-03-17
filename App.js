@@ -2,11 +2,13 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
+// import { Marker } from 'react-native-maps';
+import { locations } from './locations.js'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      
       <StatusBar style="auto" />
       <MapView style={styles.map}
     initialRegion={{
@@ -15,7 +17,19 @@ export default function App() {
       latitudeDelta: 0.922,
       longitudeDelta: 0.0421,
     }}
-  />
+    >
+      {locations.map((location) => {
+        return(
+          <MapView.Marker
+      coordinate={{latitude: location["latitude"],
+          longitude: location["longitude"],}}
+      title={"marker.title"}
+      description={"desss"}
+    />
+        )})}
+
+      </MapView>
+      <Text>Open up App.js to start working on your app!</Text>
     </View>
     
   );
