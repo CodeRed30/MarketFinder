@@ -20,6 +20,12 @@
       "config": {
       "googleMapsApiKey": "AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0"
     },
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "location",
+          "fetch"
+        ]
+      },
       "supportsTablet": true
     },
     "android": {
