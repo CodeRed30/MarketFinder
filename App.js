@@ -1,90 +1,41 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-const axios = require('axios').default;
+import axios from 'axios';
 import Constants from 'expo-constants';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
-import { locations } from './locations.js'
+import { locations } from './app/locations.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Location, Permissions } from 'expo';
-// axios.get('http://192.168.1.110:3000/markets')
-//   .then(function (response) {
-//     // handle success
-//     console.log(response.data[2].name);
-//   })
-//   .catch(function (error) {
-//     // handle error
-//     console.log(error);
-//   })
-//   .then(function () {
-//     // always executed
-//   });
+
+import HomeScreen from './app/HomeScreen'
+import DetailsScreen from './app/DetailsScreen'
+import MarketData from './src/marketData.js'
+
 
 let backendUrl = Constants.manifest.extra.backendUrl
+
+const Stack = createStackNavigator();
 
   axios({
     url: backendUrl + "/markets",
     method: 'get'
   }).then(response => {
-    console.log(response.data);
+      let market = new MarketData()
+      console.log(market)
+      market.addName(response.data[0].name)
+      console.log(market.showName())
   }).catch(function (error) {
-    // handle error
-    console.log(error);
+  console.log(error);
   });
 
-
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      
-      <StatusBar style="auto" />
-      <MapView style={styles.map}
-    initialRegion={{
-      latitude: 51.509865,
-      longitude: -0.118092,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-    showsUserLocation={true}
-
-    >
-     
-      {locations.map((location, index) => {
-        return(
-          <MapView.Marker
-      coordinate={{latitude: location["latitude"],
-          longitude: location["longitude"],}}
-      title={"marker.title"}
-      description={"desss"}
-      key={index}
-    />
-        )})}
-
-      </MapView>
-      <View style={styles.container2}>
-      <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    </View>
-    
-  );
-}
-
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
-
-const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} options={{title: 'Locality'}}/>
+        <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
