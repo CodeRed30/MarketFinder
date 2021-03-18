@@ -4,6 +4,7 @@ const axios = require('axios').default;
 import Constants from 'expo-constants';
 import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import MapView from 'react-native-maps';
+
 import { locations } from './locations.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -61,9 +62,13 @@ export default function HomeScreen({navigation}) {
       <View style={styles.container2}>
       <Text>Open up App.js to start working on your app!</Text>
       </View>
-      <Button
+      {/* <Button
         title="See details" 
         onPress={()=> navigation.navigate('Details')}>
+      </Button> */}
+      <Button
+        title="Markets" 
+        onPress={()=> navigation.navigate('Market List')}>
       </Button>
     </View>
     

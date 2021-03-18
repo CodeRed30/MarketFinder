@@ -12,14 +12,14 @@ import { Location, Permissions } from 'expo';
 import HomeScreen from './app/HomeScreen'
 import DetailsScreen from './app/DetailsScreen'
 import MarketData from './src/marketData.js'
+import MarketList from './app/MarketList'
 
 
 let backendUrl = Constants.manifest.extra.backendUrl
 
 const Stack = createStackNavigator();
 
-let markets = []
-console.log(markets)
+export let markets = []
 
   axios({
     url: backendUrl + "/markets",
@@ -42,6 +42,8 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Market List" component={MarketList} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
