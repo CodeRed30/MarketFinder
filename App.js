@@ -23,18 +23,34 @@ import { Location, Permissions } from 'expo';
 
 let backendUrl = Constants.manifest.extra.backendUrl
 
+  // axios({
+  //   url: backendUrl + "/markets",
+  //   method: 'get'
+  // }).then(response => {
+  //   // console.log(response.data);
+  // }).catch(function (error) {
+  //   // handle error
+  //   // console.log(error);
+  // });
+
+
+function showPlacesApi() { 
   axios({
-    url: backendUrl + "/markets",
-    method: 'get'
-  }).then(response => {
-    console.log(response.data);
-  }).catch(function (error) {
-    // handle error
-    console.log(error);
-  });
+  url: "https://maps.googleapis.com/maps/api/place/textsearch/json?location=51.509865,-0.118092&radius=1500&query=market&fields=name,geometry&key=AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0",
+  method: 'get'
+}).then(response => {
+  console.log(response.data);
+  console.log(response.data.results[1].place_id)
+}).catch(function (error) {
+  // handle error
+  console.log(error);
+})};
 
-
+// let output = fetch("http://maps.googleapis.com/maps/api/place/textsearch/json?location=51.509865,-0.118092&radius=1500&query=market&fields=name,geometry&key=AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0")
+// console.log(output)
 function HomeScreen() {
+  // console.log(output)
+  showPlacesApi()
   return (
     <View style={styles.container}>
       
