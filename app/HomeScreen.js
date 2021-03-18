@@ -9,6 +9,9 @@ import { locations } from './locations.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Location, Permissions } from 'expo';
+import MarketList from './MarketList.js';
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -60,12 +63,12 @@ export default function HomeScreen({navigation}) {
 
       </MapView>
       <View style={styles.container2}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <MarketList />
       </View>
-      {/* <Button
+      <Button
         title="See details" 
         onPress={()=> navigation.navigate('Details')}>
-      </Button> */}
+      </Button>
       <Button
         title="Markets" 
         onPress={()=> navigation.navigate('Market List')}>

@@ -29,7 +29,6 @@ export let markets = []
         market.addName(response.data[i].name)
         market.addDescription(response.data[i].description)
         markets.push(market)
-        console.log(markets)
       }
   }).catch(function (error) {
   console.log(error);
@@ -42,7 +41,6 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Market List" component={MarketList} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
