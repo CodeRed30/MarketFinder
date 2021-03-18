@@ -23,6 +23,35 @@ let backendUrl = Constants.manifest.extra.backendUrl
 //   console.log(error);
 // });
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  container2: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+    backgroundColor: '#FA7E61',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  map: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+  listItem: {
+    fontSize: 18,
+  },
+  header: {
+    fontSize: 28,
+    fontWeight: "bold",
+    paddingBottom: 12,
+  }
+});
+
 export default MarketList = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
@@ -41,12 +70,13 @@ export default MarketList = () => {
     <View style={{ flex: 1, padding: 24 }}>
       {isLoading ? <Text>Loading...</Text> : 
       ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
-          <Text style={{ fontSize: 14, color: 'green', textAlign: 'center', paddingBottom: 10}}>Nearby Markets:</Text>
+          <Text style={styles.header}>Nearby Markets:</Text>
           <FlatList
             data={data}
             keyExtractor={({ id }, index) => id}
             renderItem={({ item }) => (
-              <Text>{item.name + ': ' + item.description}</Text>
+              // key is not being read but is not crashing
+              <Text style={styles.listItem} key={item}>{item.name + ': ' + item.description}</Text>
             )}
           />
         </View>
@@ -54,5 +84,7 @@ export default MarketList = () => {
     </View>
   );
 };
+
+
 
 // export default MarketList;

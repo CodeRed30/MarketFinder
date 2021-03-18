@@ -70,7 +70,7 @@ export default function HomeScreen({navigation}) {
         onPress={()=> navigation.navigate('Details')}>
       </Button>
       <Button
-        title="Markets" 
+        title="All Markets" 
         onPress={()=> navigation.navigate('Market List')}>
       </Button>
     </View>
