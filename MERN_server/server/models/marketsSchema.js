@@ -9,6 +9,10 @@ const MarketsSchema = new mongoose.Schema({
     description: {
         type: String,
         required: true,
+    },
+    website: {
+        type: String,
+        required: false,
     }
 })
 
