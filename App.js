@@ -1,5 +1,4 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 const axios = require('axios').default;
 import Constants from 'expo-constants';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
@@ -8,6 +7,8 @@ import { locations } from './locations.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Location, Permissions } from 'expo';
+import React, { Component } from 'react';
+
 // axios.get('http://192.168.1.110:3000/markets')
 //   .then(function (response) {
 //     // handle success
@@ -27,12 +28,13 @@ let backendUrl = Constants.manifest.extra.backendUrl
     url: backendUrl + "/markets",
     method: 'get'
   }).then(response => {
+
     console.log(response.data);
   }).catch(function (error) {
     // handle error
     console.log(error);
   });
-
+  
 
 function HomeScreen() {
   return (
@@ -63,12 +65,34 @@ function HomeScreen() {
 
       </MapView>
       <View style={styles.container2}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text> Open up App.js to start working on your app!</Text>
       </View>
     </View>
     
   );
 }
+
+class reactApp extends Component {
+  constructor() {
+     super()
+     this.state = {
+        myText: 'My Original Text'
+     }
+  }
+  updateText = () => {
+     this.setState({myText: 'My Changed Text'})
+  }
+  render() {
+     return (
+        <View>
+           <Text onPress = {this.updateText}>
+              {this.state.myText}
+           </Text>
+        </View>
+     );
+    }
+  }
+ 
 
 function DetailsScreen() {
   return (
@@ -86,6 +110,8 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{title: 'Locality'}}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="ReactApp" component={reactApp} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -112,4 +138,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default reactApp;
