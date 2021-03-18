@@ -18,14 +18,20 @@ let backendUrl = Constants.manifest.extra.backendUrl
 
 const Stack = createStackNavigator();
 
+let markets = []
+console.log(markets)
+
   axios({
     url: backendUrl + "/markets",
     method: 'get'
   }).then(response => {
-      let market = new MarketData()
-      console.log(market)
-      market.addName(response.data[0].name)
-      console.log(market.showName())
+      for (let i = 0; i < response.data.length; i++) {
+        let market = new MarketData()
+        market.addName(response.data[i].name)
+        market.addDescription(response.data[i].description)
+        markets.push(market)
+        console.log(markets)
+      }
   }).catch(function (error) {
   console.log(error);
   });
@@ -36,8 +42,6 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="ReactApp" component={reactApp} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -64,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default reactApp;
+export default App;
