@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/stack": "^5.14.3",
     "expo": "^40.0.1",

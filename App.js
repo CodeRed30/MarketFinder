@@ -1,11 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+const axios = require('axios').default;
+import Constants from 'expo-constants';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
 import { locations } from './locations.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Location, Permissions } from 'expo';
+// axios.get('http://192.168.1.110:3000/markets')
+//   .then(function (response) {
+//     // handle success
+//     console.log(response.data[2].name);
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .then(function () {
+//     // always executed
+//   });
+
+let backendUrl = Constants.manifest.extra.backendUrl
+
+  axios({
+    url: backendUrl + "/markets",
+    method: 'get'
+  }).then(response => {
+    console.log(response.data);
+  }).catch(function (error) {
+    // handle error
+    console.log(error);
+  });
+
 
 function HomeScreen() {
   return (
