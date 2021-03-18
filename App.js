@@ -33,18 +33,35 @@ let backendUrl = Constants.manifest.extra.backendUrl
   //   // console.log(error);
   // });
 
+// https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=mongolian%20grill&inputtype=textquery&fields=photos,formatted_address,name,opening_hours,rating&locationbias=circle:2000@47.6918452,-122.2226413&key=YOUR_API_KEY
 
 function showPlacesApi() { 
   axios({
-  url: "https://maps.googleapis.com/maps/api/place/textsearch/json?location=51.509865,-0.118092&radius=1500&query=market&fields=name,geometry&key=AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0",
+  url: "https://maps.googleapis.com/maps/api/place/textsearch/json?location=51.517997928,-0.071333048&radius=1500&query=market&key=AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0",
   method: 'get'
 }).then(response => {
+  console.log("START: RESPONSE.DATA")
   console.log(response.data);
-  console.log(response.data.results[1].place_id)
+  // console.log("RESPONSE.DATA.RESULTS[1].PLACE_ID")
+  // console.log(response.data.results[1].place_id)
+  
+  response.data.results.map((result) => {
+    console.log(result.name)
+    axios({
+      // console.log("https://maps.googleapis.com/maps/api/place/details/json?place_id=" + result.place_id + "&fields=formatted_address,geometry/location,name,opening_hours&key=AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0")
+      url: "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + result.place_id + "&fields=formatted_address,geometry/location,name,opening_hours,website&key=AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0",
+      method: 'get'    
+    }).then(response => {
+      console.log(response.data);
+    }) 
+
+  })
 }).catch(function (error) {
   // handle error
   console.log(error);
 })};
+
+
 
 // let output = fetch("http://maps.googleapis.com/maps/api/place/textsearch/json?location=51.509865,-0.118092&radius=1500&query=market&fields=name,geometry&key=AIzaSyAZ4FMOvT4DuSnNHPVBqQSYqoDaT8ScJz0")
 // console.log(output)
