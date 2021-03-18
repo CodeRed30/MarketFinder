@@ -27,6 +27,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "backendUrl": "HEROKU URL GOES HERE"
     }
   }
 }
