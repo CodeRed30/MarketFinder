@@ -1,33 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import axios from 'axios';
+const axios = require('axios').default;
 import Constants from 'expo-constants';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import MapView from 'react-native-maps';
-import { locations } from './app/locations.js'
+import { locations } from './locations.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Location, Permissions } from 'expo';
 
-import HomeScreen from './app/HomeScreen'
-import DetailsScreen from './app/DetailsScreen'
-import MarketData from './src/marketData.js'
-import MarketList from './app/MarketList'
-
-
-const Stack = createStackNavigator();  
-
-function App() {
+function DetailsScreen({navigation}) {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen}/>
-        <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="Market List" component={MarketList} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+      <Button
+        title="Back to home"
+        onPress={() => navigation.navigate('Home')}
+      ></Button>
+    </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -50,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default DetailsScreen

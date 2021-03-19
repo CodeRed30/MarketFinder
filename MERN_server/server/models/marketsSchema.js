@@ -26,6 +26,7 @@ const MarketsSchema = new mongoose.Schema({
         type: Array,
         required: false,
     }
+
 })
 
 module.exports = mongoose.model('Markets', MarketsSchema)
