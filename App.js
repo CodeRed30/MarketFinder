@@ -14,26 +14,9 @@ import DetailsScreen from './app/DetailsScreen'
 import MarketData from './src/marketData.js'
 import MarketList from './app/MarketList'
 
-let backendUrl = Constants.manifest.extra.backendUrl
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator();  
 
-export let markets = []
-
-  axios({
-    url: backendUrl + "/markets",
-    method: 'get'
-  }).then(response => {
-      for (let i = 0; i < response.data.length; i++) {
-        let market = new MarketData()
-        market.addName(response.data[i].name)
-        market.addDescription(response.data[i].description)
-        markets.push(market)
-      }
-  }).catch(function (error) {
-  console.log(error);
-  });
-  
 function App() {
   return (
     <NavigationContainer>

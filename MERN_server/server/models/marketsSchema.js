@@ -6,12 +6,24 @@ const MarketsSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    description: {
+    website: {
+        type: String,
+        required: false,
+    },
+    formatted_address: {
+        type: String,
+        required: false,
+    },
+    lat: {
         type: String,
         required: true,
     },
-    website: {
+    lng: {
         type: String,
+        required: true,
+    },
+    weekday_text: {
+        type: Array,
         required: false,
     }
 
