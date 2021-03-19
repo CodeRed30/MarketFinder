@@ -14,7 +14,6 @@ import DetailsScreen from './app/DetailsScreen'
 import MarketData from './src/marketData.js'
 import MarketList from './app/MarketList'
 
-
 const Stack = createStackNavigator();  
 
 function App() {

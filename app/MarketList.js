@@ -7,42 +7,9 @@ import React, { Component, useState, useEffect } from "react";
 
 let backendUrl = Constants.manifest.extra.backendUrl
 
- let markets = []
-
-// axios({
-//   url: backendUrl + "/markets",
-//   method: 'get'
-// }).then(response => {
-//   for (let i = 0; i < response.data.length; i++) {
-//     let market = new MarketData()
-//     market.addName(response.data[i].name)
-//     market.addDescription(response.data[i].description)
-//     markets.push(market)
-//   }
-// }).catch(function (error) {
-//   console.log(error);
-// });
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  container2: {
-    flex: 1,
-    width: Dimensions.get('window').width,
-    backgroundColor: '#FA7E61',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  map: {
-    flex: 1,
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
   listItem: {
+    paddingTop: 15,
     fontSize: 18,
   },
   header: {
@@ -76,7 +43,7 @@ export default MarketList = () => {
             keyExtractor={({ id }, index) => id}
             renderItem={({ item }) => (
               // key is not being read but is not crashing
-              <Text style={styles.listItem} key={item}>{item.name + ': ' + item.description}</Text>
+              <Text style={styles.listItem} key={item}>{item.name}</Text>
             )}
           />
         </View>
