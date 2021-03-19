@@ -1095,7 +1095,7 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@expo/config-plugins@~1.0.13", "@expo/config-plugins@1.0.21":
+"@expo/config-plugins@^1.0.18", "@expo/config-plugins@1.0.21":
   "integrity" "sha512-sMTF0/lx52ovJPz9iH5l0aKRpPFFtYoAQ+38AYhXI890Sswr1UU4Pq3IA5RMdvtOTkTzNREr21WvEHd7X8D1dA=="
   "resolved" "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-1.0.21.tgz"
   "version" "1.0.21"
@@ -2077,6 +2077,13 @@
   "version" "1.0.2"
   dependencies:
     "array-filter" "^1.0.0"
+
+"axios@^0.21.1":
+  "integrity" "sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz"
+  "version" "0.21.1"
+  dependencies:
+    "follow-redirects" "^1.10.0"
 
 "babel-plugin-dynamic-import-node@^2.3.3":
   "integrity" "sha512-jZVI+s9Zg3IqA/kdi0i6UDCybUI3aSBLnglhYbSSjKlV7yF1F/5LWv8MakQmvYpnbJDS6fcBL2KzHSxNCMtWSQ=="
@@ -3129,12 +3136,12 @@
   "version" "1.0.3"
 
 "expo-task-manager@^9.0.0":
-  "integrity" "sha512-vkjolthm0AR0oFdFoL1GWOPIgCnsab6NETRpZTyqZbTJkFTnzRxNJDRGwyMEmuPh6dCPN/xLyZVhkJYnz5LA1g=="
-  "resolved" "https://registry.npmjs.org/expo-task-manager/-/expo-task-manager-9.0.0.tgz"
-  "version" "9.0.0"
+  "integrity" "sha512-mCWpjsBrlP/8B97UUpEoimSlFY67qNlblL5RQoL07UTYG14CCVmoIwMwOgxkE3lw+078gPOiwDuDQvYibbLyRw=="
+  "resolved" "https://registry.npmjs.org/expo-task-manager/-/expo-task-manager-9.1.0.tgz"
+  "version" "9.1.0"
   dependencies:
-    "@expo/config-plugins" "~1.0.13"
-    "unimodules-app-loader" "~2.0.0"
+    "@expo/config-plugins" "^1.0.18"
+    "unimodules-app-loader" "~2.1.0"
 
 "expo@^40.0.1":
   "integrity" "sha512-9NrhimvP44I1aDjGHMU4F0izCyfFTTYAQ6xZpWpuc+ZWRZqg8Zv62zNRlzBn+Ydaf1heSucnlJJ3Sp2gMdOEnQ=="
@@ -3390,6 +3397,11 @@
   dependencies:
     "locate-path" "^6.0.0"
     "path-exists" "^4.0.0"
+
+"follow-redirects@^1.10.0":
+  "integrity" "sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA=="
+  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.3.tgz"
+  "version" "1.13.3"
 
 "fontfaceobserver@^2.1.0":
   "integrity" "sha512-ReOsO2F66jUa0jmv2nlM/s1MiutJx/srhAe2+TE8dJCMi02ZZOcCTxTCQFr3Yet+uODUtnr4Mewg+tNQ+4V1Ng=="
@@ -6306,10 +6318,10 @@
   "resolved" "https://registry.npmjs.org/unimodules-app-loader/-/unimodules-app-loader-1.4.0.tgz"
   "version" "1.4.0"
 
-"unimodules-app-loader@~2.0.0":
-  "integrity" "sha512-U3mDkWePfpaqMeIuWK7U8TGEi1wG51AkZ0WAafub2LM2h8G8uDogpy5IvDdPCPK/l7hTTJv52jIx27fANmI/DA=="
-  "resolved" "https://registry.npmjs.org/unimodules-app-loader/-/unimodules-app-loader-2.0.0.tgz"
-  "version" "2.0.0"
+"unimodules-app-loader@~2.1.0":
+  "integrity" "sha512-W+D+hVXq6jOvBm7QVwODPENz6Lupj73QequNNG+6GCTkqn4ybq/lba9IQvJQT2QzdL3luVHin+eym18cDblMlg=="
+  "resolved" "https://registry.npmjs.org/unimodules-app-loader/-/unimodules-app-loader-2.1.0.tgz"
+  "version" "2.1.0"
 
 "unimodules-barcode-scanner-interface@~5.4.0":
   "integrity" "sha512-UXQpZlXA3UbC6cYJJe6W+KL5yL+kwXHBLSWgzJ18n7GsJbbCitQlA5wehXR+bY5sFAlP/AKBk0Y2XPTmtDrPaw=="
