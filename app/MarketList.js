@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 export default MarketList = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  console.log(data)
+
   useEffect(() => {
     fetch(backendUrl + '/markets')
       .then((response) => response.json())
