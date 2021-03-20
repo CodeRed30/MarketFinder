@@ -5,6 +5,7 @@ import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -51,3 +52,22 @@ export default class App extends Component {
     );
   }
 }
+
+let backendUrl = Constants.manifest.extra.backendUrl
+
+const styles = StyleSheet.create({
+  listItem: {
+    paddingTop: 15,
+    fontSize: 18,
+  },
+  header: {
+    fontSize: 28,
+    fontWeight: "bold",
+    paddingBottom: 12,
+  }
+});
+
+
+
+
+
