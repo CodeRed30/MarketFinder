@@ -3,20 +3,20 @@
       "lat": 51.5159813,
       "lng": -0.06626449999999998,
       "name": "broadway market",
-      "website": "https://broadwaymarket.co.uk/",
+      "website": "https://broadwaymarket.co.uk/"
     },
  {
       "formatted_address": "Finsbury Market, London EC2A 2EZ, UK",
       "lat": 51.521533,
       "lng": -0.0828522,
-      "name": "Finsbury Market",
+      "name": "Finsbury Market"
     },
  {
       "formatted_address": "16 Finsbury Square, Finsbury, London EC2A 1BR, UK",
       "lat": 51.52175130000001,
       "lng": -0.0860372,
       "name": "Market Hub",
-      "website": "https://www.markethub.ie/",
+      "website": "https://www.markethub.ie/"
     },
  {
       "formatted_address": "Vernasa Cafe, 9 Wentworth St, Spitalfields, London E1 7TB, UK",
@@ -30,15 +30,15 @@
         "Thursday: Closed",
         "Friday: 8:00 AM – 6:00 PM",
         "Saturday: 8:00 AM – 6:00 PM",
-        "Sunday: 8:00 AM – 6:00 PM",
+        "Sunday: 8:00 AM – 6:00 PM"
       ],
-      "website": "http://www.towerhamlets.gov.uk/",
+      "website": "http://www.towerhamlets.gov.uk/"
     },
  {
       "formatted_address": "Bethnal Green, London E2 0HU, UK",
       "lat": 51.5278843,
       "lng": -0.0520327,
-      "name": "Singh Super Market",
+      "name": "Singh Super Market"
     },
  {
       "formatted_address": "8 Southwark St, London SE1 1TL, UK",
@@ -52,9 +52,9 @@
         "Thursday: 10:00 AM – 5:00 PM",
         "Friday: 10:00 AM – 6:00 PM",
         "Saturday: 8:00 AM – 5:00 PM",
-        "Sunday: Closed",
+        "Sunday: Closed"
       ],
-      "website": "http://www.boroughmarket.org.uk/",
+      "website": "http://www.boroughmarket.org.uk/"
     },
  {
       "formatted_address": "Gracechurch St, Langbourn, London EC3V 1LT, UK",
@@ -68,15 +68,15 @@
         "Thursday: Open 24 hours",
         "Friday: 10:00 AM – 6:00 PM",
         "Saturday: Closed",
-        "Sunday: Closed",
+        "Sunday: Closed"
       ],
-      "website": "http://www.leadenhallmarket.co.uk/",
+      "website": "http://www.leadenhallmarket.co.uk/"
     },
  {
       "formatted_address": "44-46 Brushfield St, Shadwell, London E1 6AG, UK",
       "lat": 51.51963749999999,
       "lng": -0.07520410000000001,
-      "name": "market",
+      "name": "market"
     },
  {
       "formatted_address": "17 Buxton St, London E1 5EG, UK",
@@ -90,23 +90,23 @@
         "Thursday: Closed",
         "Friday: Closed",
         "Saturday: 11:00 AM – 6:00 PM",
-        "Sunday: 10:00 AM – 5:00 PM",
+        "Sunday: 10:00 AM – 5:00 PM"
       ],
-      "website": "http://www.trumanmarkets.com/",
+      "website": "http://www.trumanmarkets.com/"
     },
  {
       "formatted_address": "Columbia Rd, London E2 7RG, UK",
       "lat": 51.529129,
       "lng": -0.069809,
       "name": "Columbia Road Flower Market",
-      "website": "http://www.columbiaroad.info/",
+      "website": "http://www.columbiaroad.info/"
     },
  {
       "formatted_address": "Bethnal Green Rd, London E2 0AG, UK",
       "lat": 51.52664559999999,
       "lng": -0.0628802,
       "name": "Bethnal Green Market",
-      "website": "https://www.towerhamlets.gov.uk/lgnl/business/markets/markets_in_tower_hamlets.aspx",
+      "website": "https://www.towerhamlets.gov.uk/lgnl/business/markets/markets_in_tower_hamlets.aspx"
     },
  {
       "formatted_address": "100 Brick Ln, Shadwell, London E1 6RL, UK",
@@ -120,8 +120,8 @@
         "Thursday: 9:00 AM – 1:00 AM",
         "Friday: 9:00 AM – 1:00 AM",
         "Saturday: 9:00 AM – 1:00 AM",
-        "Sunday: 9:00 AM – 1:00 AM",
-      ],
+        "Sunday: 9:00 AM – 1:00 AM"
+      ]
     },
  {
       "formatted_address": "146 Brick Ln, London E1 6QL, UK",
@@ -135,9 +135,9 @@
         "Thursday: Closed",
         "Friday: Closed",
         "Saturday: 11:00 AM – 6:00 PM",
-        "Sunday: 10:00 AM – 5:00 PM",
+        "Sunday: 10:00 AM – 5:00 PM"
       ],
-      "website": "http://www.backyardmarket.co.uk/",
+      "website": "http://www.backyardmarket.co.uk/"
     },
  {
       "formatted_address": "124 Mile End Rd, Stepney Green, London E1 4UN, UK",
@@ -151,8 +151,8 @@
         "Thursday: Open 24 hours",
         "Friday: Open 24 hours",
         "Saturday: Open 24 hours",
-        "Sunday: Open 24 hours",
-        ],
+        "Sunday: Open 24 hours"
+        ]
     },
  {
       "formatted_address": "91 Brick Ln, Shadwell, London E1 6QL, UK",
@@ -166,9 +166,9 @@
         "Thursday: Closed",
         "Friday: Closed",
         "Saturday: 11:00 AM – 5:30 PM",
-        "Sunday: 10:00 AM – 6:00 PM",
+        "Sunday: 10:00 AM – 6:00 PM"
       ],
-      "website": "http://www.sundayupmarket.co.uk/",
+      "website": "http://www.sundayupmarket.co.uk/"
     },
  {
       "formatted_address": "Brick Ln, Spitalfields, London E1 6QR, UK",
@@ -182,9 +182,9 @@
         "Thursday: Closed",
         "Friday: Closed",
         "Saturday: 11:00 AM – 6:00 PM",
-        "Sunday: 10:00 AM – 5:00 PM",
+        "Sunday: 10:00 AM – 5:00 PM"
       ],
-      "website": "http://www.bricklanemarket.com/",
+      "website": "http://www.bricklanemarket.com/"
     },
  {
       "formatted_address": "430a Hackney Rd, London E2 6QL, UK",
@@ -198,22 +198,22 @@
         "Thursday: 7:00 AM – 1:00 AM",
         "Friday: 7:00 AM – 2:00 AM",
         "Saturday: 7:00 AM – 2:00 AM",
-        "Sunday: 7:00 AM – 1:00 AM",
-      ],
+        "Sunday: 7:00 AM – 1:00 AM"
+      ]
     },
  {
       "formatted_address": "16 Commercial St, Shadwell, London E1 6EW, UK",
       "lat": 51.5196569,
       "lng": -0.0755469,
       "name": "Old Spitalfields Market",
-      "website": "https://oldspitalfieldsmarket.com/",
+      "website": "https://oldspitalfieldsmarket.com/"
     },
  {
       "formatted_address": "56 Brushfield St, Shadwell, London E1 6AA, UK",
       "lat": 51.5197684,
       "lng": -0.07684909999999999,
       "name": "Spitalfields Market",
-      "website": "https://www.spitalfields.co.uk/",
+      "website": "https://www.spitalfields.co.uk/"
     },
  {
       "formatted_address": "46 Whitechapel Rd, Shadwell, London E1 1JX, UK",
@@ -227,7 +227,7 @@
         "Thursday: 9:00 AM – 5:00 PM",
         "Friday: 9:00 AM – 5:00 PM",
         "Saturday: 9:00 AM – 5:00 PM",
-        "Sunday: Closed",
-      ],
-    },
+        "Sunday: Closed"
+      ]
+    }
   ]
