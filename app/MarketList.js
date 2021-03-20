@@ -18,7 +18,8 @@ export default class App extends Component {
   fetchMarkets = async () => {
     this.setState({ isLoading: true });
     try {
-      const res = await fetch('http://192.168.1.110:3000/markets');
+      let backendUrl = Constants.manifest.extra.backendUrl
+      const res = await fetch(backendUrl + '/markets');
       const markets = await res.json();
       this.setState({ markets });
     } catch (err) {
@@ -53,7 +54,7 @@ export default class App extends Component {
   }
 }
 
-let backendUrl = Constants.manifest.extra.backendUrl
+
 
 const styles = StyleSheet.create({
   listItem: {
