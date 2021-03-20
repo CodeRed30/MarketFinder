@@ -7,15 +7,13 @@ import MapView from 'react-native-maps';
 import { locations } from './locations.js'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as SplashScreen from 'expo-splash-screen';
-
 import MarketList from './MarketList.js';
 
 
 import React, { useState, useEffect, useCallback } from 'react';
 
 import * as Location from 'expo-location';
-
+import Map from './Map'
 
 const styles = StyleSheet.create({
   container: {
@@ -108,32 +106,10 @@ export default function HomeScreen({navigation}) {
 console.log(latitude);
 
   return (
-    <View style={styles.container}>
-      
-      <StatusBar style="auto" />
-      <MapView style={styles.map}
-    initialRegion={{
-      latitude: latitude,
-      longitude: longitude,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-    showsUserLocation={true}
-    
-    >
-     
-      {locations.map((location, index) => {
-        return(
-          <MapView.Marker
-            coordinate={{ latitude: location["latitude"],
-                          longitude: location["longitude"],}}
-            title={"marker.title"}
-            description={"desss"}
-            key={index}
-          />
-        )})}
+    <View style={{ flex: 1 }}>
+          <Map> 
 
-      </MapView>
+          </Map>
       <View style={styles.container2}>
       <MarketList />
       </View>
