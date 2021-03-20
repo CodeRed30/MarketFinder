@@ -27,6 +27,8 @@ import MapView from 'react-native-maps'
 import * as Permissions from 'expo-permissions';
 import Polyline from '@mapbox/polyline'
 import Constants from 'expo-constants';
+import { Marker } from 'react-native-maps'
+
 
 const markets = require('./markets.json')
 let googleApi = Constants.manifest.extra.googleApi
@@ -79,7 +81,6 @@ export default class Map extends React.Component {
     try {
       const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=${googleApi}`)
       const respJson = await resp.json();
-      console.log(respJson)
       const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
       const coords = points.map(point => {
         return {
@@ -91,6 +92,25 @@ export default class Map extends React.Component {
     } catch(error) {
       console.log('Error: ', error)
     }
+  }
+  renderMarkers = () => {
+    const { markets } =this.state
+    return (
+      <View>
+        {
+          markets.map((market, idx) => {
+            const latitude = market.lat
+            const  longitude = market.lng
+            return (
+              <Marker
+              key={idx}
+              coordinate={{ latitude, longitude }}
+              />
+            )
+          })
+        }
+      </View>
+    )
   }
 
   render(){
@@ -108,6 +128,7 @@ export default class Map extends React.Component {
         longitudeDelta: 0.0421
       }}
       >
+        {this.renderMarkers()}
       <MapView.Polyline 
         strokeWidth={2}
         strokeColor="red"

@@ -74,8 +74,8 @@ export default function HomeScreen({navigation}) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  useEffect(() => {
-    (async () => {
+  // useEffect(() => {
+    async function locationSetter() {
       if (Platform.OS === 'android' && !Constants.isDevice) {
         setErrorMsg(
           'Oops, this will not work on Snack in an Android emulator. Try it on your device!'
@@ -90,10 +90,11 @@ export default function HomeScreen({navigation}) {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-    })();
-  }, []);
+    };
+  // }, []);
 
   let latitude = 53.509865;
+  console.log(latitude + 1);
   let longitude = -0.118092;
   if (errorMsg) {
     text = errorMsg;
@@ -104,6 +105,7 @@ export default function HomeScreen({navigation}) {
     longitude = parseFloat(lo)
   }
   
+console.log(latitude);
 
   return (
     <View style={styles.container}>
