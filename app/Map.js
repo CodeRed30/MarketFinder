@@ -72,6 +72,10 @@ async componentDidMount() {
     try {
       const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=${googleApi}`)
       const respJson = await resp.json();
+      const response = respJson.routes[0]
+      const distanceTime = response.legs[0]
+      const distance = distanceTime.distance.text
+      const time = distanceTime.duration.text
       const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
       const coords = points.map(point => {
         return {
@@ -79,7 +83,7 @@ async componentDidMount() {
           longitude: point[1]
         }
       })
-      this.setState({ coords })
+      this.setState({ coords, distance, time })
     } catch(error) {
       console.log('Error: ', error)
     }
@@ -123,9 +127,15 @@ async componentDidMount() {
   }
   
   render(){
-    const { latitude, longitude, coords } = this.state
-    if (latitude) {
-      return (
+     const { 
+      latitude,
+      longitude,
+      coords,
+      time,
+      distance
+      } = this.state
+   if (latitude) {
+    return (
     <MapView
       provider={MapView.PROVIDER_GOOGLE} 
       showsUserLocation
@@ -137,6 +147,13 @@ async componentDidMount() {
         longitudeDelta: 0.0421
       }}
       >
+        <View style={{ flex: 0.1,
+        backgroundColor: "white"}}>
+
+        
+        <Text style={{ fontWeight: 'bold'}}>Est Time: {time}</Text>
+        <Text style={{ fontWeight: 'bold'}}>Est Distance: {distance}</Text>
+        </View>
         {this.renderMarkers()}
       <MapView.Polyline 
         strokeWidth={2}
