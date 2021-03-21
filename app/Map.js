@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Text, TouchableWithoutFeedbackBase } from 'react-native'
 
 import MapView from 'react-native-maps'
 import * as Permissions from 'expo-permissions';
@@ -84,6 +84,15 @@ async componentDidMount() {
       console.log('Error: ', error)
     }
   }
+  onMarkerPress = market => () => {
+    const latitude = parseFloat(market.lat)
+    const longitude = parseFloat(market.lng)
+    this.setState( {
+      destination: market,
+      desLatitude: latitude,
+      desLongitude: longitude
+    }, this.mergeCoords)
+  }
 
   renderMarkers = () => {
     const { markets } =this.state
@@ -104,6 +113,7 @@ async componentDidMount() {
               <Marker
               key={idx}
               coordinate={{ latitude, longitude }}
+              onPress={this.onMarkerPress(market)}
               />
             )
           })
