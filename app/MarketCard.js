@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Image, Text, Button} from 'react-native';
- 
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 var { width } = Dimensions.get("window");
 
@@ -12,6 +12,7 @@ const MarketCard = (props) => {
             <Image style={styles.image} />
             <View style={styles.card}>
                 <Text style={styles.title}>{name}</Text>
+                <Icon style ={styles.icon} name="walking" size={40} />
             </View>
         </View>
     )
@@ -48,8 +49,10 @@ const styles = StyleSheet.create({
         textAlign: 'left', 
         color: 'black',
     },
+    icon: {
+        justifyContent: "flex-end",
+        color: '#e91e63'
+    }
 })
-
-
 
 export default MarketCard;
