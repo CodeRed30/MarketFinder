@@ -18,7 +18,22 @@ const SingleMarket = (props) => {
                         resizeMode="contain"
                         style={styles.image}
                     />
-                    
+                    <Text>
+                    {item.name}
+                    </Text>
+                    <Text>
+                    OPENING HOURS
+                    {item.weekday_text}
+                    </Text>
+                    <Text>
+                    ADDRESS
+                    {item.formatted_address} 
+                    </Text>
+                    <Text>
+                    WEBSITE
+                    {item.website}
+                    </Text>
+                 
                 </View>
 
             </ScrollView>
