@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 import HomeNavigator from './HomeNavigator'
+import MarketList from '../app/MarketList'
 
 const Tab = createBottomTabNavigator();
 
@@ -18,6 +19,20 @@ const Main = () => {
             }}
         > 
             <Tab.Screen
+                name="Search"
+                component={ HomeNavigator }
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <Icon
+                            name="search"
+                            style={{ position: "relative" }}
+                            color={color}
+                            size={30}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
                 name="Home"
                 component={ HomeNavigator }
                 options={{
@@ -32,12 +47,12 @@ const Main = () => {
                 }}
             />
             <Tab.Screen
-                name="Search"
-                component={ HomeNavigator }
+                name="List"
+                component={ MarketList }
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            name="search"
+                            name="list"
                             style={{ position: "relative" }}
                             color={color}
                             size={30}
