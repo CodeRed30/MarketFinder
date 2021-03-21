@@ -38,7 +38,7 @@ export default class App extends Component {
       <View style={{ flex: 1, padding: 24 }}>
         {this.isLoading ? <Text>Loading...</Text> : 
         ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
-            <Text>Nearby Markets:</Text>
+            <Text style={{fontWeight: "bold"}}>Nearby Markets:</Text>
             <FlatList
               data={this.state.markets}
               keyExtractor={({ id }, index) => id}
