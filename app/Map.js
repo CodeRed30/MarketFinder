@@ -46,8 +46,8 @@ async componentDidMount() {
   const { markets: [ sampleMarket] } = this.state
 
   this.setState({
-    desLatitude: sampleMarket.lat,
-    desLongitude: sampleMarket.lng,
+    desLatitude: null,
+    desLongitude: null,
   }, this.mergeCoords)
 }
 
@@ -56,7 +56,7 @@ async componentDidMount() {
       latitude,
       longitude,
       desLatitude,
-      desLongitude
+      desLongitude,
     } = this.state
     
     const hasStartAndEnd = latitude !== null && desLatitude !== null
@@ -155,13 +155,14 @@ async componentDidMount() {
         <Text style={{ fontWeight: 'bold'}}>Est Distance: {distance}</Text>
         </View>
         {this.renderMarkers()}
-      <MapView.Polyline 
-        strokeWidth={2}
-        strokeColor="red"
-        coordinates={coords}
-      />
+
+        <MapView.Polyline 
+          strokeWidth={2}
+          strokeColor="red"
+          coordinates={coords}
+        />
       
-    </MapView>
+      </MapView>
       )
     }
     return (
