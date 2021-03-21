@@ -23,12 +23,15 @@ const SingleMarket = (props) => {
                     <H1>
                     {item.name}
                     </H1>
+                    
+                    {(function() {if(item.weekday_text != "") {
+                        return <Text>
+                        OPENING HOURS{"\n"}
+                        {item.weekday_text}</Text>;
+                    }
+                })()}
                     <Text>
-                    OPENING HOURS
-                    {item.weekday_text}
-                    </Text>
-                    <Text>
-                    ADDRESS
+                    ADDRESS{"\n"}
                     {item.formatted_address} 
                     </Text>
                     <Text>
