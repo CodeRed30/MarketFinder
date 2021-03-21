@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 import { StyleSheet, Text, View, Dimensions, Button, Platform } from 'react-native';
 import MapView from 'react-native-maps';
 import { locations } from './locations.js'
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MarketList from './MarketList.js';
 import React, { useState, useEffect, useCallback } from 'react';
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen(props) {
   const [appIsReady, setAppIsReady] = useState(false);
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -64,7 +64,9 @@ export default function HomeScreen({navigation}) {
   return (
     <View style={{ flex: 1 }}>
       <Map /> 
-      <MarketList />
+      <MarketList 
+        navigation={props.navigation}
+      />
     </View>
   );
 }
