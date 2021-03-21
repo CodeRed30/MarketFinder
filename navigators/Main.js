@@ -31,6 +31,34 @@ const Main = () => {
                     )
                 }}
             />
+            <Tab.Screen
+                name="Search"
+                component={ HomeNavigator }
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <Icon
+                            name="search"
+                            style={{ position: "relative" }}
+                            color={color}
+                            size={30}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="About"
+                component={ HomeNavigator }
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <Icon
+                            name="info"
+                            style={{ position: "relative" }}
+                            color={color}
+                            size={30}
+                        />
+                    )
+                }}
+            />
         </Tab.Navigator> 
     )
 }
