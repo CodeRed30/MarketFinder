@@ -128,10 +128,10 @@ export default class MarketMap extends React.Component {
       showsUserLocation
       style={{ flex: 1 }}
       initialRegion={{
-        latitude: Math.abs((latitude + desLatitude) / 2),
-        longitude: Math.abs((longitude + desLongitude) / 2),
-        latitudeDelta: Math.abs(latitude - desLatitude) * 1.1,
-        longitudeDelta: Math.abs(longitude - desLongitude) * 1.1
+        latitude: Math.abs(latitude + desLatitude) / 2,
+        longitude: (longitude + desLongitude) / 2,
+        latitudeDelta: Math.abs(latitude - desLatitude) * 2,
+        longitudeDelta: Math.abs(longitude - desLongitude * 2)
       }}
       >
         {this.renderMarkers()}
