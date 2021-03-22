@@ -13,6 +13,7 @@ const MarketCard = (props) => {
             <View style={styles.card}>
                 <Text style={styles.title}>{name}</Text>
                 <Icon style ={styles.icon} name="walking" size={40} />
+                <Text>Walking</Text>
             </View>
         </View>
     )
