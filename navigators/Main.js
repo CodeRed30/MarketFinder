@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import HomeNavigator from './HomeNavigator';
 import MarketList from '../app/MarketList';
 import AddMarket from '../app/AddMarket';
+import Info from '../app/Info';
 
 const Tab = createBottomTabNavigator();
 
@@ -77,7 +78,7 @@ const Main = () => {
             />
             <Tab.Screen
                 name="About"
-                component={ HomeNavigator }
+                component={ Info }
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon

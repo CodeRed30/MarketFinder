@@ -5,6 +5,7 @@ import HomeScreen from '../app/HomeScreen';
 import SingleMarket from '../app/SingleMarket';
 import MarketList from '../app/MarketList';
 import AddMarket from '../app/AddMarket';
+import Info from '../app/Info';
 
 const Stack = createStackNavigator()
 
@@ -26,6 +27,10 @@ function MyStack() {
             <Stack.Screen
                 name='Add Market'
                 component={ AddMarket }
+            />
+            <Stack.Screen
+                name='Info'
+                component={ Info }
             />
         </Stack.Navigator>
     )
