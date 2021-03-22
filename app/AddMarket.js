@@ -3,13 +3,13 @@ import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native'
 import { Left, Right, Container, H1} from 'native-base'
 
 
-const AddPage = () => {
+const AddMarket = () => {
 
     return (
         <Text> Hello Scrummy </Text>
     )
 }
-
+export default AddMarket;
 // Name 
 // Location
 // Image
