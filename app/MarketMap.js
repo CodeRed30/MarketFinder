@@ -14,19 +14,6 @@ let googleApi = Constants.manifest.extra.googleApi
 export default class MarketMap extends React.Component {
     constructor(props)  {
         super(props)
-        console.log(props)
-        // console.log("props above, itembelow")
-        // console.log(item)
-
-        // const [item, setItem] = useState(props.route.params.item)
-        // const latitude = parseFloat(props.item.lat)
-        // const longitude = parseFloat(props.item.lng)
-        // this.setState( {
-        //   destination: market,
-        //   desLatitude: latitude,
-        //   desLongitude: longitude
-        // }, this.mergeCoords)
-        // console.log(Math.abs(parseFloat(this.state.latitude) - parseFloat(this.props.lat)))
     }
 
     state = {
@@ -39,21 +26,7 @@ export default class MarketMap extends React.Component {
         isLoading: false,
     };
 
-// fetchMarkets = async () => {
-//   this.setState({ isLoading: true });
-//   try {
-//     let backendUrl = Constants.manifest.extra.backendUrl
-//     const res = await fetch(backendUrl + '/markets');
-//     const markets = await res.json();
-//     this.setState({ markets });
-//   } catch (err) {
-//     console.log(err);
-//   }
-//   this.setState({ isLoading: false });
-// };
-
 async componentDidMount() {
-//   await this.fetchMarkets()
   const { status } = await Permissions.getAsync(Permissions.LOCATION)
   if (status !== 'granted') {
     const response = await Permissions.askAsync(Permissions.LOCATION)
@@ -63,15 +36,7 @@ async componentDidMount() {
     ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
     (error) => console.log('Error:', error)
   )
-
-//   const { markets: [ sampleMarket] } = this.state
-
-//   this.setState({
-//     desLatitude: null,
-//     desLongitude: null,
-//   }, 
-this.mergeCoords
-// )
+  this.mergeCoords
 }
 
   mergeCoords = () => {
@@ -93,7 +58,7 @@ this.mergeCoords
 
   async getDirections(startLoc, desLoc) {
     try {
-      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=${googleApi}`)
+      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
       const respJson = await resp.json();
       const response = respJson.routes[0]
       const distanceTime = response.legs[0]
@@ -111,15 +76,6 @@ this.mergeCoords
       console.log('Error: ', error)
     }
   }
-//   onMarkerPress = market => () => {
-//     const latitude = parseFloat(market.lat)
-//     const longitude = parseFloat(market.lng)
-//     this.setState( {
-//       destination: market,
-//       desLatitude: latitude,
-//       desLongitude: longitude
-//     }, this.mergeCoords)
-//   }
 
   renderMarkers = () => {
     const { markets } =this.state
@@ -140,7 +96,6 @@ this.mergeCoords
               <Marker
               key={idx}
               coordinate={{ latitude, longitude }}
-            //   onPress={this.onMarkerPress(market)}
               />
             )
           })
@@ -166,19 +121,12 @@ this.mergeCoords
       showsUserLocation
       style={{ flex: 1 }}
       initialRegion={{
-        latitude,
-        longitude,
-        latitudeDelta: Math.abs(latitude - desLatitude),
-        longitudeDelta: Math.abs(longitude - desLongitude)
+        latitude: Math.abs((latitude + desLatitude) / 2),
+        longitude: Math.abs((longitude + desLongitude) / 2),
+        latitudeDelta: Math.abs(latitude - desLatitude) * 1.1,
+        longitudeDelta: Math.abs(longitude - desLongitude) * 1.1
       }}
       >
-        <View style={{ flex: 0.1,
-        backgroundColor: "white"}}>
-
-        
-        <Text style={{ fontWeight: 'bold'}}>Est Time: {time}</Text>
-        <Text style={{ fontWeight: 'bold'}}>Est Distance: {distance}</Text>
-        </View>
         {this.renderMarkers()}
 
         <MapView.Polyline 
@@ -187,6 +135,15 @@ this.mergeCoords
           coordinates={coords}
         />
       
+        <View 
+          style={{ 
+            backgroundColor: "white",
+            // marginTop: 210,
+            borderColor: 'red',
+            alignItems: 'flex-end' }} >
+          <Text style={{ fontWeight: 'bold' }}>Est Time: {time}</Text>
+          <Text style={{ fontWeight: 'bold'}}>Est Distance: {distance}</Text>
+        </View>
       </MapView>
       )
     }
