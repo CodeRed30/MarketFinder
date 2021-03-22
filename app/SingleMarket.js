@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native';
 import { Left, Right, Container, H1} from 'native-base'
+import MarketMap from './MarketMap'
 
 const SingleMarket = (props) => {
 
@@ -8,7 +9,10 @@ const SingleMarket = (props) => {
 
     return (
         <Container style={styles.container}>
-            <ScrollView style={{ marginBottom: 80, padding:5 }}>
+            <ScrollView 
+                style={ styles.scrollView}
+                contentContainerStyle={{ flex: 1 }}
+                >
                 <View>
                     <Image 
                         source={{
@@ -19,6 +23,7 @@ const SingleMarket = (props) => {
                         style={styles.image}
                     />                 
                 </View>
+                
                 <View> 
                     <H1>
                     {item.name}
@@ -40,18 +45,23 @@ const SingleMarket = (props) => {
                     WEBSITE
                     {item.website}
                     </Text>
+                    
                 </View> 
+               
+            <View style ={styles.mapContainer}>
+                <MarketMap item = {item}/>
+            </View>
             </ScrollView>
- 
+            
         </Container>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        position: 'relative',
-        height: '100%'
-    },
+    // container: {
+    //     position: 'relative',
+    //     height:'50%'
+    // },
     imageContainer: {
         backgroundColor: 'white',
         padding: 0,
@@ -60,6 +70,13 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: 250
+    },
+    mapContainer: {
+        flex: 1
+    },
+    scrollView: {
+        height: 1000,
+        padding:5
     }
 })
 
