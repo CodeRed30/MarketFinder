@@ -43,7 +43,7 @@ const AddMarket = (props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.label}>
-               <Text style={{ textDecorationLine: "underline"}}>Name</Text>
+               <Text style={{ fontWeight: "bold"}}>Name</Text>
            </View>
             <View>
             <Input 
@@ -55,7 +55,7 @@ const AddMarket = (props) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ textDecorationLine: "underline"}}>Website</Text>
+               <Text style={{ fontWeight: "bold"}}>Website</Text>
            </View>
             <View>
             <Input 
@@ -67,7 +67,7 @@ const AddMarket = (props) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ textDecorationLine: "underline"}}>Lat</Text>
+               <Text style={{ fontWeight: "bold"}}>Lat</Text>
            </View>
             <View>
             <Input 
@@ -76,10 +76,11 @@ const AddMarket = (props) => {
             id="lat"
             value={lat}
             onChangeText={(text) => setLat(text)}
+            keyboardType="numeric"
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ textDecorationLine: "underline"}}>Long</Text>
+               <Text style={{ fontWeight: "bold"}}>Long</Text>
                </View>
             <View>
             <Input 
@@ -88,10 +89,11 @@ const AddMarket = (props) => {
             id="lng"
             value={lng}
             onChangeText={(text) => setLng(text)}
+            keyboardType="numeric"
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ textDecorationLine: "underline"}}>Opening Hours</Text>
+               <Text style={{ fontWeight: "bold"}}>Opening Hours</Text>
                </View>
             <View>
             <Input 
@@ -103,7 +105,7 @@ const AddMarket = (props) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ textDecorationLine: "underline"}}>Address</Text>
+               <Text style={{ fontWeight: "bold"}}>Address</Text>
                </View>
             <View>
             <Input 
