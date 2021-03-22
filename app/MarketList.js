@@ -44,7 +44,7 @@ export default class App extends Component {
             <H3 style={{fontWeight: "bold"}}>Nearby Markets:</H3>
               <FlatList
                 data={this.state.markets}
-                keyExtractor={({ id }, index) => id}
+                keyExtractor={({id}) => this.state.markets.id}
                 renderItem={({ item }) => (
                   // 
                   <TouchableOpacity
