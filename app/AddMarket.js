@@ -15,7 +15,7 @@ import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
-import Toast from "react-native-toast-message";
+// import Toast from "react-native-toast-message";
 // import Toast from "react-native-toast-message"
 // import AsyncStorage from "`@react-native-community/async-storage`"
 // import axios from "axios"
@@ -48,41 +48,26 @@ const AddMarket = (props) => {
             setError("Please fill in the form correctly")
         }
 
-        let formData = new FormData();
-
-        // const newImageUri = "file:///" + image.split("file:/").join("");
-
-        // formData.append("image", {
-        //     uri: newImageUri,
-        //     type: mime.getType(newImageUri),
-        //     name: newImageUri.split("/").pop()
-        // });
-        formData.append("name", name);
-        formData.append("website", website);
-        formData.append("lat", lat);
-        formData.append("lng", lng);
-        // formData.append("description", description);
-        formData.append("weekday_text", weekday_text);
-        formData.append("formatted_address", formatted_address);
-
-        // const config = {
-        //     headers: {
-        //         "Content-Type": "multipart/form-data",
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // }
-
         let backendUrl = Constants.manifest.extra.backendUrl
 
+        const newMarketObject = {
+            name: name,
+            lat: lat,
+            lng: lng,
+            weekday_text: weekday_text,
+            formatted_address: formatted_address,
+            website: website
+        }
+
         axios
-        .post(`${backendUrl}/markets`, formData)
-        .then((res) => {
+        .post(`${backendUrl}/markets`, newMarketObject)
+        .then((response) => {
             console.log("Success")
-            console.log(res.data)
+            // console.log(res.data)
         })
         .catch((error) => {
             console.log("Fail")
-            console.log(res.data)
+            // console.log(res.data)
 
         })
     }
@@ -219,3 +204,28 @@ export default AddMarket;
 // Extra
 // - Add verified to database 
 // - Change pin colours
+
+
+        // let formData = new FormData();
+
+        // const newImageUri = "file:///" + image.split("file:/").join("");
+
+        // formData.append("image", {
+        //     uri: newImageUri,
+        //     type: mime.getType(newImageUri),
+        //     name: newImageUri.split("/").pop()
+        // });
+        // formData.append("name", name);
+        // formData.append("website", website);
+        // formData.append("lat", lat);
+        // formData.append("lng", lng);
+        // // formData.append("description", description);
+        // formData.append("weekday_text", weekday_text);
+        // formData.append("formatted_address", formatted_address);
+
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "multipart/form-data",
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // }
