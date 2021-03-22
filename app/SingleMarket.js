@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native';
 import { Left, Right, Container, H1} from 'native-base'
+import MarketMap from './MarketMap'
 
 const SingleMarket = (props) => {
 
@@ -19,6 +20,7 @@ const SingleMarket = (props) => {
                         style={styles.image}
                     />                 
                 </View>
+                
                 <View> 
                     <H1>
                     {item.name}
@@ -40,9 +42,12 @@ const SingleMarket = (props) => {
                     WEBSITE
                     {item.website}
                     </Text>
+                    
                 </View> 
+               
             </ScrollView>
- 
+                <MarketMap item = {item}/>
+            
         </Container>
     )
 }
