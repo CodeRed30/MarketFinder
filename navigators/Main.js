@@ -33,6 +33,20 @@ const Main = () => {
                 }}
             />
             <Tab.Screen
+                name="Add"
+                component={ HomeNavigator }
+                options={{
+                    tabBarIcon: ({ color }) => (
+                        <Icon
+                            name="plus"
+                            style={{ position: "relative" }}
+                            color={color}
+                            size={30}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
                 name="Home"
                 component={ HomeNavigator }
                 options={{

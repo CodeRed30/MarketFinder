@@ -17,10 +17,14 @@ const SingleMarket = (props) => {
                         }}
                         resizeMode="contain"
                         style={styles.image}
-                    />
-                    <Text>
+                    />                 
+                </View>
+                <View> 
+                    <H1>
                     {item.name}
-                    </Text>
+
+                    </H1>
+
                     
                     {(function() {if(item.weekday_text != "") {
                         return <Text>
@@ -36,9 +40,7 @@ const SingleMarket = (props) => {
                     WEBSITE
                     {item.website}
                     </Text>
-                 
-                </View>
-
+                </View> 
             </ScrollView>
  
         </Container>

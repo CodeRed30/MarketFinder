@@ -4,6 +4,9 @@ import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button 
 import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
+import { Left, Right, Container, H3} from 'native-base';
+
+import MarketCard from './MarketCard'
 
 
 export default class App extends Component {
@@ -38,17 +41,20 @@ export default class App extends Component {
       <View style={styles.container}>
         {this.isLoading ? <Text>Loading...</Text> : 
         ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
-            <Text style={{fontWeight: "bold"}}>Nearby Markets:</Text>
+            <H3 style={{fontWeight: "bold"}}>Nearby Markets:</H3>
               <FlatList
                 data={this.state.markets}
-                keyExtractor={({ id }, index) => id}
+                keyExtractor={({id}) => this.state.markets.id}
                 renderItem={({ item }) => (
-                  <Button
+                  // 
+                  <TouchableOpacity
                     style={{ width: '100%'}}
                     onPress={() =>
                     this.props.navigation.navigate('Market Details', { item: item })}
                     key={item.id}
-                    title={item.name}/>
+                    title={item.name}>
+                      <MarketCard {...item} />
+                    </TouchableOpacity>
                 )}
               />
           </View>
