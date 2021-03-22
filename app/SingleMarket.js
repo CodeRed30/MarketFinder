@@ -22,7 +22,9 @@ const SingleMarket = (props) => {
                 <View> 
                     <H1>
                     {item.name}
+
                     </H1>
+
                     
                     {(function() {if(item.weekday_text != "") {
                         return <Text>
