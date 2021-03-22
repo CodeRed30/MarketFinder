@@ -25,7 +25,13 @@ const MarketsSchema = new mongoose.Schema({
     weekday_text: {
         type: Array,
         required: false,
+    },
+    image: {
+        type: String,
+        default: '',
+        required: true
     }
+
 
 })
 

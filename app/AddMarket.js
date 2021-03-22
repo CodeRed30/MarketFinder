@@ -17,7 +17,7 @@ import Constants from 'expo-constants';
 import axios from "axios";
 // import Toast from "react-native-toast-message"
 // import AsyncStorage from "`@react-native-community/async-storage`"
-// import * as ImagePicker from "expo-image-picker"
+import * as ImagePicker from "expo-image-picker"
 import mime from "mime";
 
 var { width } = Dimensions.get('window');
@@ -34,12 +34,36 @@ const AddMarket = (props) => {
     const [image, setImage] = useState();
     const [description, setDescription] = useState();
     const [item, setItem] = useState(null);
-    //Categories to be added for search
+
+
+    (async () => {
+        if (Platform.OS !== "web") {
+            const {
+                status,
+            } = await ImagePicker.requestCameraPermissionsAsync();
+            if (status !== "granted") {
+                alert("Sorry, we need camera roll permissions to make this work!")
+            }
+        }
+    })();
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1
+        });
+
+        if (!result.cancelled) {
+            setImage(result.uri);
+        }
+    };
 
     const addMarket = () => {
         if (
             name == "" ||
-            // image == "" ||
+            image == "" ||
             lat == "" ||
             lng == ""
         ) {
@@ -55,7 +79,8 @@ const AddMarket = (props) => {
             lng: lng,
             weekday_text: weekday_text,
             formatted_address: formatted_address,
-            website: website
+            website: website,
+            image: newImageUri 
         }
 
         axios
@@ -74,9 +99,9 @@ const AddMarket = (props) => {
     return (
         <FormContainer title="Add Market">
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={(uri: mainImage)}/>
-                <TouchableOpacity style={styles.imagePicker}>
-                    <Text>Hello Scrummy!</Text>
+                <Image style={styles.image} source={{uri: image}}/>
+                <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
+                    <Icon style={{ color: "white"}} name="camera" /> 
                 </TouchableOpacity>
             </View>
             <View style={styles.label}>
