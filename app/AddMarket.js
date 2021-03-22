@@ -45,7 +45,7 @@ const AddMarket = (props) => {
         ) {
             setError("Please fill in the form correctly")
         }
-        // const newImageUri = "file:///" + image.split("file:/").join("");
+        const newImageUri = "file:///" + image.split("file:/").join("");
 
         let backendUrl = Constants.manifest.extra.backendUrl
 
@@ -74,7 +74,7 @@ const AddMarket = (props) => {
     return (
         <FormContainer title="Add Market">
             <View style={styles.imageContainer}>
-                {/* <Image style={styles.image} source={(uri: mainImage)}/> */}
+                <Image style={styles.image} source={(uri: mainImage)}/>
                 <TouchableOpacity style={styles.imagePicker}>
                     <Text>Hello Scrummy!</Text>
                 </TouchableOpacity>
