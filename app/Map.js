@@ -15,7 +15,7 @@ export default class Map extends React.Component {
     longitude: null,
     coords: null,
     markets: [],
-    isLoading: false,
+    isLoading: false
   };
 
 fetchMarkets = async () => {
