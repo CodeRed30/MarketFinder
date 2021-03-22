@@ -43,13 +43,17 @@ async componentDidMount() {
     (error) => console.log('Error:', error)
   )
 
+  
   const { markets: [ sampleMarket] } = this.state
-
+  
   this.setState({
     desLatitude: null,
     desLongitude: null,
   }, this.mergeCoords)
+  
 }
+
+
 
   mergeCoords = () => {
     const {
@@ -70,7 +74,7 @@ async componentDidMount() {
 
   async getDirections(startLoc, desLoc) {
     try {
-      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&key=${googleApi}`)
+      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
       const respJson = await resp.json();
       const response = respJson.routes[0]
       const distanceTime = response.legs[0]
@@ -147,13 +151,7 @@ async componentDidMount() {
         longitudeDelta: 0.0421
       }}
       >
-        <View style={{ flex: 0.1,
-        backgroundColor: "white"}}>
 
-        
-        <Text style={{ fontWeight: 'bold'}}>Est Time: {time}</Text>
-        <Text style={{ fontWeight: 'bold'}}>Est Distance: {distance}</Text>
-        </View>
         {this.renderMarkers()}
 
         <MapView.Polyline 
@@ -161,7 +159,6 @@ async componentDidMount() {
           strokeColor="red"
           coordinates={coords}
         />
-      
       </MapView>
       )
     }

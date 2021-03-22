@@ -5,6 +5,7 @@ import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
+// import Location from 'expo'
 
 import MarketCard from './MarketCard'
 
@@ -25,6 +26,7 @@ export default class App extends Component {
       let backendUrl = Constants.manifest.extra.backendUrl
       const res = await fetch(backendUrl + '/markets');
       const markets = await res.json();
+
       this.setState({ markets });
     } catch (err) {
       console.log(err);
@@ -32,59 +34,29 @@ export default class App extends Component {
     this.setState({ isLoading: false });
   };
 
+  // getCurrentLocation = (simulator) => {
+  //   return async (dispatch) => {
+  //     if (!simulator) {
+  //       let { status } = await Permissions.askAsync(Permissions.LOCATION);
+  
+  //       if (status !== 'granted') {
+  //         dispatch(gotCurrentLocationError('Permission to access location was denied'))
+  //       }
+  
+  //       let location = await Location.getCurrentPositionAsync({});
+  //       console.log(location)
+  //       dispatch(gotCurrentLocation(location))
+  //     } else {
+  //       // Demo location for simulator
+  //       dispatch(gotCurrentLocation(chicagoFSA))
+  //     }
+  //   }
+  // }
+
+
   componentDidMount(){
     this.fetchMarkets();
-
-    // navigator.geolocation.getCurrentPosition(
-    //   ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
-    //   (error) => console.log('Error:', error)
-    // )
-
-    // this.markets.map((market => {
-    //   this.mergeCoords;
-    // }))
   };
-
-  // mergeCoords = () => {
-    
-  //   const {
-  //     latitude,
-  //     longitude,
-  //     desLatitude,
-  //     desLongitude,
-  //   } = this.state
-    
-  //   const hasStartAndEnd = latitude !== null && desLatitude !== null
-  //   if (hasStartAndEnd) {
-  //     const concatStart = `${latitude},${longitude}`
-  //     const concatEnd = `${desLatitude},${desLongitude}`
-  //     this.getTime(concatStart, concatEnd)
-  //   }
-  // }
-
-  // async getTime(startLoc, desLoc) {
-  //   try {
-  //     const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
-  //     const respJson = await resp.json();
-  //     const response = respJson.routes[0]
-  //     const distanceTime = response.legs[0]
-  //     // const distance = distanceTime.distance.text
-  //     const time = distanceTime.duration.text
-  //     // const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
-  //     // const coords = points.map(point => {
-  //     //   return {
-  //     //     latitude: point[0],
-  //     //     longitude: point[1]
-  //     //   }
-  //     // })
-  //     // this.props.time = { time } 
-  //     this.setState({
-  //       time: time,
-  //     });
-  //   } catch(error) {
-  //     console.log('Error: ', error)
-  //   }
-  // }
   
   render() {
     return (

@@ -7,6 +7,7 @@ import Constants from 'expo-constants';
 import { Marker } from 'react-native-maps'
 import React, { useState } from 'react';
 import { abs } from 'react-native-reanimated';
+import Location from 'expo'
 
 
 let googleApi = Constants.manifest.extra.googleApi
@@ -14,7 +15,13 @@ let googleApi = Constants.manifest.extra.googleApi
 export default class MarketMap extends React.Component {
     constructor(props)  {
         super(props)
+        // let coord = geolocationPositionInstance.coords
+        // console.log(coord)
+
+        // this.setState({
+        //   latitude: navigator.geolocation.getCurrentPosition() });
     }
+
 
     state = {
         latitude: null,
@@ -26,18 +33,18 @@ export default class MarketMap extends React.Component {
         isLoading: false,
     };
 
-async componentDidMount() {
-  const { status } = await Permissions.getAsync(Permissions.LOCATION)
-  if (status !== 'granted') {
-    const response = await Permissions.askAsync(Permissions.LOCATION)
-  }
+  async componentDidMount() {
+    const { status } = await Permissions.getAsync(Permissions.LOCATION)
+    if (status !== 'granted') {
+      const response = await Permissions.askAsync(Permissions.LOCATION)
+    }
 
-  navigator.geolocation.getCurrentPosition(
-    ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
-    (error) => console.log('Error:', error)
-  )
-  this.mergeCoords
-}
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
+      (error) => console.log('Error:', error)
+    )
+    this.mergeCoords
+  }
 
   mergeCoords = () => {
     const {

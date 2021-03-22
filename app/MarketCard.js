@@ -59,11 +59,13 @@ export default class MarketCard extends React.Component {
     render() {
         return (
         <View style={styles.container}>
-            <Image style={styles.image} />
+            {/* <Image style={styles.image} /> */}
             <View style={styles.card}>
                 <Text style={styles.title}>{this.state.name}</Text>
-                <Text style={styles.title}>{this.state.time}</Text>
-                <Icon style ={styles.icon} name="walking" size={40} />
+                <View style={styles.right}>
+                <Icon style={styles.icon} name="walking" size={40} />
+                <Text style={styles.time}>{this.state.time}</Text>
+                </View>
             </View>
         </View>
         )
@@ -90,12 +92,22 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     card: {
-        marginBottom: 10,
-        height: width / 2 - 20 - 9,
+        alignItems: 'center',
+        flexDirection: 'row', 
+        // marginBottom: 10,
+        // height: width / 2 - 20 - 9,
         backgroundColor: 'transparent',
-        width: width / 2 - 20 - 10 
+        // width: width / 2 - 20 - 10 
+    },
+    right: {
+      flex: 1,
+      alignItems: 'flex-end',
+      alignSelf: 'flex-end'
     },
     title: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignSelf: 'flex-start',
         fontWeight: 'bold',
         fontSize: 16,
         textAlign: 'left', 
@@ -104,5 +116,8 @@ const styles = StyleSheet.create({
     icon: {
         justifyContent: "flex-end",
         color: '#e91e63'
+    },
+    time: {
+      fontSize: 14,
     }
 })
