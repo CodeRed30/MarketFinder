@@ -17,7 +17,7 @@ const SingleMarket = (props) => {
                     <Image 
                         source={{
                             uri: item.image ? item.image 
-                            : 'https://media-cdn.tripadvisor.com/media/photo-s/17/94/de/ed/caption.jpg'
+                            : 'https://assets.londonist.com/uploads/2015/04/i875/horn-ok-please.jpg'
                         }}
                         resizeMode="contain"
                         style={styles.image}
