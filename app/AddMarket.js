@@ -7,11 +7,15 @@ import {
     TouchableOpacity,
     Dimensions,
     Platform,
+    Button,
 } from "react-native"
 import { Item, Picker } from "native-base"
 import FormContainer from './Form/FormContainer';
 import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
+import Constants from 'expo-constants';
+import axios from "axios";
+import Toast from "react-native-toast-message";
 // import Toast from "react-native-toast-message"
 // import AsyncStorage from "`@react-native-community/async-storage`"
 // import axios from "axios"
@@ -31,9 +35,57 @@ const AddMarket = (props) => {
     const [formatted_address, setFormatted_address] = useState();
     const [image, setImage] = useState();
     const [description, setDescription] = useState();
-    const [item, setItem] = useState();
+    const [item, setItem] = useState(null);
     //Categories to be added for search
 
+    const addMarket = () => {
+        if (
+            name == "" ||
+            // image == "" ||
+            lat == "" ||
+            lng == ""
+        ) {
+            setError("Please fill in the form correctly")
+        }
+
+        let formData = new FormData();
+
+        // const newImageUri = "file:///" + image.split("file:/").join("");
+
+        // formData.append("image", {
+        //     uri: newImageUri,
+        //     type: mime.getType(newImageUri),
+        //     name: newImageUri.split("/").pop()
+        // });
+        formData.append("name", name);
+        formData.append("website", website);
+        formData.append("lat", lat);
+        formData.append("lng", lng);
+        // formData.append("description", description);
+        formData.append("weekday_text", weekday_text);
+        formData.append("formatted_address", formatted_address);
+
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "multipart/form-data",
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // }
+
+        let backendUrl = Constants.manifest.extra.backendUrl
+
+        axios
+        .post(`${backendUrl}/markets`, formData)
+        .then((res) => {
+            console.log("Success")
+            console.log(res.data)
+        })
+        .catch((error) => {
+            console.log("Fail")
+            console.log(res.data)
+
+        })
+    }
 
     return (
         <FormContainer title="Add Market">
@@ -115,6 +167,11 @@ const AddMarket = (props) => {
             value={formatted_address}
             onChangeText={(text) => setFormatted_address(text)}
            />
+            </View>
+            <View>
+                <Button title="Add Market"
+                onPress={() => addMarket()}  
+                />
             </View>
 
         </FormContainer>
