@@ -3,7 +3,12 @@ import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native'
 import { Left, Right, Container, H1} from 'native-base'
 
 
+const AddPage = () => {
 
+    return (
+        <Text> Hello Scrummy </Text>
+    )
+}
 
 // Name 
 // Location
