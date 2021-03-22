@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
-import { StyleSheet, Text, View, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button } from 'react-native';
 import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
@@ -35,26 +35,28 @@ export default class App extends Component {
   render() {
     return (
 
-      <View style={{ flex: 1, padding: 24 }}>
+      <View style={styles.container}>
         {this.isLoading ? <Text>Loading...</Text> : 
         ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
             <Text style={{fontWeight: "bold"}}>Nearby Markets:</Text>
-            <FlatList
-              data={this.state.markets}
-              keyExtractor={({ id }, index) => id}
-              renderItem={({ item }) => (
-                // key is not being read but is not crashing
-                <Text key={item.id}>{item.name}</Text>
-              )}
-            />
+              <FlatList
+                data={this.state.markets}
+                keyExtractor={({ id }, index) => id}
+                renderItem={({ item }) => (
+                  <Button
+                    style={{ width: '100%'}}
+                    onPress={() =>
+                    this.props.navigation.navigate('Market Details', { item: item })}
+                    key={item.id}
+                    title={item.name}/>
+                )}
+              />
           </View>
         )}
       </View>
     );
   }
 }
-
-
 
 const styles = StyleSheet.create({
   listItem: {
@@ -65,6 +67,14 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
     paddingBottom: 12,
+  },
+  container: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+    backgroundColor: '#FA7E61',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 24
   }
 });
 
