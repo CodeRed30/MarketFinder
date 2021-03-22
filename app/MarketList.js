@@ -5,6 +5,7 @@ import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
+// import Location from 'expo'
 
 import MarketCard from './MarketCard'
 
@@ -15,6 +16,7 @@ export default class App extends Component {
     this.state = {
       markets: [],
       isLoading: false,
+      time: null,
     };
   }
 
@@ -24,12 +26,33 @@ export default class App extends Component {
       let backendUrl = Constants.manifest.extra.backendUrl
       const res = await fetch(backendUrl + '/markets');
       const markets = await res.json();
+
       this.setState({ markets });
     } catch (err) {
       console.log(err);
     }
     this.setState({ isLoading: false });
   };
+
+  // getCurrentLocation = (simulator) => {
+  //   return async (dispatch) => {
+  //     if (!simulator) {
+  //       let { status } = await Permissions.askAsync(Permissions.LOCATION);
+  
+  //       if (status !== 'granted') {
+  //         dispatch(gotCurrentLocationError('Permission to access location was denied'))
+  //       }
+  
+  //       let location = await Location.getCurrentPositionAsync({});
+  //       console.log(location)
+  //       dispatch(gotCurrentLocation(location))
+  //     } else {
+  //       // Demo location for simulator
+  //       dispatch(gotCurrentLocation(chicagoFSA))
+  //     }
+  //   }
+  // }
+
 
   componentDidMount(){
     this.fetchMarkets();
@@ -53,7 +76,7 @@ export default class App extends Component {
                     this.props.navigation.navigate('Market Details', { item: item })}
                     key={item.id}
                     title={item.name}>
-                      <MarketCard {...item} />
+                      <MarketCard {...item}/>
                     </TouchableOpacity>
                 )}
               />
