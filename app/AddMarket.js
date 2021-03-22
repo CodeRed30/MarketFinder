@@ -54,6 +54,66 @@ const AddMarket = (props) => {
             onChangeText={(text) => setName(text)}
            />
             </View>
+            <View style={styles.label}>
+               <Text style={{ textDecorationLine: "underline"}}>Website</Text>
+           </View>
+            <View>
+            <Input 
+            placeholder="Website URL"
+            name="website"
+            id="website"
+            value={website}
+            onChangeText={(text) => setWebsite(text)}
+           />
+            </View>
+            <View style={styles.label}>
+               <Text style={{ textDecorationLine: "underline"}}>Lat</Text>
+           </View>
+            <View>
+            <Input 
+            placeholder="Latitude"
+            name="lat"
+            id="lat"
+            value={lat}
+            onChangeText={(text) => setLat(text)}
+           />
+            </View>
+            <View style={styles.label}>
+               <Text style={{ textDecorationLine: "underline"}}>Long</Text>
+               </View>
+            <View>
+            <Input 
+            placeholder="Longitude"
+            name="lng"
+            id="lng"
+            value={lng}
+            onChangeText={(text) => setLng(text)}
+           />
+            </View>
+            <View style={styles.label}>
+               <Text style={{ textDecorationLine: "underline"}}>Opening Hours</Text>
+               </View>
+            <View>
+            <Input 
+            placeholder="Opening Hours"
+            name="weekday_text"
+            id="weekday_text"
+            value={weekday_text}
+            onChangeText={(text) => setWeekday_text(text)}
+           />
+            </View>
+            <View style={styles.label}>
+               <Text style={{ textDecorationLine: "underline"}}>Address</Text>
+               </View>
+            <View>
+            <Input 
+            placeholder="Address"
+            name="formatted_address"
+            id="formatted_address"
+            value={formatted_address}
+            onChangeText={(text) => setFormatted_address(text)}
+           />
+            </View>
 
         </FormContainer>
 
