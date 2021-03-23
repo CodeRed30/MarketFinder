@@ -6,6 +6,7 @@ import HomeNavigator from './HomeNavigator';
 import MarketList from '../app/MarketList';
 import AddMarket from '../app/AddMarket';
 import Info from '../app/Info';
+import Search from '../app/Search'
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ const Main = () => {
         > 
             <Tab.Screen
                 name="Search"
-                component={ HomeNavigator }
+                component={ Search }
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon

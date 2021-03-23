@@ -14,11 +14,15 @@ import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
+import { NavigationContainer } from '@react-navigation/native';
+// import Toast from "react-native-toast-message"
+import Toast, {DURATION} from 'react-native-easy-toast'
+// import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
 
 var { width } = Dimensions.get('window');
 
-const AddMarket = (props) => {
+const AddMarket = ( {props, navigation}) => {
 
     const [name, setName] = useState();
     const [website, setWebsite] = useState();
@@ -39,6 +43,19 @@ const AddMarket = (props) => {
             }
         }
     })();
+
+
+    setToNull = () => {
+        setName(""),
+        setWebsite(""),
+        setLat(""),
+        setLng(""),
+        setWeekday_text(""),
+        setFormatted_address(""),
+        setDescription(""),
+        setItem(""),
+        setImage("")
+    }
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -85,13 +102,12 @@ const AddMarket = (props) => {
         axios
             .post(`${backendUrl}/markets`, newMarketObject)
             .then((response) => {
-                console.log("Success");
-                // console.log(response)
+
+                alert("Thanks for your market")
             })
             .catch((error) => {
-                console.log("Fail");
-                // console.log(response)
-            });
+                alert("Fail")
+        })
     }
 
     return (
@@ -142,20 +158,27 @@ const AddMarket = (props) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Address</Text>
+               <Text style={{ fontWeight: "bold"}}>
+                   Address
+                </Text>
                </View>
             <View>
             <Input 
-            placeholder="Address"
-            name="formatted_address"
-            id="formatted_address"
-            value={formatted_address}
-            onChangeText={(text) => setFormatted_address(text)}
+                placeholder="Address"
+                name="formatted_address"
+                id="formatted_address"
+                value={formatted_address}
+                onChangeText={(text) => setFormatted_address(text)}
            />
             </View>
             <View>
                 <Button title="Add Market"
-                onPress={() => addMarket()}  
+
+                onPress={() => {
+                    addMarket(),  
+                    setToNull(), 
+                    navigation.navigate('Home')
+                }}
                 />
             </View>
 
@@ -200,3 +223,4 @@ const styles = StyleSheet.create({
 })
 
 export default AddMarket;
+

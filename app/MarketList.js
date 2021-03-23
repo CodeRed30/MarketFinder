@@ -14,6 +14,7 @@ export default class App extends Component {
       markets: [],
       isLoading: false,
       time: null,
+      refreshing: false
     };
   }
 
@@ -85,6 +86,7 @@ export default class App extends Component {
         ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
             <H3 style={{fontWeight: "bold"}}>Nearby Markets:</H3>
               <FlatList
+              refreshControl={this._refreshControl()}
                 data={this.state.markets}
                 keyExtractor={({_id}) => _id}
                 
@@ -104,6 +106,18 @@ export default class App extends Component {
         )}
       </View>
     );
+  }
+  _refreshControl(){
+    return (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={()=>this._refreshListView()} />
+    )
+  }
+  _refreshListView(){
+    this.setState({refreshing:true})
+    this.fetchMarkets()
+    this.setState({refreshing:false})
   }
 }
 
