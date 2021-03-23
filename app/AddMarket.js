@@ -181,23 +181,26 @@ const AddMarket = ( {props, navigation}) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Address</Text>
+               <Text style={{ fontWeight: "bold"}}>
+                   Address
+                </Text>
                </View>
             <View>
             <Input 
-            placeholder="Address"
-            name="formatted_address"
-            id="formatted_address"
-            value={formatted_address}
-            onChangeText={(text) => setFormatted_address(text)}
-           
+                placeholder="Address"
+                name="formatted_address"
+                id="formatted_address"
+                value={formatted_address}
+                onChangeText={(text) => setFormatted_address(text)}
            />
             </View>
             <View>
                 <Button title="Add Market"
 
-                onPress={() => {navigation.navigate('Home'), addMarket(),  setToNull()}} 
-
+                onPress={() => {
+                    navigation.navigate('Home'), 
+                    addMarket(),  
+                    setToNull()}} 
                 />
             </View>
 

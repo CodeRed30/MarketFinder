@@ -37,6 +37,10 @@ export default class App extends Component {
   componentDidMount(){
     this.fetchMarkets();
   };
+
+  componentWillUnmount(){
+    this.fetchMarkets();
+  };
   
   render() {
     return (
