@@ -15,6 +15,7 @@ import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
+import { NavigationContainer } from '@react-navigation/native';
 // import Toast from "react-native-toast-message"
 // import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
@@ -22,7 +23,7 @@ import mime from "mime";
 
 var { width } = Dimensions.get('window');
 
-const AddMarket = (props) => {
+const AddMarket = ( {props, navigation}) => {
 
     const [pickerValue, setPickerValue] = useState();
     const [name, setName] = useState();
@@ -35,6 +36,9 @@ const AddMarket = (props) => {
     const [description, setDescription] = useState();
     const [item, setItem] = useState(null);
 
+    const submitHandler = () => { //runs on submit and sets the state to nothing.
+        setTextInput("") 
+     }
 
     (async () => {
         if (Platform.OS !== "web") {
@@ -176,11 +180,14 @@ const AddMarket = (props) => {
             id="formatted_address"
             value={formatted_address}
             onChangeText={(text) => setFormatted_address(text)}
+           
            />
             </View>
             <View>
                 <Button title="Add Market"
-                onPress={() => addMarket()}  
+
+                onPress={() => {navigation.navigate('Home'), addMarket()}} 
+                onSubmitEditing={submitHandler}
                 />
             </View>
 
