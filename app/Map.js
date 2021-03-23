@@ -191,6 +191,10 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderColor: 'white',
     padding: 12,
+    shadowColor: "#000",
+    shadowRadius: 5,
+    shadowOpacity: 0.3,
+    shadowOffset: { x: 2, y: -2 },
   },
   arrow: {
     backgroundColor: 'transparent',
@@ -199,6 +203,7 @@ const styles = StyleSheet.create({
     borderWidth: 16,
     alignSelf: 'center',
     marginTop: -32,
+    
   }, 
   arrowBorder: {
     backgroundColor: 'transparent',
@@ -210,6 +215,6 @@ const styles = StyleSheet.create({
   },
   name: {
     fontWeight: 'bold',
-    
+
   }
 })
