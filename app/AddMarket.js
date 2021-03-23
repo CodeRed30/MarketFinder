@@ -36,9 +36,6 @@ const AddMarket = ( {props, navigation}) => {
     const [description, setDescription] = useState();
     const [item, setItem] = useState(null);
 
-    const submitHandler = () => { //runs on submit and sets the state to nothing.
-        setTextInput("") 
-     }
 
     (async () => {
         if (Platform.OS !== "web") {
@@ -50,6 +47,19 @@ const AddMarket = ( {props, navigation}) => {
             }
         }
     })();
+
+
+    setToNull = () => {
+        setName(""),
+        setWebsite(""),
+        setLat(""),
+        setLng(""),
+        setWeekday_text(""),
+        setFormatted_address(""),
+        setDescription(""),
+        setItem(""),
+        setImage("")
+    }
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -186,8 +196,8 @@ const AddMarket = ( {props, navigation}) => {
             <View>
                 <Button title="Add Market"
 
-                onPress={() => {navigation.navigate('Home'), addMarket()}} 
-                onSubmitEditing={submitHandler}
+                onPress={() => {navigation.navigate('Home'), addMarket(),  setToNull()}} 
+
                 />
             </View>
 
@@ -234,48 +244,3 @@ const styles = StyleSheet.create({
 export default AddMarket;
 
 
-
-// Name 
-// Location
-// Image
-
-// optional extras
-// description
-// opening hours
-// address
-// website
-
-// Database connection
-// Getting location from map marker
-
-// POST request 
-
-// Text input Fields 
-
-
-// ToDo 
-// - Create add page
-// - POST request 
-// - What happens once you have pressed add 
-
-// Extra
-// - Add verified to database 
-// - Change pin colours
-
-
-        // let formData = new FormData();
-
-        // const newImageUri = "file:///" + image.split("file:/").join("");
-
-        // formData.append("image", {
-        //     uri: newImageUri,
-        //     type: mime.getType(newImageUri),
-        //     name: newImageUri.split("/").pop()
-        // });
-        // formData.append("name", name);
-        // formData.append("website", website);
-        // formData.append("lat", lat);
-        // formData.append("lng", lng);
-        // // formData.append("description", description);
-        // formData.append("weekday_text", weekday_text);
-        // formData.append("formatted_address", formatted_address);
