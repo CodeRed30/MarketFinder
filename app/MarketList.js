@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
 import MarketCard from './MarketCard'
+import * as Font from 'expo-font';
 
 let googleApi = Constants.manifest.extra.googleApi
 
@@ -13,8 +14,25 @@ export default class App extends Component {
       markets: [],
       isLoading: false,
       time: null,
-      refreshing: false
+      refreshing: false,
+      fontsLoaded: false,
     };
+  }
+
+  async loadFonts() {
+    await Font.loadAsync({
+      Inter: require('../assets/fonts/Inter.ttf'),
+
+      'Inter': {
+        uri: require('../assets/fonts/Inter.ttf'),
+        display: Font.FontDisplay.FALLBACK,
+      },
+      'InterExtraBold': {
+        uri: require('../assets/fonts/Inter-ExtraBold.ttf'),
+        display: Font.FontDisplay.FALLBACK,
+      }
+    });
+    this.setState({ fontsLoaded: true });
   }
 
   fetchMarkets = async () => {
@@ -72,37 +90,42 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.loadFonts();
     this.fetchMarkets();
 
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        {this.isLoading ? <Text>Loading...</Text> : 
-        ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
-            <H3 style={{fontWeight: "bold"}}>Nearby Markets:</H3>
-              <FlatList
-              refreshControl={this._refreshControl()}
-                data={this.state.markets}
-                keyExtractor={({_id}) => _id}
-                
-                renderItem={({ item }) => (
-                  // 
-                  <TouchableOpacity
-                    style={{ width: '100%'}}
-                    onPress={() =>
-                    this.props.navigation.navigate('Market Details', { item: item })}
-                    key={item.id}
-                    title={item.name}>
-                      <MarketCard {...item}/>
-                    </TouchableOpacity>
-                )}
-              />
-          </View>
-        )}
-      </View>
-    );
+    if ((this.state.fontsLoaded)) {
+      return (
+        <View style={styles.container}>
+          {this.isLoading ? <Text>Loading...</Text> : 
+          ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
+              <H3 style={{ fontFamily: "InterExtraBold" }}>Nearby Markets:</H3>
+                <FlatList
+                refreshControl={this._refreshControl()}
+                  data={this.state.markets}
+                  keyExtractor={({_id}) => _id}
+                  
+                  renderItem={({ item }) => (
+                    // 
+                    <TouchableOpacity
+                      style={{ width: '100%'}}
+                      onPress={() =>
+                      this.props.navigation.navigate('Market Details', { item: item })}
+                      key={item.id}
+                      title={item.name}>
+                        <MarketCard {...item}/>
+                      </TouchableOpacity>
+                  )}
+                />
+            </View>
+          )}
+        </View>
+      );
+    } else {
+      return null
+    }
   }
   _refreshControl(){
     return (
