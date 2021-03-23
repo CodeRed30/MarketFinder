@@ -15,11 +15,6 @@ let googleApi = Constants.manifest.extra.googleApi
 export default class MarketMap extends React.Component {
     constructor(props)  {
         super(props)
-        // let coord = geolocationPositionInstance.coords
-        // console.log(coord)
-
-        // this.setState({
-        //   latitude: navigator.geolocation.getCurrentPosition() });
     }
 
 

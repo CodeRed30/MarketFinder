@@ -53,8 +53,6 @@ async componentDidMount() {
   
 }
 
-
-
   mergeCoords = () => {
     const {
       latitude,

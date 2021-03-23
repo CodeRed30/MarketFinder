@@ -30,7 +30,6 @@ export default function HomeScreen(props) {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  // useEffect(() => {
     async function locationSetter() {
       if (Platform.OS === 'android' && !Constants.isDevice) {
         setErrorMsg(
@@ -47,7 +46,6 @@ export default function HomeScreen(props) {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
     };
-  // }, []);
 
   let latitude = 53.509865;
   let longitude = -0.118092;
@@ -60,7 +58,6 @@ export default function HomeScreen(props) {
     longitude = parseFloat(lo)
   }
 
-
   return (
     <View style={{ flex: 1 }}>
       <Map /> 
@@ -70,34 +67,4 @@ export default function HomeScreen(props) {
     </View>
   );
 }
-
-
-  // useEffect(() => {
-  //   async function prepare() {
-  //     try {
-  //       // Keep the splash screen visible while we fetch resources
-  //       await SplashScreen.preventAutoHideAsync();
-
-  //     } catch (e) {
-  //       console.warn(e);
-  //     } finally {
-  //       // Tell the application to render
-  //       setAppIsReady(true);
-  //     }
-  //   }
-
-  //   prepare();
-  // }, []);
-
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (appIsReady) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [appIsReady]);
-
-  // if (!appIsReady) {
-  //   return null;
-  // }
-
-
 

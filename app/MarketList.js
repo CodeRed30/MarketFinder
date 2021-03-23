@@ -1,11 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import axios from 'axios';
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button, RefreshControl } from 'react-native';
-import MarketData from '../src/marketData.js'
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button } from 'react-native';
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
+
 import MarketCard from './MarketCard'
+
+let googleApi = Constants.manifest.extra.googleApi
 
 export default class App extends Component {
   constructor(props) {
@@ -30,18 +30,57 @@ export default class App extends Component {
       console.log(err);
     }
     this.setState({ isLoading: false });
-  };
-  componentDidMount(){
-    this.fetchMarkets();
+
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
+      (error) => console.log('Error:', error)
+    )
+
   };
 
-  componentWillUnmount(){
+  mergeCoords = async () => {
+    console.log(this.state.markets[0])
+    const { latitude, longitude } = this.state
+    let markets = await Promise.all(this.state.markets.map(async (market) => {
+
+      let desLatitude = market.lat
+      let desLongitude = market.lng
+      
+      const hasStartAndEnd = latitude !== null && desLatitude !== null
+      if (hasStartAndEnd) {
+        const concatStart = `${latitude},${longitude}`
+        const concatEnd = `${desLatitude},${desLongitude}`
+        market.time = await this.getTime(concatStart, concatEnd, market)
+      }
+      return market
+  }))
+  markets.sort(function (a, b) {
+    return parseInt(a.time) - parseInt(b.time);
+  });
+  this.setState({ markets });
+  }
+
+  async getTime(startLoc, desLoc, market) {
+    try {
+      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
+      const respJson = await resp.json();
+      const response = respJson.routes[0]
+      const distanceTime = response.legs[0]
+      const time = distanceTime.duration.text
+      console.log(time)
+      return time;
+    } catch(error) {
+      console.log('Error: ', error)
+    }
+  }
+
+  componentDidMount() {
     this.fetchMarkets();
-  };
-  
+
+  }
+
   render() {
     return (
-
       <View style={styles.container}>
         {this.isLoading ? <Text>Loading...</Text> : 
         ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
@@ -49,7 +88,8 @@ export default class App extends Component {
               <FlatList
               refreshControl={this._refreshControl()}
                 data={this.state.markets}
-                keyExtractor={({id}) => this.state.markets.id}
+                keyExtractor={({_id}) => _id}
+                
                 renderItem={({ item }) => (
                   // 
                   <TouchableOpacity
@@ -100,8 +140,3 @@ const styles = StyleSheet.create({
     padding: 24
   }
 });
-
-
-
-
-

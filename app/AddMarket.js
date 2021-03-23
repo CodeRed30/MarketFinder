@@ -9,7 +9,6 @@ import {
     Platform,
     Button,
 } from "react-native"
-import { Item, Picker } from "native-base"
 import FormContainer from './Form/FormContainer';
 import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
@@ -20,13 +19,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import Toast, {DURATION} from 'react-native-easy-toast'
 // import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
-import mime from "mime";
 
 var { width } = Dimensions.get('window');
 
 const AddMarket = ( {props, navigation}) => {
 
-    const [pickerValue, setPickerValue] = useState();
     const [name, setName] = useState();
     const [website, setWebsite] = useState();
     const [lat, setLat] = useState();
@@ -35,8 +32,6 @@ const AddMarket = ( {props, navigation}) => {
     const [formatted_address, setFormatted_address] = useState();
     const [image, setImage] = useState();
     const [description, setDescription] = useState();
-    const [item, setItem] = useState(null);
-
 
     (async () => {
         if (Platform.OS !== "web") {
@@ -74,19 +69,25 @@ const AddMarket = ( {props, navigation}) => {
             setImage(result.uri);
         }
     };
+    const getCurrentLocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLat(position.coords.latitude)
+                setLng(position.coords.longitude)
+    })};
 
-    const addMarket = () => {
-        if (
-            name == "" ||
+
+    function addMarket() {
+        if (name == "" ||
             image == "" ||
             lat == "" ||
             lng == ""
-        ) {
-            setError("Please fill in the form correctly")
+            ) {
+            setError("Please fill in the form correctly");
         }
         const newImageUri = "file:///" + image.split("file:/").join("");
 
-        let backendUrl = Constants.manifest.extra.backendUrl
+        let backendUrl = Constants.manifest.extra.backendUrl;
 
         const newMarketObject = {
             name: name,
@@ -95,24 +96,25 @@ const AddMarket = ( {props, navigation}) => {
             weekday_text: weekday_text,
             formatted_address: formatted_address,
             website: website,
-            image: newImageUri 
-        }
+            image: newImageUri
+        };
 
         axios
             .post(`${backendUrl}/markets`, newMarketObject)
             .then((response) => {
+
                 alert("Thanks for your market")
             })
             .catch((error) => {
                 alert("Fail")
-                // console.log("Fail")
-                // console.log(response)
-
         })
     }
 
     return (
         <FormContainer title="Add Market">
+            <View>
+            {getCurrentLocation()}
+            </View>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{uri: image}}/>
                 <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
@@ -141,32 +143,6 @@ const AddMarket = ( {props, navigation}) => {
             id="website"
             value={website}
             onChangeText={(text) => setWebsite(text)}
-           />
-            </View>
-            <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Lat</Text>
-           </View>
-            <View>
-            <Input 
-            placeholder="Latitude"
-            name="lat"
-            id="lat"
-            value={lat}
-            onChangeText={(text) => setLat(text)}
-            keyboardType="numeric"
-           />
-            </View>
-            <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Long</Text>
-               </View>
-            <View>
-            <Input 
-            placeholder="Longitude"
-            name="lng"
-            id="lng"
-            value={lng}
-            onChangeText={(text) => setLng(text)}
-            keyboardType="numeric"
            />
             </View>
             <View style={styles.label}>
@@ -247,5 +223,4 @@ const styles = StyleSheet.create({
 })
 
 export default AddMarket;
-
 
