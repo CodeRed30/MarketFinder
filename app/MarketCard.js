@@ -1,37 +1,20 @@
 import React from 'react';
 import { StyleSheet, View, Dimensions, Image, Text, Button} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Constants from 'expo-constants';
-
 
 var { width } = Dimensions.get("window");
-let googleApi = Constants.manifest.extra.googleApi
 
 export default class MarketCard extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log("MarketCardconstructor")
-    this.state = {
-        name: this.props.name,
-        desLatitude: this.props.lat,
-        desLongitude: this.props.lng,
-        time: this.props.time
-    };
-    console.log(this.state)
-  }
-
     render() {
-      console.log("MarketCard")
-      console.log(this.state.time)
-      if(this.state.time !== null){
+      if(this.props.time !== null){
         return (
         <View style={styles.container}>
             {/* <Image style={styles.image} /> */}
             <View style={styles.card}>
-                <Text style={styles.title}>{this.state.name}</Text>
+                <Text style={styles.title}>{this.props.name}</Text>
                 <View style={styles.right}>
                 <Icon style={styles.icon} name="walking" size={40} />
-                <Text style={styles.time}>{this.state.time}</Text>
+                <Text style={styles.time}>{this.props.time}</Text>
                 </View>
             </View>
         </View>

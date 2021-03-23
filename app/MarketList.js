@@ -1,11 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import axios from 'axios';
 import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button } from 'react-native';
-import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
-// import Location from 'expo'
 
 import MarketCard from './MarketCard'
 
@@ -22,7 +18,6 @@ export default class App extends Component {
   }
 
   fetchMarkets = async () => {
-    console.log("fetchMarkets")
     this.setState({ isLoading: true });
     try {
       let backendUrl = Constants.manifest.extra.backendUrl
@@ -43,35 +38,28 @@ export default class App extends Component {
   };
 
   mergeCoords = async () => {
-    console.log("mergeCoords")
+    console.log(this.state.markets[0])
+    const { latitude, longitude } = this.state
     let markets = await Promise.all(this.state.markets.map(async (market) => {
-    const {
-      latitude,
-      longitude
-    } = this.state
 
-    let desLatitude = market.lat
-    let desLongitude = market.lng
-    
-    const hasStartAndEnd = latitude !== null && desLatitude !== null
-    if (hasStartAndEnd) {
-      const concatStart = `${latitude},${longitude}`
-      const concatEnd = `${desLatitude},${desLongitude}`
-      market.time = await this.getTime(concatStart, concatEnd, market)
-    }
-    return market
+      let desLatitude = market.lat
+      let desLongitude = market.lng
+      
+      const hasStartAndEnd = latitude !== null && desLatitude !== null
+      if (hasStartAndEnd) {
+        const concatStart = `${latitude},${longitude}`
+        const concatEnd = `${desLatitude},${desLongitude}`
+        market.time = await this.getTime(concatStart, concatEnd, market)
+      }
+      return market
   }))
   markets.sort(function (a, b) {
     return parseInt(a.time) - parseInt(b.time);
   });
-  
   this.setState({ markets });
-  console.log(markets)
-  console.log(this.state.markets)
   }
 
   async getTime(startLoc, desLoc, market) {
-    console.log("getTime")
     try {
       const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
       const respJson = await resp.json();
@@ -86,14 +74,11 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount")
     this.fetchMarkets();
 
   }
 
   render() {
-    // this.fetchMarkets();
-    console.log("inside render")
     return (
       <View style={styles.container}>
         {this.isLoading ? <Text>Loading...</Text> : 
@@ -141,8 +126,3 @@ const styles = StyleSheet.create({
     padding: 24
   }
 });
-
-
-
-
-
