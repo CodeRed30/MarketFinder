@@ -34,26 +34,6 @@ export default class App extends Component {
     this.setState({ isLoading: false });
   };
 
-  // getCurrentLocation = (simulator) => {
-  //   return async (dispatch) => {
-  //     if (!simulator) {
-  //       let { status } = await Permissions.askAsync(Permissions.LOCATION);
-  
-  //       if (status !== 'granted') {
-  //         dispatch(gotCurrentLocationError('Permission to access location was denied'))
-  //       }
-  
-  //       let location = await Location.getCurrentPositionAsync({});
-  //       console.log(location)
-  //       dispatch(gotCurrentLocation(location))
-  //     } else {
-  //       // Demo location for simulator
-  //       dispatch(gotCurrentLocation(chicagoFSA))
-  //     }
-  //   }
-  // }
-
-
   componentDidMount(){
     this.fetchMarkets();
   };

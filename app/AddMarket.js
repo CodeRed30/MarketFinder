@@ -15,12 +15,10 @@ import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
-// import Toast from "react-native-toast-message";
 // import Toast from "react-native-toast-message"
 // import AsyncStorage from "`@react-native-community/async-storage`"
-// import axios from "axios"
-// import * as ImagePicker from "expo-image-picker"
-// import mime from "mime";
+import * as ImagePicker from "expo-image-picker"
+import mime from "mime";
 
 var { width } = Dimensions.get('window');
 
@@ -36,17 +34,42 @@ const AddMarket = (props) => {
     const [image, setImage] = useState();
     const [description, setDescription] = useState();
     const [item, setItem] = useState(null);
-    //Categories to be added for search
+
+
+    (async () => {
+        if (Platform.OS !== "web") {
+            const {
+                status,
+            } = await ImagePicker.requestCameraPermissionsAsync();
+            if (status !== "granted") {
+                alert("Sorry, we need camera roll permissions to make this work!")
+            }
+        }
+    })();
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1
+        });
+
+        if (!result.cancelled) {
+            setImage(result.uri);
+        }
+    };
 
     const addMarket = () => {
         if (
             name == "" ||
-            // image == "" ||
+            image == "" ||
             lat == "" ||
             lng == ""
         ) {
             setError("Please fill in the form correctly")
         }
+        const newImageUri = "file:///" + image.split("file:/").join("");
 
         let backendUrl = Constants.manifest.extra.backendUrl
 
@@ -56,27 +79,29 @@ const AddMarket = (props) => {
             lng: lng,
             weekday_text: weekday_text,
             formatted_address: formatted_address,
-            website: website
+            website: website,
+            image: newImageUri 
         }
 
         axios
         .post(`${backendUrl}/markets`, newMarketObject)
         .then((response) => {
             console.log("Success")
-            // console.log(res.data)
+            // console.log(response)
         })
         .catch((error) => {
             console.log("Fail")
-            // console.log(res.data)
+            // console.log(response)
 
         })
     }
 
     return (
         <FormContainer title="Add Market">
-            <View>
-                <TouchableOpacity>
-                    <Text>Hello Scrummy!</Text>
+            <View style={styles.imageContainer}>
+                <Image style={styles.image} source={{uri: image}}/>
+                <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
+                    <Icon style={{ color: "white"}} name="camera" /> 
                 </TouchableOpacity>
             </View>
             <View style={styles.label}>
@@ -171,6 +196,31 @@ const styles = StyleSheet.create({
         width: width,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    imageContainer: {
+        width: 200,
+        height: 200,
+        borderStyle: "solid",
+        borderWidth: 8,
+        padding: 0,
+        justifyContent: "center",
+        borderRadius: 100,
+        borderColor: "#E0E0E0",
+        elevation: 10
+    },
+    image: {
+        width: "100%",
+        height: "100%",
+        borderRadius: 100
+    },
+    imagePicker: {
+        position: "absolute",
+        right: 5,
+        bottom: 5,
+        backgroundColor: "#e91e63",
+        padding: 8,
+        borderRadius: 100,
+        elevation: 20
     }
 })
 
@@ -222,10 +272,3 @@ export default AddMarket;
         // // formData.append("description", description);
         // formData.append("weekday_text", weekday_text);
         // formData.append("formatted_address", formatted_address);
-
-        // const config = {
-        //     headers: {
-        //         "Content-Type": "multipart/form-data",
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // }
