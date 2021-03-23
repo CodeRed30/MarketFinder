@@ -7076,6 +7076,11 @@
     "prop-types" "^15.7.2"
     "yargs" "^15.0.2"
 
+"react-native-web-refresh-control@^1.0.3":
+  "integrity" "sha512-o1qWewp6ZFmw4aYF5bPIh4zDJJXrfCl5FDoV0Cw8Bh33PSlnl9zpsn7wXl6RVA4l0leUTqUeI/OhmT3XIuvLcw=="
+  "resolved" "https://registry.npmjs.org/react-native-web-refresh-control/-/react-native-web-refresh-control-1.0.3.tgz"
+  "version" "1.0.3"
+
 "react-native-web@~0.13.12", "react-native-web@~0.13.7":
   "integrity" "sha512-WR/0ECAmwLQ2+2cL2Ur+0/swXFAtcSM0URoADJmG6D4MnY+wGc91JO8LoOTlgY0USBOY+qG/beRrjFa+RAuOiA=="
   "resolved" "https://registry.npmjs.org/react-native-web/-/react-native-web-0.13.18.tgz"

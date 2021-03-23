@@ -35,6 +35,7 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-toast-message": "^1.4.9",
     "react-native-web": "~0.13.12",
+    "react-native-web-refresh-control": "^1.0.3",
     "watchman": "^1.0.0"
   },
   "devDependencies": {

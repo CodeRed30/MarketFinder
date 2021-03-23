@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button, RefreshControl } from 'react-native';
 import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
@@ -17,6 +17,7 @@ export default class App extends Component {
       markets: [],
       isLoading: false,
       time: null,
+      refreshing: false
     };
   }
 
@@ -50,6 +51,7 @@ export default class App extends Component {
         ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
             <H3 style={{fontWeight: "bold"}}>Nearby Markets:</H3>
               <FlatList
+              refreshControl={this._refreshControl()}
                 data={this.state.markets}
                 keyExtractor={({id}) => this.state.markets.id}
                 renderItem={({ item }) => (
@@ -68,6 +70,19 @@ export default class App extends Component {
         )}
       </View>
     );
+  }
+  _refreshControl(){
+    return (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={()=>this._refreshListView()} />
+    )
+  }
+  _refreshListView(){
+    //Start Rendering Spinner
+    this.setState({refreshing:true})
+    this.fetchMarkets()
+    this.setState({refreshing:false}) //Stop Rendering Spinner
   }
 }
 
