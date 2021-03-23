@@ -14,7 +14,6 @@ import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
-// import Geolocation from '@react-native-community/geolocation';
 import * as ImagePicker from "expo-image-picker"
 
 var { width } = Dimensions.get('window');

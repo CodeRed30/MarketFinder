@@ -81,13 +81,7 @@ export default class App extends Component {
 
   componentDidMount() {
     this.fetchMarkets();
-    
-    // navigator.geolocation.getCurrentPosition(
-    //     ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
-    //     (error) => console.log('Error:', error)
-    //   )
-  
-    // this.mergeCoords;
+
   }
 
   render() {
