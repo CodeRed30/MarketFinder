@@ -9,22 +9,18 @@ import {
     Platform,
     Button,
 } from "react-native"
-import { Item, Picker } from "native-base"
 import FormContainer from './Form/FormContainer';
 import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
-// import Toast from "react-native-toast-message"
-// import AsyncStorage from "`@react-native-community/async-storage`"
+// import Geolocation from '@react-native-community/geolocation';
 import * as ImagePicker from "expo-image-picker"
-import mime from "mime";
 
 var { width } = Dimensions.get('window');
 
 const AddMarket = (props) => {
 
-    const [pickerValue, setPickerValue] = useState();
     const [name, setName] = useState();
     const [website, setWebsite] = useState();
     const [lat, setLat] = useState();
@@ -33,8 +29,6 @@ const AddMarket = (props) => {
     const [formatted_address, setFormatted_address] = useState();
     const [image, setImage] = useState();
     const [description, setDescription] = useState();
-    const [item, setItem] = useState(null);
-
 
     (async () => {
         if (Platform.OS !== "web") {
@@ -59,19 +53,25 @@ const AddMarket = (props) => {
             setImage(result.uri);
         }
     };
+    const getCurrentLocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setLat(position.coords.latitude)
+                setLng(position.coords.longitude)
+    })};
 
-    const addMarket = () => {
-        if (
-            name == "" ||
+
+    function addMarket() {
+        if (name == "" ||
             image == "" ||
             lat == "" ||
             lng == ""
-        ) {
-            setError("Please fill in the form correctly")
+            ) {
+            setError("Please fill in the form correctly");
         }
         const newImageUri = "file:///" + image.split("file:/").join("");
 
-        let backendUrl = Constants.manifest.extra.backendUrl
+        let backendUrl = Constants.manifest.extra.backendUrl;
 
         const newMarketObject = {
             name: name,
@@ -80,24 +80,26 @@ const AddMarket = (props) => {
             weekday_text: weekday_text,
             formatted_address: formatted_address,
             website: website,
-            image: newImageUri 
-        }
+            image: newImageUri
+        };
 
         axios
-        .post(`${backendUrl}/markets`, newMarketObject)
-        .then((response) => {
-            console.log("Success")
-            // console.log(response)
-        })
-        .catch((error) => {
-            console.log("Fail")
-            // console.log(response)
-
-        })
+            .post(`${backendUrl}/markets`, newMarketObject)
+            .then((response) => {
+                console.log("Success");
+                // console.log(response)
+            })
+            .catch((error) => {
+                console.log("Fail");
+                // console.log(response)
+            });
     }
 
     return (
         <FormContainer title="Add Market">
+            <View>
+            {getCurrentLocation()}
+            </View>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{uri: image}}/>
                 <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
@@ -126,32 +128,6 @@ const AddMarket = (props) => {
             id="website"
             value={website}
             onChangeText={(text) => setWebsite(text)}
-           />
-            </View>
-            <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Lat</Text>
-           </View>
-            <View>
-            <Input 
-            placeholder="Latitude"
-            name="lat"
-            id="lat"
-            value={lat}
-            onChangeText={(text) => setLat(text)}
-            keyboardType="numeric"
-           />
-            </View>
-            <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Long</Text>
-               </View>
-            <View>
-            <Input 
-            placeholder="Longitude"
-            name="lng"
-            id="lng"
-            value={lng}
-            onChangeText={(text) => setLng(text)}
-            keyboardType="numeric"
            />
             </View>
             <View style={styles.label}>
@@ -225,50 +201,3 @@ const styles = StyleSheet.create({
 })
 
 export default AddMarket;
-
-
-
-// Name 
-// Location
-// Image
-
-// optional extras
-// description
-// opening hours
-// address
-// website
-
-// Database connection
-// Getting location from map marker
-
-// POST request 
-
-// Text input Fields 
-
-
-// ToDo 
-// - Create add page
-// - POST request 
-// - What happens once you have pressed add 
-
-// Extra
-// - Add verified to database 
-// - Change pin colours
-
-
-        // let formData = new FormData();
-
-        // const newImageUri = "file:///" + image.split("file:/").join("");
-
-        // formData.append("image", {
-        //     uri: newImageUri,
-        //     type: mime.getType(newImageUri),
-        //     name: newImageUri.split("/").pop()
-        // });
-        // formData.append("name", name);
-        // formData.append("website", website);
-        // formData.append("lat", lat);
-        // formData.append("lng", lng);
-        // // formData.append("description", description);
-        // formData.append("weekday_text", weekday_text);
-        // formData.append("formatted_address", formatted_address);
