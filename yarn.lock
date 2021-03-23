@@ -6872,7 +6872,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.0 || ^16.0", "prop-types@^15.5.10", "prop-types@^15.5.8", "prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2":
+"prop-types@^15.0 || ^16.0", "prop-types@^15.5.10", "prop-types@^15.5.7", "prop-types@^15.5.8", "prop-types@^15.6.0", "prop-types@^15.6.2", "prop-types@^15.7.2":
   "integrity" "sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   "version" "15.7.2"
@@ -7008,6 +7008,13 @@
   dependencies:
     "lodash" "^4.17.15"
 
+"react-native-easy-toast@^2.0.0":
+  "integrity" "sha512-mLvHOy/slCJfgrLfOercIhVKslTF6D7NrJ7XLTRK3BCim7kNO1JdAgQ5+IF6bqdcUcFMIW/GwiauUbnSpynr8Q=="
+  "resolved" "https://registry.npmjs.org/react-native-easy-toast/-/react-native-easy-toast-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "prop-types" "^15.5.10"
+
 "react-native-geolocation-service@^5.2.0":
   "integrity" "sha512-ai7xd6QbLl6WMyEbPfXSaXyYQ/L6CDcPjOZAJYboqwNPclAqxGkzJHJQyvBNy9J410EIrDJg0p9KyaciXmxyCw=="
   "resolved" "https://registry.npmjs.org/react-native-geolocation-service/-/react-native-geolocation-service-5.2.0.tgz"
@@ -7136,7 +7143,7 @@
     "whatwg-fetch" "^3.0.0"
     "ws" "^6.1.4"
 
-"react-native@*", "react-native@^0.64.0-rc.1", "react-native@>= 0.51", "react-native@>=0.38.0", "react-native@>=0.42.0", "react-native@>=0.43.0", "react-native@>=0.56.0", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.60", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@>=0.63.0", "react-native@>=0.64.0-rc.0 || 0.0.0-*", "react-native@https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz":
+"react-native@*", "react-native@^0.64.0-rc.1", "react-native@>= 0.51", "react-native@>=0.20.0", "react-native@>=0.38.0", "react-native@>=0.42.0", "react-native@>=0.43.0", "react-native@>=0.56.0", "react-native@>=0.57", "react-native@>=0.57.0", "react-native@>=0.60", "react-native@>=0.62.0-rc.0 <0.64.0", "react-native@>=0.63.0", "react-native@>=0.64.0-rc.0 || 0.0.0-*", "react-native@https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz":
   "integrity" "sha512-wYOQJnPj9CHg1db2/xXebxfzJpdwxeQpsqi9HLz5Y6Zv8xY/J7p6O4eeDyenw1FARWbeAPWwzl2y+OYE4CUrPA=="
   "resolved" "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
   "version" "0.63.2"

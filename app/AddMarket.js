@@ -17,6 +17,7 @@ import Constants from 'expo-constants';
 import axios from "axios";
 import { NavigationContainer } from '@react-navigation/native';
 // import Toast from "react-native-toast-message"
+import Toast, {DURATION} from 'react-native-easy-toast'
 // import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
 import mime from "mime";
@@ -98,14 +99,14 @@ const AddMarket = ( {props, navigation}) => {
         }
 
         axios
-        .post(`${backendUrl}/markets`, newMarketObject)
-        .then((response) => {
-            console.log("Success")
-            // console.log(response)
-        })
-        .catch((error) => {
-            console.log("Fail")
-            // console.log(response)
+            .post(`${backendUrl}/markets`, newMarketObject)
+            .then((response) => {
+                alert("Thanks for your market")
+            })
+            .catch((error) => {
+                alert("Fail")
+                // console.log("Fail")
+                // console.log(response)
 
         })
     }
@@ -198,9 +199,10 @@ const AddMarket = ( {props, navigation}) => {
                 <Button title="Add Market"
 
                 onPress={() => {
-                    navigation.navigate('Home'), 
                     addMarket(),  
-                    setToNull()}} 
+                    setToNull(), 
+                    navigation.navigate('Home')
+                }}
                 />
             </View>
 
