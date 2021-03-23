@@ -15,14 +15,16 @@ import Input from './Form/Input';
 import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
+import { NavigationContainer } from '@react-navigation/native';
 // import Toast from "react-native-toast-message"
+import Toast, {DURATION} from 'react-native-easy-toast'
 // import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
 import mime from "mime";
 
 var { width } = Dimensions.get('window');
 
-const AddMarket = (props) => {
+const AddMarket = ( {props, navigation}) => {
 
     const [pickerValue, setPickerValue] = useState();
     const [name, setName] = useState();
@@ -46,6 +48,19 @@ const AddMarket = (props) => {
             }
         }
     })();
+
+
+    setToNull = () => {
+        setName(""),
+        setWebsite(""),
+        setLat(""),
+        setLng(""),
+        setWeekday_text(""),
+        setFormatted_address(""),
+        setDescription(""),
+        setItem(""),
+        setImage("")
+    }
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -84,14 +99,14 @@ const AddMarket = (props) => {
         }
 
         axios
-        .post(`${backendUrl}/markets`, newMarketObject)
-        .then((response) => {
-            console.log("Success")
-            // console.log(response)
-        })
-        .catch((error) => {
-            console.log("Fail")
-            // console.log(response)
+            .post(`${backendUrl}/markets`, newMarketObject)
+            .then((response) => {
+                alert("Thanks for your market")
+            })
+            .catch((error) => {
+                alert("Fail")
+                // console.log("Fail")
+                // console.log(response)
 
         })
     }
@@ -167,20 +182,27 @@ const AddMarket = (props) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Address</Text>
+               <Text style={{ fontWeight: "bold"}}>
+                   Address
+                </Text>
                </View>
             <View>
             <Input 
-            placeholder="Address"
-            name="formatted_address"
-            id="formatted_address"
-            value={formatted_address}
-            onChangeText={(text) => setFormatted_address(text)}
+                placeholder="Address"
+                name="formatted_address"
+                id="formatted_address"
+                value={formatted_address}
+                onChangeText={(text) => setFormatted_address(text)}
            />
             </View>
             <View>
                 <Button title="Add Market"
-                onPress={() => addMarket()}  
+
+                onPress={() => {
+                    addMarket(),  
+                    setToNull(), 
+                    navigation.navigate('Home')
+                }}
                 />
             </View>
 
@@ -227,48 +249,3 @@ const styles = StyleSheet.create({
 export default AddMarket;
 
 
-
-// Name 
-// Location
-// Image
-
-// optional extras
-// description
-// opening hours
-// address
-// website
-
-// Database connection
-// Getting location from map marker
-
-// POST request 
-
-// Text input Fields 
-
-
-// ToDo 
-// - Create add page
-// - POST request 
-// - What happens once you have pressed add 
-
-// Extra
-// - Add verified to database 
-// - Change pin colours
-
-
-        // let formData = new FormData();
-
-        // const newImageUri = "file:///" + image.split("file:/").join("");
-
-        // formData.append("image", {
-        //     uri: newImageUri,
-        //     type: mime.getType(newImageUri),
-        //     name: newImageUri.split("/").pop()
-        // });
-        // formData.append("name", name);
-        // formData.append("website", website);
-        // formData.append("lat", lat);
-        // formData.append("lng", lng);
-        // // formData.append("description", description);
-        // formData.append("weekday_text", weekday_text);
-        // formData.append("formatted_address", formatted_address);

@@ -6,6 +6,7 @@ import SingleMarket from '../app/SingleMarket';
 import MarketList from '../app/MarketList';
 import AddMarket from '../app/AddMarket';
 import Info from '../app/Info';
+import Search from '../app/Search';
 
 const Stack = createStackNavigator()
 
@@ -31,6 +32,10 @@ function MyStack() {
             <Stack.Screen
                 name='Info'
                 component={ Info }
+            />
+            <Stack.Screen
+                name='Search'
+                component={ Search }
             />
         </Stack.Navigator>
     )

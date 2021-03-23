@@ -1,14 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import axios from 'axios';
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button, RefreshControl } from 'react-native';
 import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
-// import Location from 'expo'
-
 import MarketCard from './MarketCard'
-
 
 export default class App extends Component {
   constructor(props) {
@@ -17,6 +14,7 @@ export default class App extends Component {
       markets: [],
       isLoading: false,
       time: null,
+      refreshing: false
     };
   }
 
@@ -33,8 +31,11 @@ export default class App extends Component {
     }
     this.setState({ isLoading: false });
   };
-
   componentDidMount(){
+    this.fetchMarkets();
+  };
+
+  componentWillUnmount(){
     this.fetchMarkets();
   };
   
@@ -46,6 +47,7 @@ export default class App extends Component {
         ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
             <H3 style={{fontWeight: "bold"}}>Nearby Markets:</H3>
               <FlatList
+              refreshControl={this._refreshControl()}
                 data={this.state.markets}
                 keyExtractor={({id}) => this.state.markets.id}
                 renderItem={({ item }) => (
@@ -64,6 +66,18 @@ export default class App extends Component {
         )}
       </View>
     );
+  }
+  _refreshControl(){
+    return (
+      <RefreshControl
+        refreshing={this.state.refreshing}
+        onRefresh={()=>this._refreshListView()} />
+    )
+  }
+  _refreshListView(){
+    this.setState({refreshing:true})
+    this.fetchMarkets()
+    this.setState({refreshing:false})
   }
 }
 
