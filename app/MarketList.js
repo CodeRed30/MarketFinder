@@ -1,8 +1,7 @@
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button, RefreshControl } from 'react-native';
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
-
 import MarketCard from './MarketCard'
 
 let googleApi = Constants.manifest.extra.googleApi
@@ -39,7 +38,6 @@ export default class App extends Component {
   };
 
   mergeCoords = async () => {
-    console.log(this.state.markets[0])
     const { latitude, longitude } = this.state
     let markets = await Promise.all(this.state.markets.map(async (market) => {
 
@@ -67,7 +65,6 @@ export default class App extends Component {
       const response = respJson.routes[0]
       const distanceTime = response.legs[0]
       const time = distanceTime.duration.text
-      console.log(time)
       return time;
     } catch(error) {
       console.log('Error: ', error)
