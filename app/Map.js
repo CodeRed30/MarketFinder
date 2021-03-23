@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StyleSheet, View, Text, TouchableWithoutFeedbackBase } from 'react-native'
 
-import MapView from 'react-native-maps'
+import MapView, { Callout } from 'react-native-maps'
 import * as Permissions from 'expo-permissions';
 import Polyline from '@mapbox/polyline'
 import Constants from 'expo-constants';
@@ -123,7 +123,19 @@ async componentDidMount() {
               key={idx}
               coordinate={{ latitude, longitude }}
               onPress={this.onMarkerPress(market)}
-              />
+              title= "this market"
+              description="sells allsorts"
+              >
+                <Callout tooltip>
+                  <View>
+                    <View style={styles.bubble}>
+                      <Text style={styles.name}>{market.name}</Text>
+                    </View>
+                    <View style={styles.arrowBorder} />
+                    <View style={styles.arrow} />
+                  </View>
+                </Callout>
+              </Marker>
             )
           })
         }
@@ -131,6 +143,8 @@ async componentDidMount() {
     )
   }
   
+
+
   render(){
      const { 
       latitude,
@@ -157,7 +171,7 @@ async componentDidMount() {
 
         <MapView.Polyline 
           strokeWidth={2}
-          strokeColor="red"
+          strokeColor="#359d9b"
           coordinates={coords}
         />
       </MapView>
@@ -169,4 +183,33 @@ async componentDidMount() {
   }
 }
 
-
+const styles = StyleSheet.create({
+  bubble: {
+    flexDirection: "row",
+    alignSelf: 'flex-start',
+    backgroundColor: '#FA7E61',
+    borderRadius: 6,
+    borderColor: 'white',
+    padding: 12,
+  },
+  arrow: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: '#FA7E61',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -32,
+  }, 
+  arrowBorder: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: '#007a87',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -0.5,
+  },
+  name: {
+    fontWeight: 'bold',
+    
+  }
+})

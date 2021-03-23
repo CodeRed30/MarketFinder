@@ -5,10 +5,7 @@ import MarketData from '../src/marketData.js'
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
 import { Left, Right, Container, H3} from 'native-base';
-// import Location from 'expo'
-
 import MarketCard from './MarketCard'
-
 
 export default class App extends Component {
   constructor(props) {
@@ -34,7 +31,6 @@ export default class App extends Component {
     }
     this.setState({ isLoading: false });
   };
-
   componentDidMount(){
     this.fetchMarkets();
   };
@@ -79,10 +75,9 @@ export default class App extends Component {
     )
   }
   _refreshListView(){
-    //Start Rendering Spinner
     this.setState({refreshing:true})
     this.fetchMarkets()
-    this.setState({refreshing:false}) //Stop Rendering Spinner
+    this.setState({refreshing:false})
   }
 }
 
