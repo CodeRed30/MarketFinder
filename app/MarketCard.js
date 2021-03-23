@@ -8,15 +8,22 @@ var { width } = Dimensions.get("window");
 let googleApi = Constants.manifest.extra.googleApi
 
 export default class MarketCard extends React.Component {
-
-    state = {
+  constructor(props) {
+    super(props);
+    console.log("MarketCardconstructor")
+    this.state = {
         name: this.props.name,
         desLatitude: this.props.lat,
         desLongitude: this.props.lng,
         time: this.props.time
-    }
+    };
+    console.log(this.state)
+  }
 
     render() {
+      console.log("MarketCard")
+      console.log(this.state.time)
+      if(this.state.time !== null){
         return (
         <View style={styles.container}>
             {/* <Image style={styles.image} /> */}
@@ -29,7 +36,7 @@ export default class MarketCard extends React.Component {
             </View>
         </View>
         )
-        }
+        }}
 }
 
 const styles = StyleSheet.create({

@@ -22,6 +22,7 @@ export default class App extends Component {
   }
 
   fetchMarkets = async () => {
+    console.log("fetchMarkets")
     this.setState({ isLoading: true });
     try {
       let backendUrl = Constants.manifest.extra.backendUrl
@@ -42,6 +43,7 @@ export default class App extends Component {
   };
 
   mergeCoords = async () => {
+    console.log("mergeCoords")
     let markets = await Promise.all(this.state.markets.map(async (market) => {
     const {
       latitude,
@@ -64,15 +66,19 @@ export default class App extends Component {
   });
   
   this.setState({ markets });
+  console.log(markets)
+  console.log(this.state.markets)
   }
 
   async getTime(startLoc, desLoc, market) {
+    console.log("getTime")
     try {
       const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
       const respJson = await resp.json();
       const response = respJson.routes[0]
       const distanceTime = response.legs[0]
       const time = distanceTime.duration.text
+      console.log(time)
       return time;
     } catch(error) {
       console.log('Error: ', error)
@@ -80,11 +86,14 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    console.log("componentDidMount")
     this.fetchMarkets();
 
   }
 
   render() {
+    // this.fetchMarkets();
+    console.log("inside render")
     return (
       <View style={styles.container}>
         {this.isLoading ? <Text>Loading...</Text> : 
