@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native';
+import { Image, View, StyleSheet, Text, ScrollView, Button , Linking} from 'react-native';
 import { Left, Right, Container, H1} from 'native-base'
 import MarketMap from './MarketMap'
 
