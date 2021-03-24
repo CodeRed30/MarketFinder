@@ -6,7 +6,7 @@ import Banner from './Banner'
 
 const SingleMarket = (props) => {
 
-    // const [item, setItem] = useState(props.route.params.item)
+   
     const item = props.route.params.item
 
     return (
@@ -98,11 +98,3 @@ const styles = StyleSheet.create({
 
 export default SingleMarket
 
-
-                    
-// {(function() {if(item.weekday_text != "") {
-//     return <Text>
-//     OPENING HOURS{"\n"}
-//     {item.weekday_text}</Text>;
-// }
-// })()}
