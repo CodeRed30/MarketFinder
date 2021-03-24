@@ -25,10 +25,11 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: 'white',
         margin: 10,
-        borderRadius: 20,
+        borderRadius: 5,
         padding: 10,
         borderWidth: 2,
-        borderColor: "#e91e63",
+        borderColor: "#EA6F20",
+        fontFamily: 'Helvetica Neue'
     },
 });
 

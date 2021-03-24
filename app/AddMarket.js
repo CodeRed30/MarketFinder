@@ -19,6 +19,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import Toast, {DURATION} from 'react-native-easy-toast'
 // import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
+import * as Font from 'expo-font';
 
 var { width } = Dimensions.get('window');
 
@@ -121,7 +122,7 @@ const AddMarket = ( {props, navigation}) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Name</Text>
+               <Text style={styles.label}>Name</Text>
            </View>
             <View>
             <Input 
@@ -133,7 +134,7 @@ const AddMarket = ( {props, navigation}) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Website</Text>
+               <Text style={styles.label}>Website</Text>
            </View>
             <View>
             <Input 
@@ -145,7 +146,7 @@ const AddMarket = ( {props, navigation}) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>Opening Hours</Text>
+               <Text style={styles.label}>Opening Hours</Text>
                </View>
             <View>
             <Input 
@@ -157,7 +158,7 @@ const AddMarket = ( {props, navigation}) => {
            />
             </View>
             <View style={styles.label}>
-               <Text style={{ fontWeight: "bold"}}>
+               <Text style={styles.label}>
                    Address
                 </Text>
                </View>
@@ -171,13 +172,14 @@ const AddMarket = ( {props, navigation}) => {
            />
             </View>
             <View>
-                <Button title="Add Market"
-
-                onPress={() => {
-                    addMarket(),  
-                    setToNull(), 
-                    navigation.navigate('Home')
-                }}
+                <Button 
+                    title="Add Market"
+                    color="#EA6F20"
+                    onPress={() => {
+                        addMarket(),  
+                        setToNull(), 
+                        navigation.navigate('Home')
+                    }}
                 />
             </View>
 
@@ -198,26 +200,35 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200,
         borderStyle: "solid",
-        borderWidth: 8,
+        borderWidth: 4,
+        borderRadius: 4,
         padding: 0,
         justifyContent: "center",
-        borderRadius: 100,
         borderColor: "#E0E0E0",
-        elevation: 10
+        elevation: 10,
+        marginBottom: 10,
+        marginTop: 10,
     },
     image: {
         width: "100%",
         height: "100%",
-        borderRadius: 100
     },
     imagePicker: {
         position: "absolute",
         right: 5,
         bottom: 5,
-        backgroundColor: "#e91e63",
+        backgroundColor: "#EA6F20",
         padding: 8,
         borderRadius: 100,
-        elevation: 20
+        elevation: 20,
+        shadowColor: '#000000',
+        shadowOpacity: 0.3,
+        shadowOffset: {width: 1, height: 1}
+    },
+    label: {
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '800',
+        fontSize: 16
     }
 })
 

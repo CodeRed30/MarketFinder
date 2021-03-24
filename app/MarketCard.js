@@ -9,12 +9,11 @@ export default class MarketCard extends React.Component {
       if(this.props.time !== null){
         return (
         <View style={styles.container}>
-            {/* <Image style={styles.image} /> */}
             <View style={styles.card}>
                 <Text style={styles.title}>{this.props.name}</Text>
                 <View style={styles.right}>
-                <Icon style={styles.icon} name="walking" size={40} />
-                <Text style={styles.time}>{this.props.time}</Text>
+                    <Icon style={styles.icon} name="walking" size={30} />
+                    <Text style={styles.time}>{this.props.time}</Text>
                 </View>
             </View>
         </View>
@@ -24,47 +23,45 @@ export default class MarketCard extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        width: width - 60,
-        height: width / 4,
+        height: 70,
         padding: 10,
-        borderRadius: 10,
-        marginTop: 5, 
-        marginBottom: 5,
-        marginLeft: 5,
         alignItems: 'center',
         elevation: 8,
-        backgroundColor: 'white'
-    },
-    image: {
-        width: width / 2 - 20 - 10,
-        height: width / 2 - 20 - 30,
-        backgroundColor: 'transparent',
-        position: 'absolute',
+        backgroundColor: 'white',
+        borderBottomColor: '#EA6F20',
+        borderBottomWidth: 2
     },
     card: {
+        paddingTop: '3%', 
         alignItems: 'center',
         flexDirection: 'row', 
         backgroundColor: 'transparent',
     },
     right: {
-      flex: 1,
-      alignItems: 'flex-end',
-      alignSelf: 'flex-end'
+      flex: 0.5,
+      flexDirection: 'row',
+      alignItems: 'center',
+      alignSelf: 'flex-end',
     },
     title: {
         flex: 1,
-        justifyContent: 'flex-start',
-        alignSelf: 'flex-start',
-        fontWeight: 'bold',
-        fontSize: 16,
-        textAlign: 'left', 
-        color: 'black',
+        alignSelf: 'center',
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '800',
+        fontSize: 14,
     },
     icon: {
-        justifyContent: "flex-end",
-        color: '#e91e63'
+        flex: 0.7,
+        marginRight: 4,
+        color: '#EA6F20',
+        zIndex: 2,
+        textAlign: 'right'
     },
     time: {
+      flexShrink: 1,
       fontSize: 14,
+      justifyContent: 'flex-end',
+      textAlign: 'right',
+      zIndex: 1,
     }
 })
