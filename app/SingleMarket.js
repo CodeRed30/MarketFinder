@@ -12,9 +12,9 @@ const SingleMarket = (props) => {
         <Container style={styles.container}>
             <ScrollView 
                 style={ styles.scrollView}
-                contentContainerStyle={{ flex: 1 }}
+                contentContainerStyle={{ flexGrow: 1 }}
                 >
-                <View>
+                <View style={styles.imageContainer}>
                     <Image 
                         source={{
                             uri: item.image1 ? item.image1
@@ -24,54 +24,55 @@ const SingleMarket = (props) => {
                         style={styles.image}
                     />                 
                 </View>
-                
-                <View> 
-                    <H1>
-                    {item.name}
-
-                    </H1>
-                    <Text>
-                    {item.description} 
-                    </Text>
-                    <Text>
-                    Opening Hours:{"\n"}
-                    {item.opening_hours} 
-                    </Text>
-                    <Text>
-                    {item.formatted_address} 
-                    </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.insta_link)}>
-                    {item.name}'s Instagram
-                    </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.fb_link)}>
-                    {item.name}'s Facebook
-                    </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.twitter_link)}>
-                    {item.name}'s Twitter
-                    </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.website)}>
-                    Click to go to {item.name}'s Website
-                    </Text>
-                    
-                </View> 
-               
-            <View style ={styles.mapContainer}>
-                <MarketMap item = {item}/>
-            </View>
+                <View style={{justifyContent: 'center'}}>
+                    <View style={styles.content}> 
+                        <Text style={styles.header}>
+                            {item.name}
+                        </Text>
+                        <Text style={styles.description}>
+                            {item.description} 
+                        </Text>
+                        <Text style={styles.subHeader}>
+                            Opening Hours:
+                        </Text>
+                        <Text style={styles.hours}>
+                            {item.opening_hours} 
+                        </Text>
+                        <Text style={styles.address}>
+                            {item.formatted_address} 
+                        </Text>
+                        <Text style={{color: 'blue'}}
+                            onPress={() => Linking.openURL(item.insta_link)}>
+                            {item.name}'s Instagram
+                        </Text>
+                        <Text style={{color: 'blue'}}
+                            onPress={() => Linking.openURL(item.fb_link)}>
+                            {item.name}'s Facebook
+                        </Text>
+                        <Text style={{color: 'blue'}}
+                            onPress={() => Linking.openURL(item.twitter_link)}>
+                            {item.name}'s Twitter
+                        </Text>
+                        <Text style={{color: 'blue'}}
+                            onPress={() => Linking.openURL(item.website)}>
+                            Click to go to {item.name}'s Website
+                        </Text>
+                    </View> 
+                </View>
+                <View style ={styles.mapContainer}>
+                    <MarketMap item = {item}/>
+                </View>
             </ScrollView>
-            
         </Container>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        position: 'relative',
-        height:'50%'
+        flex: 1,
+    },
+    scrollView: {
+        flex: 1,
     },
     imageContainer: {
         backgroundColor: 'white',
@@ -80,25 +81,48 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 250
+        height: 300
+    },
+    content: {
+        // alignItems: 'center',
+        width: 300,
+        marginLeft: 35,
+        marginRight: 35
+    },
+    header: {
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '800',
+        fontSize: 28,
+        marginTop: 24,
+        marginBottom: 12
+    },
+    description: {
+        fontFamily: 'Helvetica Neue'
+    },
+    subHeader: {
+        fontFamily: 'Helvetica Neue',
+        fontSize: 18,
+        fontWeight: '700',
+        marginTop: 12,
+        marginBottom: 6
+    },
+    hours: {
+        fontFamily: 'Helvetica Neue',
+        lineHeight: 24,
+        marginBottom: 12
+    },
+    address: {
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '700',
+        fontSize: 18,
+        marginBottom: 12
     },
     mapContainer: {
-        flex: 1
+        marginTop: 24,
+        flex: 1,
+        height: 450
     },
-    scrollView: {
-        height: 1000,
-        padding:5
-    }
 })
 
 
 export default SingleMarket
-
-
-                    
-// {(function() {if(item.weekday_text != "") {
-//     return <Text>
-//     OPENING HOURS{"\n"}
-//     {item.weekday_text}</Text>;
-// }
-// })()}

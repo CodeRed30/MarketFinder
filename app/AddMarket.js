@@ -15,11 +15,10 @@ import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
 import { NavigationContainer } from '@react-navigation/native';
-// import Toast from "react-native-toast-message"
-import Toast, {DURATION} from 'react-native-easy-toast'
 // import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
 import * as Font from 'expo-font';
+import Toast from "react-native-toast-message";
 
 var { width } = Dimensions.get('window');
 
@@ -62,7 +61,7 @@ const AddMarket = ( {props, navigation}) => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [4, 3],
+            aspect: [5, 3],
             quality: 1
         });
 
@@ -103,10 +102,20 @@ const AddMarket = ( {props, navigation}) => {
         axios
             .post(`${backendUrl}/markets`, newMarketObject)
             .then((response) => {
-                alert("Thanks for your market")
+                Toast.show({
+                    topOffset: 60,
+                    type: "success",
+                    text1: "Login Successful",
+                    text2: "Welcome back!",
+                  });
             })
             .catch((error) => {
-                alert("Fail")
+                Toast.show({
+                    topOffset: 60,
+                    type: "success",
+                    text1: "Fail!",
+                  });
+                  console.log(error)
         })
     }
 
@@ -199,7 +208,7 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         width: 300,
-        height: 300,
+        height: 180,
         borderStyle: "solid",
         borderWidth: 4,
         borderRadius: 4,
