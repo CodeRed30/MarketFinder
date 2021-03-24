@@ -15,7 +15,7 @@ const SingleMarket = (props) => {
                 style={ styles.scrollView}
                 contentContainerStyle={{ flexGrow: 1 }}
                 >
-                <View>
+                <View style={styles.imageContainer}>
                     <Image 
                         source={{
                             uri: item.image1 ? item.image1
@@ -24,8 +24,7 @@ const SingleMarket = (props) => {
                         resizeMode="contain"
                         style={styles.image}
                     />                 
-                </View>
-                
+                </View>    
                 <View> 
                     <H1>
                     {item.name}
@@ -64,15 +63,16 @@ const SingleMarket = (props) => {
                 <MarketMap item = {item}/>
             </View>
             </ScrollView>
-            
         </Container>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        position: 'relative',
-        height:'50%'
+        flex: 1,
+    },
+    scrollView: {
+        flex: 1,
     },
     imageContainer: {
         backgroundColor: 'white',
@@ -81,25 +81,48 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 250
+        height: 300
+    },
+    content: {
+        // alignItems: 'center',
+        width: 300,
+        marginLeft: 35,
+        marginRight: 35
+    },
+    header: {
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '800',
+        fontSize: 28,
+        marginTop: 24,
+        marginBottom: 12
+    },
+    description: {
+        fontFamily: 'Helvetica Neue'
+    },
+    subHeader: {
+        fontFamily: 'Helvetica Neue',
+        fontSize: 18,
+        fontWeight: '700',
+        marginTop: 12,
+        marginBottom: 6
+    },
+    hours: {
+        fontFamily: 'Helvetica Neue',
+        lineHeight: 24,
+        marginBottom: 12
+    },
+    address: {
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '700',
+        fontSize: 18,
+        marginBottom: 12
     },
     mapContainer: {
-        flex: 1
+        marginTop: 24,
+        flex: 1,
+        height: 450
     },
-    scrollView: {
-        height: 1000,
-        padding:5
-    }
 })
 
 
 export default SingleMarket
-
-
-                    
-// {(function() {if(item.weekday_text != "") {
-//     return <Text>
-//     OPENING HOURS{"\n"}
-//     {item.weekday_text}</Text>;
-// }
-// })()}
