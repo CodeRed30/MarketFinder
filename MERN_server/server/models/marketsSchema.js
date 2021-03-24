@@ -27,18 +27,18 @@ const MarketsSchema = new mongoose.Schema({
         required: false,
     },
     image1: {
-        type: Image,
-        default: ‘’,
+        type: String,
+        default: "",
         required: true,
     },
     image2: {
-        type: Image,
-        default: ‘’,
+        type: String,
+        default: "",
         required: false,
     },
     image3: {
-        type: Image,
-        default: ‘’,
+        type: String,
+        default: "",
         required: false,
     },
     insta_link: {
