@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
         padding: 10,
         alignItems: 'center',
         elevation: 8,
-        backgroundColor: 'white',
-        borderBottomColor: '#EA6F20',
+        backgroundColor: '#EA6F20',
+        borderBottomColor: '#ffffff',
         borderBottomWidth: 2
     },
     card: {
