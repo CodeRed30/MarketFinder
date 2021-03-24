@@ -9,29 +9,28 @@ const Info = () => {
     const holly = {name: "Holly", github: "http://github.com/HolsDuckett"}
     const jack = {name: "Jack", github: "http://github.com/jshields123"}
     const katrina = {name: "Katrina", github: "http://github.com/CodeRed30"}
-    const makers = [anna, charlie, holly]
-
+    const makers = [anna, charlie, holly, jack, katrina]
     return (
         <View style={styles.info}>
             <Text>
                 About Scrummy!
             </Text>
-            <View style={{flexDirection: 'row'}}>
             <FlatList
             data={makers}
             keyExtractor={({_id}) => _id}
-            renderItem={({ maker }) => (
+            renderItem={({ item }) => (
+                <View style={{flexDirection: 'row'}}>
                 <SocialIcon
                 type="github"
-                onPress={() => Linking.openURL(anna.github)}
+                onPress={() => Linking.openURL(item.github)}
                 />
             <Text style={{paddingTop: 22}}>
-                {anna.name}
+                {item.name}
             </Text>
+            </View>
             )}
             />
             </View>
-        </View>
     )
 }
 
