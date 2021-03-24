@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Dimensions, StyleSheet, Text } from 'react-native';
+import { ScrollView, Dimensions, StyleSheet, Text, View } from 'react-native';
 import * as Font from 'expo-font';
 
 var { width } = Dimensions.get('window');
@@ -8,7 +8,9 @@ const FormContainer = (props) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>{props.title}</Text>
-            {props.children}
+            <View>
+              {props.children}
+            </View>
         </ScrollView>
     )
 }
@@ -32,17 +34,18 @@ loadFonts = async () => {
 const styles = StyleSheet.create({
     container: {
         marginTop: 30,
-        marginBottom: 400,
+        // marginBottom: 400,
         width: width,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 60
+        paddingBottom: 60,
     },
     title: {
         fontFamily: 'Helvetica Neue',
         fontWeight: '900',
-        fontSize: 32,
+        fontSize: 28,
         marginBottom: 6,
+
     }
 })
 

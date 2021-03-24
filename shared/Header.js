@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 40,
         marginTop: 50,
-        marginBottom: 10
+        marginBottom: 10,
     }
 })
 
