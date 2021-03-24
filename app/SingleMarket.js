@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Image, View, StyleSheet, Text, ScrollView, Button , Linking} from 'react-native';
 import { Left, Right, Container, H1} from 'native-base'
+import {SocialIcon} from 'react-native-elements';
 import MarketMap from './MarketMap'
 
 const SingleMarket = (props) => {
@@ -28,8 +29,25 @@ const SingleMarket = (props) => {
                 <View> 
                     <H1>
                     {item.name}
-
                     </H1>
+                    <View style={{flexDirection: 'column'}}>
+                    <SocialIcon
+                        type="instagram"
+                        onPress={() => Linking.openURL(item.insta_link)}
+                        />
+                    </View>
+                    <View style={{flexDirection: 'column'}}>
+                    <SocialIcon
+                        type="facebook"
+                        onPress={() => Linking.openURL(item.fb_link)}
+                        />
+                    </View>
+                    <View style={{flexDirection: 'column'}}>
+                    <SocialIcon
+                        type="twitter"
+                        onPress={() => Linking.openURL(item.twitter_link)}
+                        />
+                    </View>
                     <Text>
                     {item.description} 
                     </Text>
