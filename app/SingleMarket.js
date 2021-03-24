@@ -16,7 +16,7 @@ const SingleMarket = (props) => {
                 <View>
                     <Image 
                         source={{
-                            uri: item.image ? item.image 
+                            uri: item.image1 ? item.image1
                             : 'https://assets.londonist.com/uploads/2015/04/i875/horn-ok-please.jpg'
                         }}
                         resizeMode="contain"
@@ -29,21 +29,31 @@ const SingleMarket = (props) => {
                     {item.name}
 
                     </H1>
-
-                    
-                    {(function() {if(item.weekday_text != "") {
-                        return <Text>
-                        OPENING HOURS{"\n"}
-                        {item.weekday_text}</Text>;
-                    }
-                })()}
                     <Text>
-                    ADDRESS{"\n"}
+                    {item.description} 
+                    </Text>
+                    <Text>
+                    Opening Hours:{"\n"}
+                    {item.opening_hours} 
+                    </Text>
+                    <Text>
                     {item.formatted_address} 
                     </Text>
                     <Text>
                     WEBSITE
                     {item.website}
+                    </Text>
+                    <Text>
+                    WEBSITE
+                    {item.insta_link}
+                    </Text>
+                    <Text>
+                    WEBSITE
+                    {item.fb_link}
+                    </Text>
+                    <Text>
+                    WEBSITE
+                    {item.twitter_link}
                     </Text>
                     
                 </View> 
@@ -58,10 +68,10 @@ const SingleMarket = (props) => {
 }
 
 const styles = StyleSheet.create({
-    // container: {
-    //     position: 'relative',
-    //     height:'50%'
-    // },
+    container: {
+        position: 'relative',
+        height:'50%'
+    },
     imageContainer: {
         backgroundColor: 'white',
         padding: 0,
@@ -82,3 +92,12 @@ const styles = StyleSheet.create({
 
 
 export default SingleMarket
+
+
+                    
+// {(function() {if(item.weekday_text != "") {
+//     return <Text>
+//     OPENING HOURS{"\n"}
+//     {item.weekday_text}</Text>;
+// }
+// })()}
