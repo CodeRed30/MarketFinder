@@ -17,7 +17,7 @@ export default class App extends Component {
       isLoadingMore: false,
       time: null,
       refreshing: false,
-      fontsLoaded: false,
+      fontsLoaded: true,
       page: 1,
     };
   }
@@ -30,22 +30,6 @@ export default class App extends Component {
 // console.log('here they are');
 //     console.log(this.state.paginatedMarkets[0])
 //   }
-
-  async loadFonts() {
-    await Font.loadAsync({
-      Inter: require('../assets/fonts/Inter.ttf'),
-
-      'Inter': {
-        uri: require('../assets/fonts/Inter.ttf'),
-        display: Font.FontDisplay.FALLBACK,
-      },
-      'InterExtraBold': {
-        uri: require('../assets/fonts/Inter-ExtraBold.ttf'),
-        display: Font.FontDisplay.FALLBACK,
-      }
-    });
-    this.setState({ fontsLoaded: true });
-  }
 
   fetchMarkets = async () => {
     this.setState({ isLoading: true });
@@ -66,8 +50,6 @@ export default class App extends Component {
       ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
       (error) => console.log('Error:', error)
     )
-
-    this.chunkMaker()
 
   };
 
@@ -119,9 +101,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.loadFonts();
     this.fetchMarkets();
-
   }
 
   render() {
@@ -129,10 +109,9 @@ export default class App extends Component {
       return (
         <View style={styles.container}>
           {this.isLoading ? <Text>Loading...</Text> : 
-          ( <View style={{ flex: 1, flexDirection: 'column', justifyContent:  'space-between'}}>
-              <H3 style={{ fontFamily: "InterExtraBold" }}>Nearby Markets:</H3>
+          ( <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
                 <FlatList
-                refreshControl={this._refreshControl()}
+                  refreshControl={this._refreshControl()}
                   data={this.state.markets}
                   keyExtractor={({_id}) => _id}
                   refreshing={this.state.isLoading}
@@ -144,13 +123,12 @@ export default class App extends Component {
                   renderItem={({ item }) => (
                     // 
                     <TouchableOpacity
-                      style={{ width: '100%'}}
                       onPress={() =>
                       this.props.navigation.navigate('Market Details', { item: item })}
                       key={item.id}
                       title={item.name}>
                         <MarketCard {...item}/>
-                      </TouchableOpacity>
+                    </TouchableOpacity>
                   )}
                 />
             </View>
@@ -177,20 +155,13 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   listItem: {
-    paddingTop: 15,
+    // paddingTop: 15,
     fontSize: 18,
-  },
-  header: {
-    fontSize: 28,
-    fontWeight: "bold",
-    paddingBottom: 12,
   },
   container: {
     flex: 1,
-    width: Dimensions.get('window').width,
-    backgroundColor: '#FA7E61',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 24
+    backgroundColor: '#2791A3',
+  }, 
+  card: {
   }
 });
