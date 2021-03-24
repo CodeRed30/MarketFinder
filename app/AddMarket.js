@@ -67,7 +67,7 @@ const AddMarket = ( {props, navigation}) => {
         });
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            setImage1(result.uri);
         }
     };
     const getCurrentLocation = () => {

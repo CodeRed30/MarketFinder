@@ -1,8 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, Image, Text, Button} from 'react-native';
+import { StyleSheet, View, Image, Text, Button} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
-
-var { width } = Dimensions.get("window");
 
 export default class MarketCard extends React.Component {
     render() {
