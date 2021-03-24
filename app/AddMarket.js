@@ -67,7 +67,7 @@ const AddMarket = ( {props, navigation}) => {
         });
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            setImage1(result.uri);
         }
     };
     const getCurrentLocation = () => {
@@ -116,7 +116,7 @@ const AddMarket = ( {props, navigation}) => {
             {getCurrentLocation()}
             </View>
             <View style={styles.imageContainer}>
-                <Image style={styles.image1} source={{uri: image1}}/>
+                <Image style={styles.image} source={{uri: image1}}/>
                 <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
                     <Icon style={{ color: "white"}} name="camera" /> 
                 </TouchableOpacity>
