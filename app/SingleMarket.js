@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Image, View, StyleSheet, Text, ScrollView, Button , Linking} from 'react-native';
 import { Left, Right, Container, H1} from 'native-base'
 import MarketMap from './MarketMap'
+import Banner from './Banner'
 
 const SingleMarket = (props) => {
 
@@ -15,14 +16,17 @@ const SingleMarket = (props) => {
                 contentContainerStyle={{ flex: 1 }}
                 >
                 <View>
-                    <Image 
+                    <Banner 
+                    item={item}
+                    />
+                    {/* <Image 
                         source={{
                             uri: item.image1 ? item.image1
                             : 'https://assets.londonist.com/uploads/2015/04/i875/horn-ok-please.jpg'
                         }}
                         resizeMode="contain"
                         style={styles.image}
-                    />                 
+                    />                  */}
                 </View>
                 
                 <View> 
