@@ -53,7 +53,7 @@ const AddMarket = ( {props, navigation}) => {
         setLng(""),
         setOpening_hours(""),
         setFormatted_address(""),
-        setDescription(""),
+        setDescription("")
         // setItem(""),
         setImage1("")
     }
@@ -116,7 +116,7 @@ const AddMarket = ( {props, navigation}) => {
             {getCurrentLocation()}
             </View>
             <View style={styles.imageContainer}>
-                <Image style={styles.image1} source={{uri: image1}}/>
+                <Image style={styles.image} source={{uri: image1}}/>
                 <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
                     <Icon style={{ color: "white"}} name="camera" /> 
                 </TouchableOpacity>
@@ -177,8 +177,8 @@ const AddMarket = ( {props, navigation}) => {
                     color="#EA6F20"
                     onPress={() => {
                         addMarket(),  
-                        setToNull(), 
-                        navigation.navigate('Home')
+                        navigation.navigate('Home'),
+                        setToNull()
                     }}
                 />
             </View>
