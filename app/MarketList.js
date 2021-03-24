@@ -81,6 +81,15 @@ export default class App extends Component {
       }
       return market
   }))
+  markets.map((market) => {
+    if(market.time.split(" ").length === 2){ 
+      market.time = parseInt(market.time.split(" ")[0])
+  } else {
+      market.time = parseInt(market.time.split(" ")[0])*60 + parseInt(market.time.split(" ")[2])
+  }
+  market.time = `${market.time} mins`
+})
+
   markets.sort(function (a, b) {
     return parseInt(a.time) - parseInt(b.time);
   });
