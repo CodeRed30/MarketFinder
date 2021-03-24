@@ -41,7 +41,7 @@ export default class App extends Component {
     this.setState({ isLoading: true });
     try {
       let backendUrl = Constants.manifest.extra.backendUrl
-      const res = await fetch(backendUrl + '/markets');
+      const res = await fetch(backendUrl + `/markets?page=` + this.state.page + `&limit=` + 5);
       const markets = await res.json();
       if (this.state.page === 1) this.setState({ markets });
       else this.setState({ markets: [...this.state.markets, ...markets] });
@@ -124,7 +124,11 @@ export default class App extends Component {
                   refreshing={this.state.isLoading}
                   onRefresh={this.refreshMarkets}
                   onEndReachedThreshold={0.1}
-                  onEndReached={this.loadMoreMarkets}
+                  onEndReached={() => {
+                    if (this.state.loadingMore === false) {
+                    this.loadMoreMarkets
+                    }
+                  }}
                   renderItem={({ item }) => (
                     // 
                     <TouchableOpacity
