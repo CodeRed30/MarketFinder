@@ -76,7 +76,7 @@ async componentDidMount() {
       const respJson = await resp.json();
       const response = respJson.routes[0]
       const distanceTime = response.legs[0]
-      console.log(distanceTime)
+      // console.log(distanceTime)
       const distance = distanceTime.distance.text
       const time = distanceTime.duration.text
       const points = Polyline.decode(respJson.routes[0].overview_polyline.points);

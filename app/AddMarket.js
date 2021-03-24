@@ -28,9 +28,9 @@ const AddMarket = ( {props, navigation}) => {
     const [website, setWebsite] = useState();
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
-    const [weekday_text, setWeekday_text] = useState();
+    const [opening_hours, setOpening_hours] = useState();
     const [formatted_address, setFormatted_address] = useState();
-    const [image, setImage] = useState();
+    const [image1, setImage1] = useState();
     const [description, setDescription] = useState();
 
     (async () => {
@@ -50,11 +50,11 @@ const AddMarket = ( {props, navigation}) => {
         setWebsite(""),
         setLat(""),
         setLng(""),
-        setWeekday_text(""),
+        setOpening_hours(""),
         setFormatted_address(""),
         setDescription(""),
         // setItem(""),
-        setImage("")
+        setImage1("")
     }
 
     const pickImage = async () => {
@@ -66,7 +66,7 @@ const AddMarket = ( {props, navigation}) => {
         });
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            setImage1(result.uri);
         }
     };
     const getCurrentLocation = () => {
@@ -79,13 +79,13 @@ const AddMarket = ( {props, navigation}) => {
 
     function addMarket() {
         if (name == "" ||
-            image == "" ||
+            image1 == "" ||
             lat == "" ||
             lng == ""
             ) {
             setError("Please fill in the form correctly");
         }
-        const newImageUri = "file:///" + image.split("file:/").join("");
+        const newImageUri = "file:///" + image1.split("file:/").join("");
 
         let backendUrl = Constants.manifest.extra.backendUrl;
 
@@ -93,10 +93,10 @@ const AddMarket = ( {props, navigation}) => {
             name: name,
             lat: lat,
             lng: lng,
-            weekday_text: weekday_text,
+            opening_hours: opening_hours,
             formatted_address: formatted_address,
             website: website,
-            image: newImageUri
+            image1: newImageUri
         };
 
         axios
@@ -125,7 +125,7 @@ const AddMarket = ( {props, navigation}) => {
             {getCurrentLocation()}
             </View>
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: image}}/>
+                <Image style={styles.image1} source={{uri: image1}}/>
                 <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
                     <Icon style={{ color: "white"}} name="camera" /> 
                 </TouchableOpacity>
@@ -158,13 +158,13 @@ const AddMarket = ( {props, navigation}) => {
                <Text style={styles.label}>Opening Hours</Text>
                </View>
             <View>
-            <Input 
-                placeholder="Opening Hours"
-                name="weekday_text"
-                id="weekday_text"
-                value={weekday_text}
-                onChangeText={(text) => setWeekday_text(text)}
-            />
+            <Input
+            placeholder="Opening Hours"
+            name="opening_hours"
+            id="opening_hours"
+            value={opening_hours}
+            onChangeText={(text) => setOpening_hours(text)}
+           />
             </View>
             <View style={styles.label}>
                <Text style={styles.label}>

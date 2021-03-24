@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Image, View, StyleSheet, Text, ScrollView, Button , Linking} from 'react-native';
 import { Left, Right, Container, H1} from 'native-base'
+import {SocialIcon} from 'react-native-elements';
 import MarketMap from './MarketMap'
 
 const SingleMarket = (props) => {
@@ -23,45 +24,44 @@ const SingleMarket = (props) => {
                         resizeMode="contain"
                         style={styles.image}
                     />                 
-                </View>
-                <View style={{justifyContent: 'center'}}>
-                    <View style={styles.content}> 
-                        <Text style={styles.header}>
-                            {item.name}
-                        </Text>
-                        <Text style={styles.description}>
-                            {item.description} 
-                        </Text>
-                        <Text style={styles.subHeader}>
-                            Opening Hours:
-                        </Text>
-                        <Text style={styles.hours}>
-                            {item.opening_hours} 
-                        </Text>
-                        <Text style={styles.address}>
-                            {item.formatted_address} 
-                        </Text>
-                        <Text style={{color: 'blue'}}
-                            onPress={() => Linking.openURL(item.insta_link)}>
-                            {item.name}'s Instagram
-                        </Text>
-                        <Text style={{color: 'blue'}}
-                            onPress={() => Linking.openURL(item.fb_link)}>
-                            {item.name}'s Facebook
-                        </Text>
-                        <Text style={{color: 'blue'}}
-                            onPress={() => Linking.openURL(item.twitter_link)}>
-                            {item.name}'s Twitter
-                        </Text>
-                        <Text style={{color: 'blue'}}
-                            onPress={() => Linking.openURL(item.website)}>
-                            Click to go to {item.name}'s Website
-                        </Text>
-                    </View> 
-                </View>
-                <View style ={styles.mapContainer}>
-                    <MarketMap item = {item}/>
-                </View>
+                </View>    
+                <View> 
+                    <H1>
+                    {item.name}
+                    </H1>
+                    <View style={{flexDirection: 'column'}}>
+                    <SocialIcon
+                        type="instagram"
+                        onPress={() => Linking.openURL(item.insta_link)}
+                        />
+                    </View>
+                    <View style={{flexDirection: 'column'}}>
+                    <SocialIcon
+                        type="facebook"
+                        onPress={() => Linking.openURL(item.fb_link)}
+                        />
+                    </View>
+                    <View style={{flexDirection: 'column'}}>
+                    <SocialIcon
+                        type="twitter"
+                        onPress={() => Linking.openURL(item.twitter_link)}
+                        />
+                    </View>
+                    <Text>
+                    {item.description} 
+                    </Text>
+                    <Text>
+                    Opening Hours:{"\n"}
+                    {item.opening_hours} 
+                    </Text>
+                    <Text>
+                    {item.formatted_address} 
+                    </Text>
+                </View> 
+               
+            <View style ={styles.mapContainer}>
+                <MarketMap item = {item}/>
+            </View>
             </ScrollView>
         </Container>
     )
