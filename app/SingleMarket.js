@@ -39,21 +39,21 @@ const SingleMarket = (props) => {
                     <Text>
                     {item.formatted_address} 
                     </Text>
-                    <Text>
-                    WEBSITE
-                    {item.website}
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.insta_link)}>
+                    {item.name}'s Instagram
                     </Text>
-                    <Text>
-                    WEBSITE
-                    {item.insta_link}
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.fb_link)}>
+                    {item.name}'s Facebook
                     </Text>
-                    <Text>
-                    WEBSITE
-                    {item.fb_link}
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.twitter_link)}>
+                    {item.name}'s Twitter
                     </Text>
-                    <Text>
-                    WEBSITE
-                    {item.twitter_link}
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.website)}>
+                    Click to go to {item.name}'s Website
                     </Text>
                     
                 </View> 
