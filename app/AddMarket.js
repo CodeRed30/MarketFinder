@@ -53,7 +53,7 @@ const AddMarket = ( {props, navigation}) => {
         setWeekday_text(""),
         setFormatted_address(""),
         setDescription(""),
-        setItem(""),
+        // setItem(""),
         setImage("")
     }
 
@@ -102,7 +102,6 @@ const AddMarket = ( {props, navigation}) => {
         axios
             .post(`${backendUrl}/markets`, newMarketObject)
             .then((response) => {
-
                 alert("Thanks for your market")
             })
             .catch((error) => {
