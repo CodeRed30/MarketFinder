@@ -13,9 +13,11 @@ export default class App extends Component {
     this.state = {
       markets: [],
       isLoading: false,
+      isLoadingMore: false,
       time: null,
       refreshing: false,
       fontsLoaded: false,
+      page: 1,
     };
   }
 
@@ -41,8 +43,8 @@ export default class App extends Component {
       let backendUrl = Constants.manifest.extra.backendUrl
       const res = await fetch(backendUrl + '/markets');
       const markets = await res.json();
-
-      this.setState({ markets });
+      if (this.state.page === 1) this.setState({ markets });
+      else this.setState({ markets: [...this.state.markets, ...markets] });
     } catch (err) {
       console.log(err);
     }
@@ -53,6 +55,19 @@ export default class App extends Component {
       (error) => console.log('Error:', error)
     )
 
+  };
+
+  refreshMarkets = () => {
+    this.setState({ page: 1 }, () => {
+      this.fetchMarkets();
+    });
+  };
+
+  loadMoreMarkets = () => {
+    this.setState({ page: this.state.page + 1, isLoadingMore: true }, () => {
+      this.fetchMarkets();
+      this.setState({ isLoadingMore: false });
+    });
   };
 
   mergeCoords = async () => {
@@ -106,7 +121,10 @@ export default class App extends Component {
                 refreshControl={this._refreshControl()}
                   data={this.state.markets}
                   keyExtractor={({_id}) => _id}
-                  
+                  refreshing={this.state.isLoading}
+                  onRefresh={this.refreshMarkets}
+                  onEndReachedThreshold={0.1}
+                  onEndReached={this.loadMoreMarkets}
                   renderItem={({ item }) => (
                     // 
                     <TouchableOpacity
