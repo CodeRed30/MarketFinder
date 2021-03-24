@@ -13,7 +13,7 @@ const SingleMarket = (props) => {
         <Container style={styles.container}>
             <ScrollView 
                 style={ styles.scrollView}
-                contentContainerStyle={{ flex: 1 }}
+                contentContainerStyle={{ flexGrow: 1 }}
                 >
                 <View>
                     <Image 
@@ -58,23 +58,6 @@ const SingleMarket = (props) => {
                     <Text>
                     {item.formatted_address} 
                     </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.insta_link)}>
-                    {item.name}'s Instagram
-                    </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.fb_link)}>
-                    {item.name}'s Facebook
-                    </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.twitter_link)}>
-                    {item.name}'s Twitter
-                    </Text>
-                    <Text style={{color: 'blue'}}
-                    onPress={() => Linking.openURL(item.website)}>
-                    Click to go to {item.name}'s Website
-                    </Text>
-                    
                 </View> 
                
             <View style ={styles.mapContainer}>
