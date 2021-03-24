@@ -5,7 +5,8 @@ import MarketMap from './MarketMap'
 
 const SingleMarket = (props) => {
 
-    const [item, setItem] = useState(props.route.params.item)
+    // const [item, setItem] = useState(props.route.params.item)
+    const item = props.route.params.item
 
     return (
         <Container style={styles.container}>
