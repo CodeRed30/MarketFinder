@@ -12,6 +12,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       markets: [],
+      paginatedMarkets: [],
       isLoading: false,
       isLoadingMore: false,
       time: null,
@@ -20,6 +21,15 @@ export default class App extends Component {
       page: 1,
     };
   }
+
+//   chunkMaker = () => {
+//     let i, chunk = 5;
+//     for (i=0; i < this.state.markets.length; i+= chunk) {
+//       this.state.paginatedMarkets = this.state.markets.slice(i, i+chunk)
+//     }
+// console.log('here they are');
+//     console.log(this.state.paginatedMarkets[0])
+//   }
 
   async loadFonts() {
     await Font.loadAsync({
@@ -41,10 +51,12 @@ export default class App extends Component {
     this.setState({ isLoading: true });
     try {
       let backendUrl = Constants.manifest.extra.backendUrl
-      const res = await fetch(backendUrl + `/markets?page=` + this.state.page + `&limit=` + 5);
+      // const res = await fetch(backendUrl + `/markets?page=` + this.state.page + `&limit=` + 5);
+      const res = await fetch(backendUrl + `/markets`);
       const markets = await res.json();
-      if (this.state.page === 1) this.setState({ markets });
-      else this.setState({ markets: [...this.state.markets, ...markets] });
+      this.setState({ markets: markets})
+      // if (this.state.page === 1) this.setState({ markets });
+      // else this.setState({ markets: [...this.state.markets, ...markets] });
     } catch (err) {
       console.log(err);
     }
@@ -54,6 +66,8 @@ export default class App extends Component {
       ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
       (error) => console.log('Error:', error)
     )
+
+    this.chunkMaker()
 
   };
 
@@ -124,11 +138,9 @@ export default class App extends Component {
                   refreshing={this.state.isLoading}
                   onRefresh={this.refreshMarkets}
                   onEndReachedThreshold={0.1}
-                  onEndReached={() => {
-                    if (this.state.loadingMore === false) {
+                  onEndReached={
                     this.loadMoreMarkets
-                    }
-                  }}
+                  }
                   renderItem={({ item }) => (
                     // 
                     <TouchableOpacity
