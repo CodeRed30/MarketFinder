@@ -12,7 +12,7 @@ const SingleMarket = (props) => {
         <Container style={styles.container}>
             <ScrollView 
                 style={ styles.scrollView}
-                contentContainerStyle={{ flex: 1 }}
+                // contentContainerStyle={{ flex: 1 }}
                 >
                 <View>
                     <Image 
@@ -57,11 +57,12 @@ const SingleMarket = (props) => {
                     Click to go to {item.name}'s Website
                     </Text>
                     
-                </View> 
-               
+                
+                    </View>
             <View style ={styles.mapContainer}>
                 <MarketMap item = {item}/>
             </View>
+          
             </ScrollView>
             
         </Container>
@@ -71,7 +72,8 @@ const SingleMarket = (props) => {
 const styles = StyleSheet.create({
     container: {
         position: 'relative',
-        height:'50%'
+        height:'500%',
+        // flex:1
     },
     imageContainer: {
         backgroundColor: 'white',
@@ -83,10 +85,10 @@ const styles = StyleSheet.create({
         height: 250
     },
     mapContainer: {
-        flex: 1
+        height: 500
     },
     scrollView: {
-        height: 1000,
+        // height: 10000,
         padding:5
     }
 })
