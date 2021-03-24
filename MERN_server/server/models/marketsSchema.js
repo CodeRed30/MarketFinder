@@ -22,16 +22,41 @@ const MarketsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    weekday_text: {
-        type: Array,
+    opening_hours: {
+        type: String,
         required: false,
     },
-    image: {
+    image1: {
         type: String,
-        default: '',
-        required: true
+        default: "",
+        required: true,
+    },
+    image2: {
+        type: String,
+        default: "",
+        required: false,
+    },
+    image3: {
+        type: String,
+        default: "",
+        required: false,
+    },
+    insta_link: {
+        type: String,
+        required: false,
+    },
+    fb_link: {
+        type: String,
+        required: false,
+    },
+    twitter_link: {
+        type: String,
+        required: false,
+    },
+    verified: {
+        type: Boolean,
+        default: false,
     }
-
 
 })
 

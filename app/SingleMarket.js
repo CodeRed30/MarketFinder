@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, StyleSheet, Text, ScrollView, Button } from 'react-native';
+import { Image, View, StyleSheet, Text, ScrollView, Button , Linking} from 'react-native';
 import { Left, Right, Container, H1} from 'native-base'
 import MarketMap from './MarketMap'
 
@@ -16,7 +16,7 @@ const SingleMarket = (props) => {
                 <View>
                     <Image 
                         source={{
-                            uri: item.image ? item.image 
+                            uri: item.image1 ? item.image1
                             : 'https://assets.londonist.com/uploads/2015/04/i875/horn-ok-please.jpg'
                         }}
                         resizeMode="contain"
@@ -29,21 +29,31 @@ const SingleMarket = (props) => {
                     {item.name}
 
                     </H1>
-
-                    
-                    {(function() {if(item.weekday_text != "") {
-                        return <Text>
-                        OPENING HOURS{"\n"}
-                        {item.weekday_text}</Text>;
-                    }
-                })()}
                     <Text>
-                    ADDRESS{"\n"}
-                    {item.formatted_address} 
+                    {item.description} 
                     </Text>
                     <Text>
-                    WEBSITE
-                    {item.website}
+                    Opening Hours:{"\n"}
+                    {item.opening_hours} 
+                    </Text>
+                    <Text>
+                    {item.formatted_address} 
+                    </Text>
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.insta_link)}>
+                    {item.name}'s Instagram
+                    </Text>
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.fb_link)}>
+                    {item.name}'s Facebook
+                    </Text>
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.twitter_link)}>
+                    {item.name}'s Twitter
+                    </Text>
+                    <Text style={{color: 'blue'}}
+                    onPress={() => Linking.openURL(item.website)}>
+                    Click to go to {item.name}'s Website
                     </Text>
                     
                 </View> 
@@ -58,10 +68,10 @@ const SingleMarket = (props) => {
 }
 
 const styles = StyleSheet.create({
-    // container: {
-    //     position: 'relative',
-    //     height:'50%'
-    // },
+    container: {
+        position: 'relative',
+        height:'50%'
+    },
     imageContainer: {
         backgroundColor: 'white',
         padding: 0,
@@ -82,3 +92,12 @@ const styles = StyleSheet.create({
 
 
 export default SingleMarket
+
+
+                    
+// {(function() {if(item.weekday_text != "") {
+//     return <Text>
+//     OPENING HOURS{"\n"}
+//     {item.weekday_text}</Text>;
+// }
+// })()}
