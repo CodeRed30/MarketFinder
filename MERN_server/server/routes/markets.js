@@ -11,8 +11,18 @@ var markets = require('../models/MarketsSchema');
 
 router.get('/', async (request, response) => {
   try {
-    var result = await markets.find().exec();
-    response.send(result);
+    const page = request.query.page 
+    const limit = request.query.limit
+    if (page && limit) {
+      const startIndex = (page - 1) * limit 
+      const endIndex = page * limit
+      var result = await markets.find().exec();
+      const paginated = result.slice(startIndex, endIndex)
+      response.send(paginated);
+    } else {
+      var result = await markets.find().exec();
+      response.send(result)
+    }
  } catch (error) {
     response.status(500).send(error);
  }
