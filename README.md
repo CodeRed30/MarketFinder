@@ -151,13 +151,15 @@ Class Diagrams:
 | Add info            | Market    |
 | Display list        | Map       |
 
-| Function | showList |
-| Properties | Markets |
-| Actions | Show all the markets |
+| Function   | showList             |
+| ---------- | -------------------- |
+| Properties | Markets              |
+| Actions    | Show all the markets |
 
-| Function | addMarket |
+| Function   | addMarket                    |
+| ---------- | ---------------------------- |
 | Properties | Market(photo, comment, name) |
-| Actions | Add info about a market |
+| Actions    | Add info about a market      |
 
 ## Technologies
 
