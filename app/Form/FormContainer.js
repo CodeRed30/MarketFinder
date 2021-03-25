@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, Dimensions, StyleSheet, Keyboard, Text, View, KeyboardAvoidingView, TouchableWithoutFeedback, } from 'react-native';
 import * as Font from 'expo-font';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 
 var { width } = Dimensions.get('window');
 
@@ -9,19 +9,24 @@ const FormContainer = (props) => {
 
     return (
       <KeyboardAwareScrollView
-      style={{flex: 1}}
-      behavior="padding"
-      enabled={true}
+        style={{flex: 1}}
+        behavior="padding"
+        enabled={true}
+        keyboardShouldPersistTaps='handled'
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <TouchableWithoutFeedback 
+        onPress={ () => {
+          Keyboard.dismiss()
+        }
+      }>
           <ScrollView contentContainerStyle={styles.container}>
               <Text style={styles.title}>{props.title}</Text>
               <View style={{flex: 1 }}>
                 {props.children}
               </View>
           </ScrollView>
-        </TouchableWithoutFeedback>
-      </KeyboardAwareScrollView>
+         </TouchableWithoutFeedback>
+      </ KeyboardAwareScrollView>
     )
 }
 

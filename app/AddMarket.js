@@ -8,6 +8,7 @@ import {
     Dimensions,
     Platform,
     Button,
+    TextInput
 } from "react-native"
 import FormContainer from './Form/FormContainer';
 import Input from './Form/Input';
@@ -127,7 +128,6 @@ const AddMarket = ( {props, navigation}) => {
     }
 
     return (
-        // <KeyboardAwareScrollView>
         <FormContainer 
             title="Add Market" 
         >
@@ -190,22 +190,35 @@ const AddMarket = ( {props, navigation}) => {
                 onChangeText={(text) => setFormatted_address(text)}
            />
             </View>
+            <View style={styles.label}>
+               <Text style={styles.label}>
+                   Description
+                </Text>
+               </View>
+            <View></View>
+            <View>
+                <Input 
+                style={styles.input}
+                    multiline={true}
+                    placeholder="Description"
+                    label="description"
+                    id="description"
+                    value={description}
+                    onChangeText={(text) => setDescription(text)}
+                />
+            </View>
             <View>
                 <Button 
                     title="Add Market"
                     color="#EA6F20"
                     onPress={() => {
                         addMarket(),  
-                        setToNull(), 
-                        navigation.navigate('Home')
+                        navigation.navigate('Home'),
+                        setToNull()
                     }}
                 />
             </View>
-
         </FormContainer>
-
-        // </KeyboardAwareScrollView>
-
     )
 }
 
@@ -251,7 +264,7 @@ const styles = StyleSheet.create({
         fontWeight: '800',
         fontSize: 16,
         marginTop: 10,
-    }
+    }, 
 })
 
 export default AddMarket;
