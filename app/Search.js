@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Constants from 'expo-constants';
+import MarketCard from './MarketCard'
 import { NavigationContainer } from '@react-navigation/native';
 import {
   SafeAreaView,
+  TouchableOpacity,
   Text,
   StyleSheet,
   View,
@@ -13,7 +15,7 @@ import {
 const backendUrl = Constants.manifest.extra.backendUrl
 
 
-const Search = () => {
+const Search = (props) => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const [masterDataSource, setMasterDataSource] = useState([]);
@@ -81,9 +83,17 @@ const Search = () => {
         />
         <FlatList
           data={filteredDataSource}
-          keyExtractor={(item, index) => index.toString()}
-          ItemSeparatorComponent={ItemSeparatorView}
-          renderItem={ItemView}
+          keyExtractor={({_id}) => _id}
+          renderItem={({ item }) => (
+            // 
+            <TouchableOpacity
+              onPress={() =>
+              props.navigation.navigate('Market Details', { item: item })}
+              key={item.id}
+              title={item.name}>
+                <MarketCard {...item}/>
+            </TouchableOpacity>
+          )}
         />
       </View>
     </SafeAreaView>
@@ -101,9 +111,10 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     paddingLeft: 20,
-    margin: 5,
+    margin: 10,
     borderColor: '#009688',
     backgroundColor: '#FFFFFF',
+    fontFamily: 'Helvetica Neue'
   },
 });
 
