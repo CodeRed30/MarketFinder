@@ -77,6 +77,11 @@ const AddMarket = ( {props, navigation}) => {
                 setLng(position.coords.longitude)
     })};
 
+    _scrollToInput = (reactNode: any) => {
+        // Add a 'scroll' ref to your ScrollView
+        this.scroll.props.scrollToFocusedInput(reactNode)
+      }
+
 
     function addMarket() {
         if (name == "" ||
@@ -120,6 +125,7 @@ const AddMarket = ( {props, navigation}) => {
     }
 
     return (
+        <KeyboardAwareScrollView>
         <FormContainer 
             title="Add Market" 
         >
@@ -195,6 +201,8 @@ const AddMarket = ( {props, navigation}) => {
             </View>
 
         </FormContainer>
+
+        </KeyboardAwareScrollView>
 
     )
 }
