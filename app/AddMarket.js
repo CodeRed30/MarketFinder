@@ -19,7 +19,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as ImagePicker from "expo-image-picker"
 import * as Font from 'expo-font';
 import Toast from "react-native-toast-message";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 var { width } = Dimensions.get('window');
 
@@ -125,7 +125,7 @@ const AddMarket = ( {props, navigation}) => {
     }
 
     return (
-        <KeyboardAwareScrollView>
+        // <KeyboardAwareScrollView>
         <FormContainer 
             title="Add Market" 
         >
@@ -202,7 +202,7 @@ const AddMarket = ( {props, navigation}) => {
 
         </FormContainer>
 
-        </KeyboardAwareScrollView>
+        // </KeyboardAwareScrollView>
 
     )
 }
