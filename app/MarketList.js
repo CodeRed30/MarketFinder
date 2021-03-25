@@ -155,10 +155,14 @@ export default class App extends Component {
         onRefresh={()=>this._refreshListView()} />
     )
   }
+
   _refreshListView(){
     this.setState({refreshing:true})
     this.fetchMarkets()
     this.setState({refreshing:false})
+    if(this.props.needRefresh){
+      this.props.needRefresh()
+    }
   }
 }
 

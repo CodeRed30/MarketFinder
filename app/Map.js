@@ -32,7 +32,17 @@ fetchMarkets = async () => {
 };
 
 async componentDidMount() {
-  await this.fetchMarkets()
+  await this.refreshMap()
+}
+  async componentDidUpdate(prevProps) {
+    if(this.props.refresh !== prevProps.refresh) {
+    await this.refreshMap()
+    }
+  }
+
+  async refreshMap() {
+    console.log("inside refreshMap")
+    await this.fetchMarkets()
   const { status } = await Permissions.getAsync(Permissions.LOCATION)
   if (status !== 'granted') {
     const response = await Permissions.askAsync(Permissions.LOCATION)
@@ -51,7 +61,7 @@ async componentDidMount() {
     desLongitude: null,
   }, this.mergeCoords)
   
-}
+  }
 
   mergeCoords = () => {
     const {
@@ -154,6 +164,7 @@ async componentDidMount() {
    if (latitude) {
     return (
     <MapView
+      refresh={this.props.refresh}
       provider={MapView.PROVIDER_GOOGLE} 
       showsUserLocation
       style={{ flex: 1 }}

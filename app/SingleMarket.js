@@ -18,7 +18,7 @@ const SingleMarket = (props) => {
                 >
                 <View>
                     <Banner 
-                    item={item}
+                    item={item}/>
                 </View>
                 <View style={styles.content}> 
                     <Text style={styles.header}>
