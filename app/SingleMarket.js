@@ -3,10 +3,11 @@ import { Image, View, StyleSheet, Text, ScrollView, Button , Linking} from 'reac
 import { Left, Right, Container, H1} from 'native-base'
 import {SocialIcon} from 'react-native-elements';
 import MarketMap from './MarketMap'
+import Banner from './Banner'
 
 const SingleMarket = (props) => {
 
-    // const [item, setItem] = useState(props.route.params.item)
+   
     const item = props.route.params.item
 
     return (
@@ -15,6 +16,11 @@ const SingleMarket = (props) => {
                 style={ styles.scrollView}
                 contentContainerStyle={{ flexGrow: 1 }}
                 >
+                <View>
+                    <Banner 
+                    item={item}
+                    />
+                    {/* <Image 
                 <View style={styles.imageContainer}>
                     <Image 
                         source={{
@@ -23,8 +29,8 @@ const SingleMarket = (props) => {
                         }}
                         resizeMode="contain"
                         style={styles.image}
-                    />                 
-                </View>    
+                    />                  */}
+                </View>
                 <View> 
                     <H1>
                     {item.name}
@@ -126,3 +132,4 @@ const styles = StyleSheet.create({
 
 
 export default SingleMarket
+
