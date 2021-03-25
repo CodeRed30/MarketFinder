@@ -1,17 +1,27 @@
 import React from 'react';
-import { ScrollView, Dimensions, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Dimensions, StyleSheet, Keyboard, Text, View, KeyboardAvoidingView, TouchableWithoutFeedback, } from 'react-native';
 import * as Font from 'expo-font';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 var { width } = Dimensions.get('window');
 
 const FormContainer = (props) => {
+
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.title}>{props.title}</Text>
-            <View>
-              {props.children}
-            </View>
-        </ScrollView>
+      <KeyboardAwareScrollView
+      style={{flex: 1}}
+      behavior="padding"
+      enabled={true}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView contentContainerStyle={styles.container}>
+              <Text style={styles.title}>{props.title}</Text>
+              <View style={{flex: 1 }}>
+                {props.children}
+              </View>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </KeyboardAwareScrollView>
     )
 }
 
@@ -34,11 +44,11 @@ loadFonts = async () => {
 const styles = StyleSheet.create({
     container: {
         marginTop: 30,
-        // marginBottom: 400,
+        marginBottom: 400,
         width: width,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingBottom: 60,
+        flex: 1
     },
     title: {
         fontFamily: 'Helvetica Neue',
