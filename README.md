@@ -179,5 +179,5 @@ Our AMAZING team was made up of:
 - [Anna Cavalla](http://github.com/acavalla)
 - [Charlie Fischer](https://github.com/charliefischer)
 - [Holly Duckett](https://github.com/HolsDuckett)
-- [Katrina ](https://github.com/CodeRed30)
+- [Katrina Harradine](https://github.com/CodeRed30)
 - [Jack Shields](https://github.com/jshields123)
