@@ -77,10 +77,10 @@ const AddMarket = ( {props, navigation}) => {
                 setLng(position.coords.longitude)
     })};
 
-    _scrollToInput = (reactNode: any) => {
-        // Add a 'scroll' ref to your ScrollView
-        this.scroll.props.scrollToFocusedInput(reactNode)
-      }
+    // _scrollToInput = (reactNode: any) => {
+    //     // Add a 'scroll' ref to your ScrollView
+    //     this.scroll.props.scrollToFocusedInput(reactNode)
+    //   }
 
 
     function addMarket() {
