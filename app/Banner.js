@@ -39,6 +39,7 @@ export default class Banner extends React.Component {
             {
             this.state.images.map((image, index) => (
             <Image
+            key={index}
             source={{uri: image}}
             style={{width, height, resizeMode: 'cover'}}/>
             ))}
