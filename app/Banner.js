@@ -12,19 +12,16 @@ export default class Banner extends React.Component {
         
     }
     state = {
-        image1: this.props.item.image1,
-        image2: this.props.item.image2,
-        image3: this.props.item.image3,
         images: [],
     };
 
     imageCheck(){
-        if (this.state.image3) {
-                this.state.images = [this.state.image1, this.state.image2, this.state.image3]
-            } else if (this.state.image2) {
-                this.state.images = [this.state.image1, this.state.image2]
+        if (this.props.item.image3) {
+                this.state.images = [this.props.item.image1, this.props.item.image2, this.props.item.image3]
+            } else if (this.props.item.image2) {
+                this.state.images = [this.props.item.image1, this.props.item.image2]
             } else {
-                this.state.images = [this.state.image1]
+                this.state.images = [this.props.item.image1]
             }
     }
     render(){
