@@ -121,9 +121,13 @@ async componentDidMount() {
               key={idx}
               coordinate={{ latitude, longitude }}
               onPress={this.onMarkerPress(market)}
-              title= "this market"
-              description="sells allsorts"
-              >
+              pinColor='#568203'
+              image={require('../assets/avocado.png')}>
+                {/* <View style={styles.marker}>
+
+                </View> */}
+                
+
                 <Callout tooltip>
                   <View>
                     <View style={styles.bubble}>
@@ -214,5 +218,11 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: 'bold',
 
-  }
+  },
+  // marker: {
+
+
+  // }
+
+
 })
