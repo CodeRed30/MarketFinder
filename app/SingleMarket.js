@@ -19,17 +19,6 @@ const SingleMarket = (props) => {
                 <View>
                     <Banner 
                     item={item}
-                    />
-                    {/* <Image 
-                <View style={styles.imageContainer}>
-                    <Image 
-                        source={{
-                            uri: item.image1 ? item.image1
-                            : 'https://assets.londonist.com/uploads/2015/04/i875/horn-ok-please.jpg'
-                        }}
-                        resizeMode="contain"
-                        style={styles.image}
-                    />                  */}
                 </View>
                 <View style={styles.content}> 
                     <Text style={styles.header}>
@@ -141,5 +130,5 @@ const styles = StyleSheet.create({
 })
 
 
-export default SingleMarket
+export default SingleMarket;
 

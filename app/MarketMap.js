@@ -28,6 +28,8 @@ export default class MarketMap extends React.Component {
         isLoading: false,
     };
 
+    
+
   async componentDidMount() {
     const { status } = await Permissions.getAsync(Permissions.LOCATION)
     if (status !== 'granted') {
@@ -125,8 +127,8 @@ export default class MarketMap extends React.Component {
       initialRegion={{
         latitude: Math.abs(latitude + desLatitude) / 2,
         longitude: (longitude + desLongitude) / 2,
-        latitudeDelta: Math.abs(latitude - desLatitude) * 2,
-        longitudeDelta: Math.abs(longitude - desLongitude * 2)
+        latitudeDelta: Math.abs(latitude - desLatitude) * 1.3,
+        longitudeDelta: Math.abs(longitude - desLongitude) * 1.3
       }}
       >
         {this.renderMarkers()}
