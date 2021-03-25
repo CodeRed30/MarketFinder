@@ -108,18 +108,20 @@ const AddMarket = ( {props, navigation}) => {
         axios
             .post(`${backendUrl}/markets`, newMarketObject)
             .then((response) => {
-                Toast.show({
-                    topOffset: 60,
-                    type: "success",
-                    text1: "Thanks for adding a market! 🤙",
-                  });
+                // Toast.show({
+                //     topOffset: 60,
+                //     type: "success",
+                //     text1: "Thanks for adding a market! 🤙",
+                //   });
+                alert('Thanks for adding a market! 🤙')
             })
             .catch((error) => {
-                Toast.show({
-                    topOffset: 60,
-                    type: "error",
-                    text1: "Please check the details and enter it again",
-                  });
+                // Toast.show({
+                //     topOffset: 60,
+                //     type: "error",
+                //     text1: "Please check the details and enter it again",
+                //   });
+                alert('Fail')
                   console.log(error)
         })
     }

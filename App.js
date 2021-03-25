@@ -12,7 +12,7 @@ export default function App() {
   return (
     <NavigationContainer>
         <Header />
-        <Toast ref={(ref) => Toast.setRef(ref)} />
+        {/* <Toast ref={(ref) => Toast.setRef(ref)} />  */}
         <Main />
     </NavigationContainer>
   );
