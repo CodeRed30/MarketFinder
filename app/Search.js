@@ -111,9 +111,10 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     paddingLeft: 20,
-    margin: 5,
+    margin: 10,
     borderColor: '#009688',
     backgroundColor: '#FFFFFF',
+    fontFamily: 'Helvetica Neue'
   },
 });
 

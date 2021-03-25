@@ -105,15 +105,14 @@ const AddMarket = ( {props, navigation}) => {
                 Toast.show({
                     topOffset: 60,
                     type: "success",
-                    text1: "Login Successful",
-                    text2: "Welcome back!",
+                    text1: "Thanks for adding a market! 🤙",
                   });
             })
             .catch((error) => {
                 Toast.show({
                     topOffset: 60,
-                    type: "success",
-                    text1: "Fail!",
+                    type: "error",
+                    text1: "Please check the details and enter it again",
                   });
                   console.log(error)
         })
@@ -125,7 +124,7 @@ const AddMarket = ( {props, navigation}) => {
             {getCurrentLocation()}
             </View>
             <View style={styles.imageContainer}>
-                <Image style={styles.image1} source={{uri: image1}}/>
+                <Image style={styles.image} source={{uri: image1}}/>
                 <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
                     <Icon style={{ color: "white"}} name="camera" /> 
                 </TouchableOpacity>

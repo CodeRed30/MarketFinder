@@ -31,42 +31,42 @@ const SingleMarket = (props) => {
                         style={styles.image}
                     />                  */}
                 </View>
-                <View> 
-                    <H1>
+                <View style={styles.content}> 
+                    <Text style={styles.header}>
                     {item.name}
-                    </H1>
-                    <View style={{flexDirection: 'column'}}>
-                    <SocialIcon
-                        type="instagram"
-                        onPress={() => Linking.openURL(item.insta_link)}
-                        />
-                    </View>
-                    <View style={{flexDirection: 'column'}}>
-                    <SocialIcon
-                        type="facebook"
-                        onPress={() => Linking.openURL(item.fb_link)}
-                        />
-                    </View>
-                    <View style={{flexDirection: 'column'}}>
-                    <SocialIcon
-                        type="twitter"
-                        onPress={() => Linking.openURL(item.twitter_link)}
-                        />
-                    </View>
-                    <Text>
-                    {item.description} 
                     </Text>
-                    <Text>
-                    Opening Hours:{"\n"}
-                    {item.opening_hours} 
+                    <Text style={styles.description}>
+                        {item.description} 
                     </Text>
-                    <Text>
-                    {item.formatted_address} 
+                    <Text style={styles.subHeader}>
+                        Opening Hours:
+                    </Text>
+                    <Text style={styles.hours}>
+                        {item.opening_hours} 
+                    </Text>
+                    <Text style={styles.address}>
+                        {item.formatted_address} 
                     </Text>
                 </View> 
                
             <View style ={styles.mapContainer}>
                 <MarketMap item = {item}/>
+            </View>
+            <View style={styles.iconsContainer}>
+                    <View style={styles.icons}>
+                        <SocialIcon
+                            type="instagram"
+                            onPress={() => Linking.openURL(item.insta_link)}
+                            />
+                        <SocialIcon
+                            type="facebook"
+                            onPress={() => Linking.openURL(item.fb_link)}
+                            />
+                        <SocialIcon
+                            type="twitter"
+                            onPress={() => Linking.openURL(item.twitter_link)}
+                            />
+                    </View>
             </View>
             </ScrollView>
         </Container>
@@ -101,6 +101,16 @@ const styles = StyleSheet.create({
         fontSize: 28,
         marginTop: 24,
         marginBottom: 12
+    },
+    iconsContainer: {
+        marginTop: 12,
+        marginBottom: 12,
+        width: 300,
+        alignSelf: 'center'
+    },
+    icons: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
     },
     description: {
         fontFamily: 'Helvetica Neue'
