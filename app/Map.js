@@ -34,11 +34,6 @@ fetchMarkets = async () => {
 async componentDidMount() {
   await this.refreshMap()
 }
-  async componentDidUpdate(prevProps) {
-    if(this.props.refresh !== prevProps.refresh) {
-    await this.refreshMap()
-    }
-  }
 
   async refreshMap() {
     console.log("inside refreshMap")
@@ -112,6 +107,8 @@ async componentDidMount() {
   }
 
   renderMarkers = () => {
+    console.log("render markers")
+
     const { markets } =this.state
     if (markets === [] ) {
       return (
@@ -164,7 +161,7 @@ async componentDidMount() {
    if (latitude) {
     return (
     <MapView
-      refresh={this.props.refresh}
+      key={this.props.refresh}
       provider={MapView.PROVIDER_GOOGLE} 
       showsUserLocation
       style={{ flex: 1 }}
