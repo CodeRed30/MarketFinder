@@ -119,9 +119,11 @@ const AddMarket = ( {props, navigation}) => {
     }
 
     return (
-        <FormContainer title="Add Market">
+        <FormContainer 
+            title="Add Market" 
+        >
             <View>
-            {getCurrentLocation()}
+                {getCurrentLocation()}
             </View>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{uri: image1}}/>
@@ -201,12 +203,11 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 100,
         marginBottom: 400,
-        width: width,
         justifyContent: 'center',
         alignItems: 'center'
     },
     imageContainer: {
-        width: 300,
+        width: width - 30,
         height: 180,
         borderStyle: "solid",
         borderWidth: 4,

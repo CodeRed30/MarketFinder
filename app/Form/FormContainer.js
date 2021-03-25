@@ -8,7 +8,7 @@ const FormContainer = (props) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.title}>{props.title}</Text>
-            <View>
+            <View style={styles.inputFields}>
               {props.children}
             </View>
         </ScrollView>
@@ -35,10 +35,12 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 30,
         // marginBottom: 400,
-        width: width,
+        width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         paddingBottom: 60,
+    },
+    inputFields:{
     },
     title: {
         fontFamily: 'Helvetica Neue',

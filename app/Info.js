@@ -11,34 +11,53 @@ const Info = () => {
     const katrina = {name: "Katrina", github: "http://github.com/CodeRed30"}
     const makers = [anna, charlie, holly, jack, katrina]
     return (
-        <View style={styles.info}>
-            <Text>
-                About Scrummy!
-            </Text>
-            <FlatList
-            data={makers}
-            keyExtractor={({_id}) => _id}
-            renderItem={({ item }) => (
-                <View style={{flexDirection: 'row'}}>
-                <SocialIcon
-                type="github"
-                onPress={() => Linking.openURL(item.github)}
+        <View style={styles.container}>
+            <View style={styles.info}>
+                <Text style={styles.header}>
+                    About Scrummy!
+                </Text>
+                <FlatList
+                    data={makers}
+                    keyExtractor={({_id}) => _id}
+                    renderItem={({ item }) => (
+                        <View style={{flexDirection: 'row'}}>
+                            <SocialIcon
+                                // iconColor='red'
+                                type="github"
+                                onPress={() => Linking.openURL(item.github)}
+                            />
+                            <Text style={styles.name}>
+                                {item.name}
+                            </Text>
+                        </View>
+                    )}
                 />
-            <Text style={{paddingTop: 22}}>
-                {item.name}
-            </Text>
-            </View>
-            )}
-            />
-            </View>
+                </View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container:{
+        backgroundColor: 'white',
+        height: '100%'
+    },
     info: {
+        flex: 1,
+        alignSelf: 'center'
+    },
+    header: {
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '800',
+        fontSize: 28,
         marginTop: 100,
-        padding: 40,
-        alignContent: "center"
+        marginBottom: 18
+    },
+    name: {
+        paddingTop: 22,
+        fontFamily: 'Helvetica Neue',
+        fontWeight: '800',
+        fontSize: 14,
     }
 })
 
