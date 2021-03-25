@@ -16,7 +16,7 @@ const FormContainer = (props) => {
       >
       <TouchableWithoutFeedback 
         onPress={ () => {
-          Keyboard.dismiss()
+          Keyboard.dismiss
         }
       }>
           <ScrollView contentContainerStyle={styles.container}>
