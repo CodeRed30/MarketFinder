@@ -10,8 +10,8 @@ export default class MarketCard extends React.Component {
             <View style={styles.card}>
                 <Text style={styles.title}>{this.props.name}</Text>
                 <View style={styles.right}>
-                    <Icon style={styles.icon} name="walking" size={30} />
                     <Text style={styles.time}>{this.props.time}</Text>
+                    <Icon style={styles.icon} name="walking" size={30} />
                 </View>
             </View>
         </View>
@@ -22,7 +22,9 @@ export default class MarketCard extends React.Component {
 const styles = StyleSheet.create({
     container: {
         height: 70,
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 15,
         alignItems: 'center',
         elevation: 8,
         backgroundColor: '#ffffff',
@@ -50,16 +52,13 @@ const styles = StyleSheet.create({
     },
     icon: {
         flex: 0.7,
-        marginRight: 4,
         color: '#EA6F20',
-        zIndex: 2,
-        textAlign: 'right'
+        textAlign: 'right',
     },
     time: {
       flexShrink: 1,
       fontSize: 14,
       justifyContent: 'flex-end',
       textAlign: 'right',
-      zIndex: 1,
     }
 })
