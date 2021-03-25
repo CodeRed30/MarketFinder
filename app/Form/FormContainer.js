@@ -46,9 +46,12 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 400,
         width: width,
+
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1
+    },
+    inputFields:{
     },
     title: {
         fontFamily: 'Helvetica Neue',

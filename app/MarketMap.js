@@ -142,10 +142,14 @@ export default class MarketMap extends React.Component {
         <View 
           style={{ 
             backgroundColor: "white",
-            // marginTop: 210,
+            paddingLeft: 35,
+            paddingRight: 35,
+            paddingBottom: 6,
             borderColor: 'red',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             alignItems: 'flex-end' }} >
-          <Text style={{ fontWeight: 'bold' }}>Est Time: {time}</Text>
+          <Text style={{ fontWeight: 'bold', marginRight: 24 }}>Est Time: {time}</Text>
           <Text style={{ fontWeight: 'bold'}}>Est Distance: {distance}</Text>
         </View>
       </MapView>

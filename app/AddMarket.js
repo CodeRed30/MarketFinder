@@ -19,6 +19,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import * as ImagePicker from "expo-image-picker"
 import * as Font from 'expo-font';
 import Toast from "react-native-toast-message";
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 var { width } = Dimensions.get('window');
 
@@ -76,6 +77,11 @@ const AddMarket = ( {props, navigation}) => {
                 setLng(position.coords.longitude)
     })};
 
+    // _scrollToInput = (reactNode: any) => {
+    //     // Add a 'scroll' ref to your ScrollView
+    //     this.scroll.props.scrollToFocusedInput(reactNode)
+    //   }
+
 
     function addMarket() {
         if (name == "" ||
@@ -119,9 +125,12 @@ const AddMarket = ( {props, navigation}) => {
     }
 
     return (
-        <FormContainer title="Add Market">
+        // <KeyboardAwareScrollView>
+        <FormContainer 
+            title="Add Market" 
+        >
             <View>
-            {getCurrentLocation()}
+                {getCurrentLocation()}
             </View>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={{uri: image1}}/>
@@ -193,6 +202,8 @@ const AddMarket = ( {props, navigation}) => {
 
         </FormContainer>
 
+        // </KeyboardAwareScrollView>
+
     )
 }
 
@@ -201,12 +212,11 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 100,
         marginBottom: 400,
-        width: width,
         justifyContent: 'center',
         alignItems: 'center'
     },
     imageContainer: {
-        width: 300,
+        width: width - 30,
         height: 180,
         borderStyle: "solid",
         borderWidth: 4,

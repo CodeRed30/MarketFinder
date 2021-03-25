@@ -121,9 +121,7 @@ async componentDidMount() {
               key={idx}
               coordinate={{ latitude, longitude }}
               onPress={this.onMarkerPress(market)}
-              title= "this market"
-              description="sells allsorts"
-              >
+              image={require('../assets/avocado.png')}>
                 <Callout tooltip>
                   <View>
                     <View style={styles.bubble}>
