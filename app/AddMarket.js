@@ -47,15 +47,14 @@ const AddMarket = ( {props, navigation}) => {
 
 
     setToNull = () => {
-        setName(""),
-        setWebsite(""),
-        setLat(""),
-        setLng(""),
-        setOpening_hours(""),
-        setFormatted_address(""),
-        setDescription(""),
-        // setItem(""),
-        setImage1("")
+        setName(null),
+        setWebsite(null),
+        setLat(null),
+        setLng(null),
+        setOpening_hours(null),
+        setFormatted_address(null),
+        setDescription(null),
+        setImage1(null)
     }
 
     const pickImage = async () => {
