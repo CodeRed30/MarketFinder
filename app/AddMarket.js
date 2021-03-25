@@ -15,11 +15,10 @@ import Icon from "react-native-vector-icons/FontAwesome"
 import Constants from 'expo-constants';
 import axios from "axios";
 import { NavigationContainer } from '@react-navigation/native';
-// import Toast from "react-native-toast-message"
-import Toast, {DURATION} from 'react-native-easy-toast'
 // import AsyncStorage from "`@react-native-community/async-storage`"
 import * as ImagePicker from "expo-image-picker"
 import * as Font from 'expo-font';
+import Toast from "react-native-toast-message";
 
 var { width } = Dimensions.get('window');
 
@@ -29,9 +28,9 @@ const AddMarket = ( {props, navigation}) => {
     const [website, setWebsite] = useState();
     const [lat, setLat] = useState();
     const [lng, setLng] = useState();
-    const [weekday_text, setWeekday_text] = useState();
+    const [opening_hours, setOpening_hours] = useState();
     const [formatted_address, setFormatted_address] = useState();
-    const [image, setImage] = useState();
+    const [image1, setImage1] = useState();
     const [description, setDescription] = useState();
 
     (async () => {
@@ -51,23 +50,23 @@ const AddMarket = ( {props, navigation}) => {
         setWebsite(""),
         setLat(""),
         setLng(""),
-        setWeekday_text(""),
+        setOpening_hours(""),
         setFormatted_address(""),
         setDescription(""),
         // setItem(""),
-        setImage("")
+        setImage1("")
     }
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [4, 3],
+            aspect: [5, 3],
             quality: 1
         });
 
         if (!result.cancelled) {
-            setImage(result.uri);
+            setImage1(result.uri);
         }
     };
     const getCurrentLocation = () => {
@@ -80,13 +79,13 @@ const AddMarket = ( {props, navigation}) => {
 
     function addMarket() {
         if (name == "" ||
-            image == "" ||
+            image1 == "" ||
             lat == "" ||
             lng == ""
             ) {
             setError("Please fill in the form correctly");
         }
-        const newImageUri = "file:///" + image.split("file:/").join("");
+        const newImageUri = "file:///" + image1.split("file:/").join("");
 
         let backendUrl = Constants.manifest.extra.backendUrl;
 
@@ -94,19 +93,29 @@ const AddMarket = ( {props, navigation}) => {
             name: name,
             lat: lat,
             lng: lng,
-            weekday_text: weekday_text,
+            opening_hours: opening_hours,
             formatted_address: formatted_address,
             website: website,
-            image: newImageUri
+            image1: newImageUri
         };
 
         axios
             .post(`${backendUrl}/markets`, newMarketObject)
             .then((response) => {
-                alert("Thanks for your market")
+                Toast.show({
+                    topOffset: 60,
+                    type: "success",
+                    text1: "Login Successful",
+                    text2: "Welcome back!",
+                  });
             })
             .catch((error) => {
-                alert("Fail")
+                Toast.show({
+                    topOffset: 60,
+                    type: "success",
+                    text1: "Fail!",
+                  });
+                  console.log(error)
         })
     }
 
@@ -116,21 +125,21 @@ const AddMarket = ( {props, navigation}) => {
             {getCurrentLocation()}
             </View>
             <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{uri: image}}/>
+                <Image style={styles.image1} source={{uri: image1}}/>
                 <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
                     <Icon style={{ color: "white"}} name="camera" /> 
                 </TouchableOpacity>
             </View>
             <View style={styles.label}>
                <Text style={styles.label}>Name</Text>
-           </View>
+            </View>
             <View>
             <Input 
-            placeholder="Market Name"
-            name="name"
-            id="name"
-            value={name}
-            onChangeText={(text) => setName(text)}
+                placeholder="Market Name"
+                name="name"
+                id="name"
+                value={name}
+                onChangeText={(text) => setName(text)}
            />
             </View>
             <View style={styles.label}>
@@ -138,23 +147,23 @@ const AddMarket = ( {props, navigation}) => {
            </View>
             <View>
             <Input 
-            placeholder="Website URL"
-            name="website"
-            id="website"
-            value={website}
-            onChangeText={(text) => setWebsite(text)}
-           />
+                placeholder="Website URL"
+                name="website"
+                id="website"
+                value={website}
+                onChangeText={(text) => setWebsite(text)}
+            />
             </View>
             <View style={styles.label}>
                <Text style={styles.label}>Opening Hours</Text>
                </View>
             <View>
-            <Input 
+            <Input
             placeholder="Opening Hours"
-            name="weekday_text"
-            id="weekday_text"
-            value={weekday_text}
-            onChangeText={(text) => setWeekday_text(text)}
+            name="opening_hours"
+            id="opening_hours"
+            value={opening_hours}
+            onChangeText={(text) => setOpening_hours(text)}
            />
             </View>
             <View style={styles.label}>
@@ -190,6 +199,7 @@ const AddMarket = ( {props, navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         marginTop: 100,
         marginBottom: 400,
         width: width,
@@ -197,8 +207,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     imageContainer: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 180,
         borderStyle: "solid",
         borderWidth: 4,
         borderRadius: 4,
@@ -228,7 +238,8 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: 'Helvetica Neue',
         fontWeight: '800',
-        fontSize: 16
+        fontSize: 16,
+        marginTop: 10,
     }
 })
 
