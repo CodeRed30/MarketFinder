@@ -29,6 +29,7 @@ export default function HomeScreen(props) {
   const [appIsReady, setAppIsReady] = useState(false);
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [refresh, setRefresh] = useState(0)
 
     async function locationSetter() {
       if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -58,11 +59,17 @@ export default function HomeScreen(props) {
     longitude = parseFloat(lo)
   }
 
+  needRefresh = () =>{
+    console.log("refresh")
+    setRefresh(refresh + 1)
+  }
+
   return (
     <View style={{ flex: 1 }}>
-      <Map /> 
+      <Map refresh={refresh}/> 
       <MarketList 
         navigation={props.navigation}
+        needRefresh={needRefresh}
       />
     </View>
   );
