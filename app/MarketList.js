@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, FlatList, Dimensions, TouchableOpacity, Button, RefreshControl } from 'react-native';
 import Constants from 'expo-constants';
 import React, { Component, useState, useEffect } from "react";
-import { Left, Right, Container, H3} from 'native-base';
 import MarketCard from './MarketCard'
-import * as Font from 'expo-font';
 
 let googleApi = Constants.manifest.extra.googleApi
 
@@ -22,25 +20,13 @@ export default class App extends Component {
     };
   }
 
-//   chunkMaker = () => {
-//     let i, chunk = 5;
-//     for (i=0; i < this.state.markets.length; i+= chunk) {
-//       this.state.paginatedMarkets = this.state.markets.slice(i, i+chunk)
-//     }
-// console.log('here they are');
-//     console.log(this.state.paginatedMarkets[0])
-//   }
-
   fetchMarkets = async () => {
     this.setState({ isLoading: true });
     try {
       let backendUrl = Constants.manifest.extra.backendUrl
-      // const res = await fetch(backendUrl + `/markets?page=` + this.state.page + `&limit=` + 5);
       const res = await fetch(backendUrl + `/markets`);
       const markets = await res.json();
       this.setState({ markets: markets})
-      // if (this.state.page === 1) this.setState({ markets });
-      // else this.setState({ markets: [...this.state.markets, ...markets] });
     } catch (err) {
       console.log(err);
     }
@@ -54,9 +40,7 @@ export default class App extends Component {
   };
 
   refreshMarkets = () => {
-    this.setState({ page: 1 }, () => {
       this.fetchMarkets();
-    });
   };
 
   loadMoreMarkets = () => {
@@ -168,7 +152,6 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
   listItem: {
-    // paddingTop: 15,
     fontSize: 18,
   },
   container: {
