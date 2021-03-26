@@ -9,50 +9,53 @@ import { Marker } from 'react-native-maps'
 let googleApi = Constants.manifest.extra.googleApi
 
 export default class Map extends React.Component {
-  state = {
-    latitude: null,
-    longitude: null,
-    coords: null,
-    markets: [],
-    isLoading: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: null,
+      longitude: null,
+      coords: null,
+      markets: [],
+      isLoading: false,
+      desLatitude: null,
+      desLongitude: null,
+  }}
 
   fetchMarkets = async () => {
     this.setState({ isLoading: true });
+    let markets = this.state.markets
     try {
       let backendUrl = Constants.manifest.extra.backendUrl
       const res = await fetch(backendUrl + '/markets');
-      const markets = await res.json();
-      this.setState({ markets });
+      markets = await res.json();
     } catch (err) {
       console.log(err);
     }
-    this.setState({ isLoading: false });
+    this.setState({ isLoading: false, markets});
   };
 
   async componentDidMount() {
     await this.refreshMap()
   }
 
+  async componentDidUpdate(prevProps) {
+    if(prevProps.refresh !== this.props.refresh) {
+      await this.refreshMap()
+    }
+  }
+
   async refreshMap() {
     console.log("inside refreshMap")
     await this.fetchMarkets()
-  const { status } = await Permissions.getAsync(Permissions.LOCATION)
-  if (status !== 'granted') {
-    const response = await Permissions.askAsync(Permissions.LOCATION)
-  }
+    const { status } = await Permissions.getAsync(Permissions.LOCATION)
+    if (status !== 'granted') {
+      const response = await Permissions.askAsync(Permissions.LOCATION)
+    }
 
-  navigator.geolocation.getCurrentPosition(
-    ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
-    (error) => console.log('Error:', error)
-  )
-
-  const { markets: [ sampleMarket] } = this.state
-  
-  this.setState({
-    desLatitude: null,
-    desLongitude: null,
-  }, this.mergeCoords)
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => this.setState({ latitude, longitude }, this.mergeCoords),
+      (error) => console.log('Error:', error)
+    )
   }
 
   mergeCoords = () => {
@@ -154,10 +157,10 @@ async getDirections(startLoc, desLoc) {
     return (
     <MapView
        key={this.props.refresh}
-      provider={MapView.PROVIDER_GOOGLE} 
-      showsUserLocation
-      style={{ flex: 1 }}
-      initialRegion={{
+        provider={MapView.PROVIDER_GOOGLE} 
+        showsUserLocation
+        style={{ flex: 1 }}
+        initialRegion={{
         latitude,
         longitude,
         latitudeDelta: 0.0922,
