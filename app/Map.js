@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { StyleSheet, View, Text, TouchableWithoutFeedbackBase } from 'react-native'
-
+import { StyleSheet, View, Text } from 'react-native'
 import MapView, { Callout } from 'react-native-maps'
 import * as Permissions from 'expo-permissions';
 import Polyline from '@mapbox/polyline'
@@ -18,22 +17,22 @@ export default class Map extends React.Component {
     isLoading: false
   };
 
-fetchMarkets = async () => {
-  this.setState({ isLoading: true });
-  try {
-    let backendUrl = Constants.manifest.extra.backendUrl
-    const res = await fetch(backendUrl + '/markets');
-    const markets = await res.json();
-    this.setState({ markets });
-  } catch (err) {
-    console.log(err);
-  }
-  this.setState({ isLoading: false });
-};
+  fetchMarkets = async () => {
+    this.setState({ isLoading: true });
+    try {
+      let backendUrl = Constants.manifest.extra.backendUrl
+      const res = await fetch(backendUrl + '/markets');
+      const markets = await res.json();
+      this.setState({ markets });
+    } catch (err) {
+      console.log(err);
+    }
+    this.setState({ isLoading: false });
+  };
 
-async componentDidMount() {
-  await this.refreshMap()
-}
+  async componentDidMount() {
+    await this.refreshMap()
+  }
 
   async refreshMap() {
     console.log("inside refreshMap")
@@ -48,14 +47,12 @@ async componentDidMount() {
     (error) => console.log('Error:', error)
   )
 
-  
   const { markets: [ sampleMarket] } = this.state
   
   this.setState({
     desLatitude: null,
     desLongitude: null,
   }, this.mergeCoords)
-  
   }
 
   mergeCoords = () => {
@@ -73,29 +70,28 @@ async componentDidMount() {
       this.getDirections(concatStart, concatEnd)
     }
   }
- 
 
-  async getDirections(startLoc, desLoc) {
-    try {
-      const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
-      const respJson = await resp.json();
-      const response = respJson.routes[0]
-      const distanceTime = response.legs[0]
-      // console.log(distanceTime)
-      const distance = distanceTime.distance.text
-      const time = distanceTime.duration.text
-      const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
-      const coords = points.map(point => {
-        return {
-          latitude: point[0],
-          longitude: point[1]
-        }
-      })
-      this.setState({ coords, distance, time })
-    } catch(error) {
-      console.log('Error: ', error)
-    }
+async getDirections(startLoc, desLoc) {
+  try {
+    const resp = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=${startLoc}&destination=${desLoc}&mode=walking&key=${googleApi}`)
+    const respJson = await resp.json();
+    const response = respJson.routes[0]
+    const distanceTime = response.legs[0]
+    const distance = distanceTime.distance.text
+    const time = distanceTime.duration.text
+    const points = Polyline.decode(respJson.routes[0].overview_polyline.points);
+    const coords = points.map(point => {
+      return {
+        latitude: point[0],
+        longitude: point[1]
+      }
+    })
+    this.setState({ coords, distance, time })
+  } catch(error) {
+    console.log('Error: ', error)
   }
+}
+
   onMarkerPress = market => () => {
     const latitude = parseFloat(market.lat)
     const longitude = parseFloat(market.lng)
@@ -107,9 +103,11 @@ async componentDidMount() {
   }
 
   renderMarkers = () => {
+    console.log(this.state.markets.length)
     console.log("render markers")
-
-    const { markets } =this.state
+    console.log(this.props.refresh)
+    const { markets } = this.state
+    console.log(markets.length)
     if (markets === [] ) {
       return (
         <View style={{flex:1}}>
@@ -125,7 +123,7 @@ async componentDidMount() {
             const longitude = parseFloat(market.lng)
             return (
               <Marker
-              key={idx}
+              key={idx + this.props.refresh}
               coordinate={{ latitude, longitude }}
               onPress={this.onMarkerPress(market)}
               image={require('../assets/avocado.png')}>
@@ -145,21 +143,17 @@ async componentDidMount() {
       </View>
     )
   }
-  
-
 
   render(){
      const { 
       latitude,
       longitude,
       coords,
-      time,
-      distance
       } = this.state
    if (latitude) {
     return (
     <MapView
-      key={this.props.refresh}
+       key={this.props.refresh}
       provider={MapView.PROVIDER_GOOGLE} 
       showsUserLocation
       style={{ flex: 1 }}
@@ -170,7 +164,6 @@ async componentDidMount() {
         longitudeDelta: 0.0421
       }}
       >
-
         {this.renderMarkers()}
 
         <MapView.Polyline 
