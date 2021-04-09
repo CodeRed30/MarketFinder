@@ -4,6 +4,9 @@
 
 [Project](#Project) | [Implemented User Stories](#Implemented-User-Stories) | [Additional feature user stories](#Additional-feature-user-stories) | [To Run the App](#To-Run-The-App) | [Planning and Learning](#Planning-and-Learning) | [Technologies](#Technologies) | [Team Mernie Sanders](#Team-Mernie-Sanders)
 
+
+<img scr='/scrummy.gif' />
+
 ## Project
 
 Born out of frustration with dwindling footfall in every market she attended and the endless scrolling through social media channels to find opening times to see two different answers on two different platforms. Our founder Holly had an epiphany.
