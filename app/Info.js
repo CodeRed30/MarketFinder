@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Helvetica Neue',
         fontWeight: '800',
         fontSize: 14,
-        marginTop: 100,
+        marginTop: 50,
         marginBottom: 18,
         paddingHorizontal: 20
     },
