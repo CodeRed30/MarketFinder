@@ -5,7 +5,7 @@
 [Project](#Project) | [Implemented User Stories](#Implemented-User-Stories) | [Additional feature user stories](#Additional-feature-user-stories) | [To Run the App](#To-Run-The-App) | [Planning and Learning](#Planning-and-Learning) | [Technologies](#Technologies) | [Team Mernie Sanders](#Team-Mernie-Sanders)
 
 
-<img scr='/scrummy.gif' />
+<img scr='./scrummy.gif' />
 
 ## Project
 
