@@ -106,11 +106,7 @@ async getDirections(startLoc, desLoc) {
   }
 
   renderMarkers = () => {
-    console.log(this.state.markets.length)
-    console.log("render markers")
-    console.log(this.props.refresh)
     const { markets } = this.state
-    console.log(markets.length)
     if (markets === [] ) {
       return (
         <View style={{flex:1}}>
