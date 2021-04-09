@@ -4,7 +4,7 @@
 [Project](#Project) | [Implemented User Stories](#Implemented-User-Stories) | [Additional feature user stories](#Additional-feature-user-stories) | [To Run the App](#To-Run-The-App) | [Planning and Learning](#Planning-and-Learning) | [Technologies](#Technologies) | [Team Mernie Sanders](#Team-Mernie-Sanders)
 
 <div style='text-align: center'>
-  <img src='./assets/scrummy.gif' style='max-height: 600px'/>
+  <img src='./assets/scrummy.gif' height='600px'>
 </div>
 
 ## Project
